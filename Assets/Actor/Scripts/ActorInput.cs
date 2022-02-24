@@ -2,10 +2,10 @@
 
 namespace Actor.Scripts{
 	public class ActorInput : MonoBehaviour{
-		private Scripts.Actor actor;
+		private Actor actor;
 
 		private void Start(){
-			actor = GetComponent<Scripts.Actor>();
+			actor = GetComponent<Actor>();
 		}
 
 		private void Update(){
