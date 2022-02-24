@@ -28,8 +28,9 @@ namespace Actor.Scripts{
 		}
 
 		public void SelectDirection(bool isRight){
-			var direction = isRight ? Vector3.right : Vector3.left;
-			transform.forward = direction;
+			var angel = isRight ? 90 : -90;
+			var direction = new Vector3(0, angel, 0);
+			transform.eulerAngles += direction;
 		}
 
 		public void SetMoveSpeed(float moveSpeed){

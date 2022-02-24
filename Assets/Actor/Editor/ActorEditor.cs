@@ -38,28 +38,42 @@ namespace Actor.Editor{
 
 		private void DrawMethodButton(){
 			ActorTeleport();
+			ActorSelectDirection();
 			ActorReceiveReward();
 		}
 
-		private void ActorReceiveReward(){
+		private int directionIndex;
+		private void ActorSelectDirection(){
 			EditorGUILayout.BeginVertical(LayoutSettings.editWidth);
-			var reward = string.Empty;
-			EditorGUILayout.TextField("Reward Message", reward);
-			var isReceived = GUILayout.Button("Receive Reward", LayoutSettings.editWidth);
-			if(isReceived){
-				actor.ReceiveReward(reward);
+			directionIndex = EditorGUILayout.IntField("0 is Left 1 is Right", directionIndex);
+			var isSelect = GUILayout.Button("Select Direction", LayoutSettings.editWidth);
+			if(isSelect){
+				var isRight = directionIndex == 1;
+				actor.SelectDirection(isRight);
 			}
 
 			EditorGUILayout.EndVertical();
 		}
 
+		private Vector3 teleportPosition;
 		private void ActorTeleport(){
 			EditorGUILayout.BeginVertical(LayoutSettings.editWidth);
-			var teleportPosition = Vector3.zero;
-			EditorGUILayout.Vector3Field("Position", teleportPosition);
+			teleportPosition = EditorGUILayout.Vector3Field("Position", teleportPosition);
 			var isTeleport = GUILayout.Button("Teleport", LayoutSettings.editWidth);
 			if(isTeleport){
 				actor.Teleport(teleportPosition);
+			}
+
+			EditorGUILayout.EndVertical();
+		}
+
+		private string reward;
+		private void ActorReceiveReward(){
+			EditorGUILayout.BeginVertical(LayoutSettings.editWidth);
+			reward = EditorGUILayout.TextField("Reward Message", reward);
+			var isReceived = GUILayout.Button("Receive Reward", LayoutSettings.editWidth);
+			if(isReceived){
+				actor.ReceiveReward(reward);
 			}
 
 			EditorGUILayout.EndVertical();
