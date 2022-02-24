@@ -1,17 +1,18 @@
 ﻿#if UNITY_EDITOR
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
 using UnityEditor;
-using UnityEngine;
 
 namespace Actor.Editor{
-	public class ActorEditor : EditorWindow{
+	public class ActorEditor : OdinEditorWindow{
 		[MenuItem("Tools/Project/ActorEditor")]
-		private static void ShowWindow(){
+		private static void OpenWindow(){
 			var window = GetWindow<ActorEditor>();
-			window.titleContent = new GUIContent("TITLE");
+			window.position = GUIHelper.GetEditorWindowRect().AlignCenter(800, 600);
 			window.Show();
 		}
 
-		private void OnGUI(){ }
 	}
 }
 #endif
