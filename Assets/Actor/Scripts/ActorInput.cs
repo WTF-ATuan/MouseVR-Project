@@ -1,12 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Actor.MainScripts{
+namespace Actor.Scripts{
 	public class ActorInput : MonoBehaviour{
-		private Actor actor;
+		private Scripts.Actor actor;
 
 		private void Start(){
-			actor = GetComponent<Actor>();
+			actor = GetComponent<Scripts.Actor>();
 		}
 
 		private void Update(){

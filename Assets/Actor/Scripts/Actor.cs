@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Actor.MainScripts{
+namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
-		[SerializeField] private float speed = 1;
+		[SerializeField] private float speed = 5;
 
 		public Vector3 StartPosition{ get; private set; }
 
@@ -22,6 +21,19 @@ namespace Actor.MainScripts{
 
 		public void Teleport(Vector3 targetPosition){
 			transform.position = targetPosition;
+		}
+
+		public void ReceiveReward(string reward){
+			Debug.Log($"reward = {reward}");
+		}
+
+		public void SelectDirection(bool isRight){
+			var direction = isRight ? Vector3.right : Vector3.left;
+			transform.forward = direction;
+		}
+
+		public void SetMoveSpeed(float moveSpeed){
+			speed = moveSpeed;
 		}
 	}
 }
