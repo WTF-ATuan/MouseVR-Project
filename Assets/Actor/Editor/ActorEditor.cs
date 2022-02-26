@@ -1,5 +1,4 @@
 ﻿#if UNITY_EDITOR
-using System;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
@@ -22,11 +21,11 @@ namespace Actor.Editor{
 		}
 
 		protected override void OnGUI(){
-			EditorGUILayout.BeginVertical(LayoutSettings.mainBox.style);
-			EditorGUILayout.LabelField("Actor", LayoutSettings.sectionLabel);
-			EditorGUILayout.BeginHorizontal(LayoutSettings.editWidth);
+			EditorGUILayout.BeginVertical();
+			EditorGUILayout.LabelField("Actor");
+			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.ObjectField(actor, typeof(Scripts.Actor), true);
-			if(GUILayout.Button("Refresh", LayoutSettings.buttonOp)){
+			if(GUILayout.Button("Refresh")){
 				actor = FindObjectOfType<Scripts.Actor>();
 			}
 
@@ -43,10 +42,11 @@ namespace Actor.Editor{
 		}
 
 		private int directionIndex;
+
 		private void ActorSelectDirection(){
-			EditorGUILayout.BeginVertical(LayoutSettings.editWidth);
+			EditorGUILayout.BeginVertical();
 			directionIndex = EditorGUILayout.IntField("0 is Left 1 is Right", directionIndex);
-			var isSelect = GUILayout.Button("Select Direction", LayoutSettings.editWidth);
+			var isSelect = GUILayout.Button("Select Direction");
 			if(isSelect){
 				var isRight = directionIndex == 1;
 				actor.SelectDirection(isRight);
@@ -56,10 +56,11 @@ namespace Actor.Editor{
 		}
 
 		private Vector3 teleportPosition;
+
 		private void ActorTeleport(){
-			EditorGUILayout.BeginVertical(LayoutSettings.editWidth);
+			EditorGUILayout.BeginVertical();
 			teleportPosition = EditorGUILayout.Vector3Field("Position", teleportPosition);
-			var isTeleport = GUILayout.Button("Teleport", LayoutSettings.editWidth);
+			var isTeleport = GUILayout.Button("Teleport");
 			if(isTeleport){
 				actor.Teleport(teleportPosition);
 			}
@@ -68,10 +69,11 @@ namespace Actor.Editor{
 		}
 
 		private string reward;
+
 		private void ActorReceiveReward(){
-			EditorGUILayout.BeginVertical(LayoutSettings.editWidth);
+			EditorGUILayout.BeginVertical();
 			reward = EditorGUILayout.TextField("Reward Message", reward);
-			var isReceived = GUILayout.Button("Receive Reward", LayoutSettings.editWidth);
+			var isReceived = GUILayout.Button("Receive Reward");
 			if(isReceived){
 				actor.ReceiveReward(reward);
 			}
