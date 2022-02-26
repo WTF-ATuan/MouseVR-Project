@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d7ab2d076e4c728666c975ac4cc84e, type: 3}
   m_Name: EnvironmentData
   m_EditorClassIdentifier: 
-  environmentName: 
+  name: 
   description: 
   mapModel: {fileID: 0}
+  characteristics: []
+  paths: []
+  rewards: []
+  brightNess: 0
+  contrast: 0
