@@ -1,8 +1,9 @@
-﻿using Sirenix.OdinInspector;
+﻿using Environment.Scripts;
+using Sirenix.OdinInspector;
 
 namespace Environment.Editor{
 	public class EditEnvironmentData{
-		[InlineEditor(Expanded = true)]
-		private EditEnvironmentData data;
+		[ShowInInspector] [InlineEditor(Expanded = true)]
+		public EnvironmentData data;
 	}
 }
