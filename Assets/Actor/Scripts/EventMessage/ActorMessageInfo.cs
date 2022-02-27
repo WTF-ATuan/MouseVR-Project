@@ -6,48 +6,42 @@ namespace Actor.Scripts.EventMessage{
 	public abstract class MessageInfo{ }
 
 	public class ActorPositionInfo : MessageInfo{
-		public Vector3 Position{ get; }
-		public float BaseVelocity{ get; }
-		public float GameVelocity{ get; }
-		public float Time{ get; }
+		public Vector3 position;
+		public float baseVelocity;
+		public float gameVelocity;
 
-		public ActorPositionInfo(Vector3 position, float baseVelocity, float gameVelocity, float time){
-			Position = position;
-			BaseVelocity = baseVelocity;
-			GameVelocity = gameVelocity;
-			Time = time;
+		public ActorPositionInfo(){ }
+
+		public ActorPositionInfo(Vector3 position, float baseVelocity, float gameVelocity){
+			this.position = position;
+			this.baseVelocity = baseVelocity;
+			this.gameVelocity = gameVelocity;
 		}
 	}
 
 	public class ActorTeleportedInfo : MessageInfo{
-		public Vector3 OriginPosition{ get; }
-		public Vector3 TeleportedPosition{ get; }
-		public float Time{ get; }
+		public Vector3 originPosition;
+		public Vector3 teleportedPosition;
 
-		public ActorTeleportedInfo(Vector3 originPosition, Vector3 teleportedPosition, float time){
-			OriginPosition = originPosition;
-			TeleportedPosition = teleportedPosition;
-			Time = time;
+		public ActorTeleportedInfo(Vector3 originPosition, Vector3 teleportedPosition){
+			this.originPosition = originPosition;
+			this.teleportedPosition = teleportedPosition;
 		}
 	}
 
 	public class ActorRewardTimeInfo : MessageInfo{
-		public string RewardType{ get; }
-		public float Time{ get; }
+		public string rewardType;
 
-		public ActorRewardTimeInfo(string rewardType, float time){
-			RewardType = rewardType;
-			Time = time;
+		public ActorRewardTimeInfo(string rewardType){
+			this.rewardType = rewardType;
 		}
 	}
 
 	public class ActorSelectedInfo : MessageInfo{
-		public bool IsRight{ get; }
-		public float Time{ get; }
+		public bool isRight;
 
-		public ActorSelectedInfo(bool isRight, float time){
-			IsRight = isRight;
-			Time = time;
+		public ActorSelectedInfo(bool isRight){
+			this.isRight = isRight;
 		}
 	}
 }
