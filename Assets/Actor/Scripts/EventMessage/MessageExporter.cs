@@ -23,10 +23,10 @@ namespace Actor.Scripts.EventMessage{
 		}
 
 		public string TranslateMessage<T>(T info) where T : MessageInfo{
-			var fileName = typeof(T).Name;
+			var messageType = typeof(T).Name;
 			var jsonFile = JsonUtility.ToJson(info);
 			jsonFile += $"Time :{Time.time}" + "\r\n";
-			return fileName + jsonFile;
+			return messageType + jsonFile;
 		}
 
 		public void SaveToJsonFile(string rawMessage){
