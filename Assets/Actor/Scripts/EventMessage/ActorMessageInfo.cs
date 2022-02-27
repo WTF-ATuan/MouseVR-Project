@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Actor.Scripts.EventMessage{
-	public class ActorPositionInfo{
+	[Serializable]
+	public abstract class MessageInfo{ }
+
+	public class ActorPositionInfo : MessageInfo{
 		public Vector3 Position{ get; }
 		public float BaseVelocity{ get; }
 		public float GameVelocity{ get; }
@@ -15,7 +19,7 @@ namespace Actor.Scripts.EventMessage{
 		}
 	}
 
-	public class ActorTeleportedInfo{
+	public class ActorTeleportedInfo : MessageInfo{
 		public Vector3 OriginPosition{ get; }
 		public Vector3 TeleportedPosition{ get; }
 		public float Time{ get; }
@@ -27,7 +31,7 @@ namespace Actor.Scripts.EventMessage{
 		}
 	}
 
-	public class ActorRewardTimeInfo{
+	public class ActorRewardTimeInfo : MessageInfo{
 		public string RewardType{ get; }
 		public float Time{ get; }
 
@@ -37,7 +41,7 @@ namespace Actor.Scripts.EventMessage{
 		}
 	}
 
-	public class ActorSelectedInfo{
+	public class ActorSelectedInfo : MessageInfo{
 		public bool IsRight{ get; }
 		public float Time{ get; }
 

@@ -17,6 +17,7 @@ namespace Actor.Scripts{
 			var forwardDirection = transform.forward;
 			var moveDirection = inputValue * forwardDirection * speed;
 			characterController.SimpleMove(moveDirection);
+			var velocity = characterController.velocity;
 		}
 
 		public void Teleport(Vector3 targetPosition){
