@@ -3,6 +3,7 @@
 		private MessageExporter messageExporter;
 		private EventMessageStore messageStore;
 
+		//TODO
 		public void SandMessage<T>(T messageInfo) where T : MessageInfo{ }
 	}
 }
