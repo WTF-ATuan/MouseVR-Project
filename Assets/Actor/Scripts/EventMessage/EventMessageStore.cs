@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Actor.Scripts.EventMessage{
 	public class EventMessageStore{
@@ -18,15 +19,20 @@ namespace Actor.Scripts.EventMessage{
 			}
 		}
 
-		public List<MessageInfo> Get<T>() where T : MessageInfo{
+		public List<T> Get<T>() where T : MessageInfo{
 			var type = typeof(T);
 			if(storeMessageInfos.ContainsKey(type)){
 				var messageInfos = storeMessageInfos[type];
-				return messageInfos;
+				return messageInfos.Cast<T>().ToList();
 			}
 			else{
-				return new List<MessageInfo>();
+				return new List<T>();
 			}
+		}
+
+		public List<List<MessageInfo>> GetAll(){
+			var allMessage = storeMessageInfos.Values;
+			return allMessage.ToList();
 		}
 
 		public void Clear(){
