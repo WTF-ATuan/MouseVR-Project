@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Actor.Scripts.Event;
+using Project;
+using UnityEngine;
 
 namespace Actor.Scripts{
 	public class ActorInput : MonoBehaviour{
@@ -6,21 +8,33 @@ namespace Actor.Scripts{
 
 		private void Start(){
 			actor = GetComponent<Actor>();
+			EventBus.Subscribe<ActorMoveDetected>(OnActorMoveDetected);
+			EventBus.Subscribe<ActorTeleportDetected>(OnActorTeleportDetected);
+		}
+
+		private void OnActorTeleportDetected(ActorTeleportDetected obj){
+			var targetPosition = obj.TargetPosition;
+			actor.Teleport(targetPosition);
+		}
+
+		private void OnActorMoveDetected(ActorMoveDetected obj){
+			var inputSpeed = obj.InputSpeed;
+			actor.Move(inputSpeed);
 		}
 
 		private void Update(){
-			MoveValueDetected();
+			DetectMoveValue();
 			if(Input.GetKeyDown(KeyCode.Space)){
-				TeleportValueDetected();
+				DetectTeleportValue();
 			}
 		}
 
-		private void MoveValueDetected(){
+		private void DetectMoveValue(){
 			var scrollDeltaOffsetY = Input.mouseScrollDelta.y;
 			actor.Move(scrollDeltaOffsetY);
 		}
 
-		private void TeleportValueDetected(){
+		private void DetectTeleportValue(){
 			var actorStartPosition = actor.StartPosition;
 			actor.Teleport(actorStartPosition);
 		}
