@@ -3,7 +3,7 @@ using Project;
 using UnityEngine;
 
 namespace Actor.Scripts{
-	public class ActorInput : MonoBehaviour{
+	public class ActorController : MonoBehaviour{
 		private Actor actor;
 
 		private void Start(){
@@ -31,12 +31,12 @@ namespace Actor.Scripts{
 
 		private void DetectMoveValue(){
 			var scrollDeltaOffsetY = Input.mouseScrollDelta.y;
-			actor.Move(scrollDeltaOffsetY);
+			EventBus.Post(new ActorMoveDetected(scrollDeltaOffsetY));
 		}
 
 		private void DetectTeleportValue(){
 			var actorStartPosition = actor.StartPosition;
-			actor.Teleport(actorStartPosition);
+			EventBus.Post(new ActorTeleportDetected(actorStartPosition));
 		}
 	}
 }
