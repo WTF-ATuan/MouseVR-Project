@@ -1,10 +1,1 @@
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":0.0,"gameVelocity":1.0}Time :0.5678356
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":1.0,"gameVelocity":2.0}Time :0.5678356
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":2.0,"gameVelocity":3.0}Time :0.5678356
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":3.0,"gameVelocity":4.0}Time :0.5678356
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":4.0,"gameVelocity":5.0}Time :0.5678356
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":5.0,"gameVelocity":6.0}Time :0.5678356
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":6.0,"gameVelocity":7.0}Time :0.5678356
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":7.0,"gameVelocity":8.0}Time :0.5678356
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":8.0,"gameVelocity":9.0}Time :0.5678356
-ActorPositionInfo{"position":{"x":1.0,"y":1.0,"z":1.0},"baseVelocity":9.0,"gameVelocity":10.0}Time :0.5678356
+ActorPositionInfo{"position":{"x":0.0,"y":0.0,"z":0.0},"baseVelocity":1.0,"gameVelocity":2.0}Time :0.3533334
