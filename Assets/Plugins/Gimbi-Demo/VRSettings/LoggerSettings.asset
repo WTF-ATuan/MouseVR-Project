@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LoggerSettings
   m_EditorClassIdentifier: 
   outputFile: Log
-  sessionId: 6
+  sessionId: 7
