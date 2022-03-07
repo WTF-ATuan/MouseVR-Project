@@ -18,26 +18,8 @@ namespace Environment.Editor{
 			if(IsDataNull) return;
 			AssetDatabase.OpenAsset(data.mapPrefab);
 		}
-
-		[HorizontalGroup("path")] [ShowInInspector] [InlineEditor(Expanded = false)]
-		public PathCreator pathCreator;
-
-		[HorizontalGroup("path")]
-		[Button(ButtonSizes.Small)]
-		private void AutoFind(){
-			var stageHandle = StageUtility.GetCurrentStageHandle();
-			var creator = stageHandle.FindComponentOfType<PathCreator>();
-			if(creator != null) pathCreator = creator;
-		}
-
-		[HorizontalGroup("path")]
-		[Button(ButtonSizes.Small)]
-		private void Create(){
-			var gameObject = new GameObject("PathCreator");
-			var creator = gameObject.AddComponent<PathCreator>();
-			StageUtility.PlaceGameObjectInCurrentStage(gameObject);
-			pathCreator = creator;
-
-		}
+		[HideIf("IsDataNull")] [HideLabel]
+		public PathEditor pathEditor = new PathEditor();
+		
 	}
 }
