@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using PathCreation;
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Environment.Editor{
 	[Serializable]
@@ -42,10 +45,49 @@ namespace Environment.Editor{
 		}
 
 		private void InitCreator(){
+			Selection.activeGameObject = pathCreator.gameObject;
 			var bezierPath = pathCreator.bezierPath;
 			bezierPath.Space = PathSpace.xz;
 			bezierPath.ControlPointMode = BezierPath.ControlMode.Automatic;
 			bezierPath.AutoControlLength = 0.01f;
+		}
+
+
+		[HorizontalGroup("Export", 100)]
+		[Button(ButtonSizes.Small, ButtonStyle.FoldoutButton)]
+		private void ClearPath(){
+			foreach(var path in pathHandlers){
+				Object.DestroyImmediate(path);
+			}
+
+			pathHandlers.Clear();
+		}
+
+		[HorizontalGroup("Export", 300)]
+		[Button(ButtonSizes.Small, ButtonStyle.FoldoutButton)]
+		private void ExportPathToGameObject(){
+			var bezierPath = pathCreator.bezierPath;
+			for(var i = 1; i < bezierPath.NumAnchorPoints; i++){
+				var j = i - 1;
+				var startPoint = bezierPath[i * 3];
+				var endPoint = bezierPath[j * 3];
+				CreatePathPoint(startPoint, endPoint);
+			}
+		}
+
+
+		[HorizontalGroup("Export")] [ReadOnly] [SerializeField]
+		private List<PathHandler> pathHandlers = new List<PathHandler>();
+
+		private void CreatePathPoint(Vector3 startPoint, Vector3 endPoint){
+			var centerPoint = Vector3.Lerp(startPoint, endPoint, 0.5f);
+			var gameObject = new GameObject($"Path + {centerPoint}");
+			var pathHandler = gameObject.AddComponent<PathHandler>();
+			pathHandler.Initialized(startPoint, endPoint);
+			StageUtility.PlaceGameObjectInCurrentStage(gameObject);
+			pathHandler.transform.position = centerPoint;
+			pathHandler.transform.SetParent(pathCreator.transform);
+			pathHandlers.Add(pathHandler);
 		}
 	}
 }

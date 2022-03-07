@@ -18,8 +18,10 @@ namespace Environment.Editor{
 			if(IsDataNull) return;
 			AssetDatabase.OpenAsset(data.mapPrefab);
 		}
-		[HideIf("IsDataNull")] [HideLabel]
+
+		[Title("Path Creator", "Hold *Left-Shift* to Create Dot *Left-Ctrl* to Delete ",TitleAlignments.Centered)]
+		[HideIf("IsDataNull")]
+		[HideLabel]
 		public PathEditor pathEditor = new PathEditor();
-		
 	}
 }
