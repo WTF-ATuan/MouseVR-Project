@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   description: 
-  mapModel: {fileID: 0}
+  mapPrefab: {fileID: 5595878264314054216, guid: b6990ac13abfaf14bab908db7ab3102c,
+    type: 3}
   characteristics: []
   paths: []
   rewards: []
