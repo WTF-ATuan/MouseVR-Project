@@ -25,8 +25,8 @@ namespace Environment.Editor{
 		[HorizontalGroup("path")]
 		[Button(ButtonSizes.Small)]
 		private void AutoFind(){
-			var mapPrefab = data.mapPrefab;
-			var creator = mapPrefab.GetComponentInChildren<PathCreator>();
+			var stageHandle = StageUtility.GetCurrentStageHandle();
+			var creator = stageHandle.FindComponentOfType<PathCreator>();
 			if(creator != null) pathCreator = creator;
 		}
 
