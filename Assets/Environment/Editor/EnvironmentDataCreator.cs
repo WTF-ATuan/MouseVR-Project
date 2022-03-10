@@ -1,5 +1,5 @@
 ﻿namespace Environment.Editor{
-	public class CreateNewEnvironmentData{
+	public class EnvironmentDataCreator{
 		
 	}
 }

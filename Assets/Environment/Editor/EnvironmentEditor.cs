@@ -1,4 +1,5 @@
-﻿using Environment.Scripts;
+﻿using System;
+using Environment.Scripts;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 
@@ -11,10 +12,12 @@ namespace Environment.Editor{
 
 		protected override OdinMenuTree BuildMenuTree(){
 			var tree = new OdinMenuTree();
-			tree.Add("Create New", new CreateNewEnvironmentData());
-			tree.Add("Edit" , new EditEnvironmentData());
+			tree.Add("Create New", new EnvironmentDataCreator());
+			tree.Add("Edit", new EnvironmentDataEditor());
+			tree.Add("Edit Characteristic", new CharacteristicEditor());
 			tree.AddAllAssetsAtPath("Environment Data", "Assets/Environment/Data_SO", typeof(EnvironmentData));
 			return tree;
 		}
+
 	}
 }

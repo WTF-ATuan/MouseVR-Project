@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Environment.Editor{
-	public class EditEnvironmentData{
+	public class EnvironmentDataEditor{
 		private bool IsDataNull => data == null;
 
 		[HorizontalGroup("Data")] [ShowInInspector] [InlineEditor(Expanded = false)]
