@@ -13,7 +13,7 @@ namespace Environment.Editor{
 			var tree = new OdinMenuTree();
 			tree.Add("Create New", new CreateNewEnvironmentData());
 			tree.Add("Edit" , new EditEnvironmentData());
-			tree.AddAllAssetsAtPath("Environment Data", "Assets/Environment/Data", typeof(EnvironmentData));
+			tree.AddAllAssetsAtPath("Environment Data", "Assets/Environment/Data_SO", typeof(EnvironmentData));
 			return tree;
 		}
 	}
