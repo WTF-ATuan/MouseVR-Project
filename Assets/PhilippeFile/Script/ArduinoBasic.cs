@@ -36,7 +36,6 @@ public class ArduinoBasic : MonoBehaviour
         if (isNewMessage)
         {
             arduinoDataReader.ReadData(readMessage);
-            
             EventBus.Post(new ActorMoveDetected(arduinoDataReader.GetSpeed()));
             
             Debug.Log (readMessage);
