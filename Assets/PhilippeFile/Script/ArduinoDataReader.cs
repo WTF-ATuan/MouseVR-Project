@@ -11,16 +11,24 @@ namespace PhilippeFile.Script
         public void ReadData(string readMessage)
         {
             string[] SplitedData_str = readMessage.Split(',');
-            ChangeStringToFloat(SplitedData_str , SplitedData);
+            ChangeStringToFloat(SplitedData_str);
             
         }
 
-        private void ChangeStringToFloat(string[] inData , float[] outData)
+        private void ChangeStringToFloat(string[] inData)
         {
-            for (int i = 0 ; i < inData.Length ; i++)
+            try
             {
-                outData[i] = float.Parse(inData[i]);
+                for (int i = 0 ; i < inData.Length ; i++)
+                {
+                    SplitedData[i] = float.Parse(inData[i]);
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }   
         }
 
         public float GetSpeed()
