@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Threading;
@@ -11,6 +12,19 @@ public class ArduinoBasic : MonoBehaviour {
     public string readMessage;
     bool isNewMessage;
 
+
+    #region Instance
+
+    static public ArduinoBasic instance;
+
+    private void Awake()
+    {
+        instance = GetComponent<ArduinoBasic>();
+    }
+
+    #endregion
+    
+    
     void Start () {
         if (port != "") {
             arduinoStream = new SerialPort (port, 9600); //指定連接埠、鮑率並實例化SerialPort
@@ -55,6 +69,11 @@ void OnApplicationQuit () {
             arduinoStream.Close ();
         }
     }
+}
+
+public string GetArduinoData()
+{
+    return readMessage;
 }
 
 }
