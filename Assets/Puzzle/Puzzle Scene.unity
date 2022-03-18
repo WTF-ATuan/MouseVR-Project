@@ -4751,6 +4751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2042989519}
+  - component: {fileID: 2042989520}
   m_Layer: 0
   m_Name: Ardurino
   m_TagString: Untagged
@@ -4772,6 +4773,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2042989520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042989518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baec88a49f36470469a9bfdc287e08ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: COM7
+  readMessage: 
 --- !u!1 &2051397082
 GameObject:
   m_ObjectHideFlags: 0

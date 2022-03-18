@@ -3,9 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Threading;
+using Actor.Scripts.Event;
+using PhilippeFile.Script;
+using Project;
 using UnityEngine;
 
-public class ArduinoBasic : MonoBehaviour {
+public class ArduinoBasic : MonoBehaviour
+{
+    private ArduinoDataReader arduinoDataReader = new ArduinoDataReader();
     private SerialPort arduinoStream;
     public string port;
     private Thread readThread; // 宣告執行緒
@@ -13,18 +18,6 @@ public class ArduinoBasic : MonoBehaviour {
     bool isNewMessage;
 
 
-    #region Instance
-
-    static public ArduinoBasic instance;
-
-    private void Awake()
-    {
-        instance = GetComponent<ArduinoBasic>();
-    }
-
-    #endregion
-    
-    
     void Start () {
         if (port != "") {
             arduinoStream = new SerialPort (port, 9600); //指定連接埠、鮑率並實例化SerialPort
@@ -40,7 +33,12 @@ public class ArduinoBasic : MonoBehaviour {
         }
     }
     void Update () {
-        if (isNewMessage) {
+        if (isNewMessage)
+        {
+            arduinoDataReader.ReadData(readMessage);
+            
+            EventBus.Post(new ActorMoveDetected(arduinoDataReader.GetSpeed()));
+            
             Debug.Log (readMessage);
         }
         isNewMessage = false;
@@ -69,11 +67,6 @@ void OnApplicationQuit () {
             arduinoStream.Close ();
         }
     }
-}
-
-public string GetArduinoData()
-{
-    return readMessage;
 }
 
 }
