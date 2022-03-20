@@ -30,7 +30,7 @@ namespace Actor.Scripts{
 		}
 
 		private void DetectMoveValue(){
-			var scrollDeltaOffsetY = Input.mouseScrollDelta.y;
+			var scrollDeltaOffsetY = Input.GetAxisRaw("Vertical");
 			EventBus.Post(new ActorMoveDetected(scrollDeltaOffsetY));
 		}
 
