@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Environment.Scripts{
 	[RequireComponent(typeof(BoxCollider))]
-	public class AreaCollisionHandler : MonoBehaviour , IActorCollision{
+	public class AreaCollisionHandlerHandler : MonoBehaviour , IActorCollisionHandler{
 		[SerializeField] private AreaType type = AreaType.Award;
 
 		private BoxCollider boxCollider;

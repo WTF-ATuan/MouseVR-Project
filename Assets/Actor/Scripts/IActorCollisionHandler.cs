@@ -1,5 +1,5 @@
 ﻿namespace Actor.Scripts{
-	public interface IActorCollision{
+	public interface IActorCollisionHandler{
 		void ActorCollision(Actor actor);
 	}
 }
