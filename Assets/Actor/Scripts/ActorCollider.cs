@@ -21,7 +21,4 @@ namespace Actor.Scripts{
 			actorCollision?.ActorCollision(actor);
 		}
 	}
-	public interface IActorCollision{
-		void ActorCollision(Actor actor);
-	}
 }
