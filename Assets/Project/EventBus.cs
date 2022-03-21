@@ -17,6 +17,7 @@ namespace Project{
 		public static void Subscribe<T>(Action<T> callback){
 			var type = typeof(T);
 			var containsKey = NonCallbackActions.ContainsKey(type);
+			
 			if(containsKey){
 				var actions = NonCallbackActions[type];
 				actions.Add(o => callback((T)o));
@@ -54,9 +55,10 @@ namespace Project{
 		public static void Post<T>(T obj){
 			var type = typeof(T);
 			var containsKey = NonCallbackActions.ContainsKey(type);
-			if(containsKey){
+			if(containsKey)
+			{
 				var actions = NonCallbackActions[type];
-				actions.ForEach(o => o.Invoke(obj));
+				foreach (var o in actions) o.Invoke(obj);
 			}
 			else{
 				var fullName = type.Name;
