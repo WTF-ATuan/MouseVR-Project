@@ -24,9 +24,17 @@ namespace Actor.Scripts{
 
 		private void Update(){
 			DetectMoveValue();
+			DetectDirectionAngle();
 			if(Input.GetKeyDown(KeyCode.Space)){
 				DetectTeleportValue();
 			}
+		}
+
+		private void DetectDirectionAngle(){
+			var horizontalValue = Input.GetAxisRaw("Horizontal");
+			var isRight = horizontalValue == 1;
+			if(horizontalValue == -1) isRight = false;
+			actor.SelectDirection(isRight);
 		}
 
 		private void DetectMoveValue(){

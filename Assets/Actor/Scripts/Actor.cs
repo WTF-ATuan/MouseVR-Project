@@ -3,6 +3,8 @@
 namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
 		[SerializeField] private float speed = 5;
+		[SerializeField] private int rotateAngle;
+		
 
 		public Vector3 StartPosition{ get; private set; }
 
@@ -28,7 +30,7 @@ namespace Actor.Scripts{
 		}
 
 		public void SelectDirection(bool isRight){
-			var angel = isRight ? 90 : -90;
+			var angel = isRight ? rotateAngle : -rotateAngle;
 			var direction = new Vector3(0, angel, 0);
 			transform.eulerAngles += direction;
 		}
