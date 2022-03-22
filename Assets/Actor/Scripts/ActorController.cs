@@ -31,9 +31,12 @@ namespace Actor.Scripts{
 		}
 
 		private void DetectDirectionAngle(){
-			var horizontalValue = Input.GetAxisRaw("Horizontal");
-			var isRight = horizontalValue == 1;
-			if(horizontalValue == -1) isRight = false;
+			var left = Input.GetKeyDown(KeyCode.A);
+			var right = Input.GetKeyDown(KeyCode.D);
+			if(!right && !left) return;
+			var isRight = false;
+			if(!right && left) isRight = false;
+			if(right && !left) isRight = true;
 			actor.SelectDirection(isRight);
 		}
 

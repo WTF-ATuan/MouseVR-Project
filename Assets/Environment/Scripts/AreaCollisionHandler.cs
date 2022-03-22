@@ -18,13 +18,15 @@ namespace Environment.Scripts{
 		public async void ActorCollision(Actor.Scripts.Actor actor){
 			switch(type){
 				case AreaType.Award:
+					Debug.Log($"Get Award waiting for 3s");
 					await Task.Delay(3000);
 					actor.ReceiveReward("Sugar Water");
-					actor.Teleport(actor.StartPosition);
+					actor.ResetActor();
 					break;
 				case AreaType.Punish:
+					Debug.Log($"Get Punish waiting for 6s");
 					await Task.Delay(6000);
-					actor.Teleport(actor.StartPosition);
+					actor.ResetActor();
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();

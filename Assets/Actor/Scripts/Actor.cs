@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
 		[SerializeField] private float speed = 5;
 		[SerializeField] private int rotateAngle;
-		
+
 
 		public Vector3 StartPosition{ get; private set; }
 
@@ -23,6 +24,11 @@ namespace Actor.Scripts{
 
 		public void Teleport(Vector3 targetPosition){
 			transform.position = targetPosition;
+		}
+		[Button]
+		public void ResetActor(){
+			Teleport(StartPosition);
+			transform.eulerAngles = Vector3.zero;
 		}
 
 		public void ReceiveReward(string reward){
