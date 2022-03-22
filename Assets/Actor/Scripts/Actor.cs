@@ -9,17 +9,17 @@ namespace Actor.Scripts{
 
 		public Vector3 StartPosition{ get; private set; }
 
-		private CharacterController characterController;
+		private new Rigidbody rigidbody;
 
 		private void Start(){
 			StartPosition = transform.position;
-			characterController = GetComponent<CharacterController>();
+			rigidbody = GetComponent<Rigidbody>();
 		}
 
 		public void Move(float inputValue){
 			var forwardDirection = transform.forward;
 			var moveDirection = inputValue * forwardDirection * speed;
-			characterController.SimpleMove(moveDirection);
+			rigidbody.velocity = moveDirection;
 		}
 
 		public void Teleport(Vector3 targetPosition){
