@@ -15,15 +15,6 @@ namespace Environment.Scripts{
 		[FormerlySerializedAs("mapModel")] [HorizontalGroup("Map Data", 100)] [PreviewField(100)] [HideLabel]
 		public GameObject mapPrefab;
 
-		[VerticalGroup("Map Data/MapSetting")] [LabelWidth(100)]
-		public List<Characteristic> characteristics;
-
-		[VerticalGroup("Map Data/MapSetting")] [LabelWidth(100)]
-		public List<Path> paths;
-
-		[VerticalGroup("Map Data/MapSetting")] [LabelWidth(100)]
-		public List<Reward> rewards;
-
 		[VerticalGroup("Map Data/MapSetting")] [LabelWidth(100)] [Range(0, 100)] [GUIColor(100, 100, 100)]
 		public int brightNess;
 
