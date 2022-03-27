@@ -15,6 +15,10 @@ namespace Environment.Scripts{
 			boxCollider.isTrigger = true;
 		}
 
+		public void SetAreaType(AreaType areaType){
+			type = areaType;
+		}
+
 		public async void ActorCollision(Actor.Scripts.Actor actor){
 			switch(type){
 				case AreaType.Award:
@@ -22,15 +26,19 @@ namespace Environment.Scripts{
 					await Task.Delay(3000);
 					actor.ReceiveReward("Sugar Water");
 					actor.ResetActor();
+					onExperimentCompleted?.Invoke(type);
 					break;
 				case AreaType.Punish:
 					Debug.Log($"Get Punish waiting for 6s");
 					await Task.Delay(6000);
 					actor.ResetActor();
+					onExperimentCompleted?.Invoke(type);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
 		}
+
+		public Action<AreaType> onExperimentCompleted;
 	}
 }

@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace Environment.Characteristic.Scripts{
 	public class Characteristic : MonoBehaviour{
-		public Vector3 Position => transform.position;
 
 		[HorizontalGroup("characteristic")] [ReadOnly] [SerializeField]
 		private List<GameObject> characteristicObjects;
