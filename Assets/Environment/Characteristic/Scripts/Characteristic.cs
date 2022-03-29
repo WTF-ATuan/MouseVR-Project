@@ -14,12 +14,17 @@ namespace Environment.Characteristic.Scripts{
 		private List<Vector3> characteristicLocalPositionList;
 		private List<Vector3> characteristicLocalRotationList;
 
+		private void Start(){
+			Refresh();
+		}
+
 		[HorizontalGroup("characteristic")]
 		[Button(ButtonSizes.Small)]
 		private void Refresh(){
 			var transforms = GetComponentsInChildren<Transform>();
 			characteristicObjects = transforms.Select(x => x.gameObject).ToList();
 			characteristicObjects.Remove(gameObject);
+			characteristicObjects.Remove(sidePoint.gameObject);
 			InitLocalPosition();
 		}
 
@@ -33,6 +38,7 @@ namespace Environment.Characteristic.Scripts{
 				characteristicLocalRotationList.Add(characteristic.transform.localEulerAngles);
 			}
 		}
+
 		[Button]
 		public void SetSide(bool isOrigin){
 			if(isOrigin){
