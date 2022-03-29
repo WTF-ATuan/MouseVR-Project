@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace Environment.Characteristic.Scripts{
 	public class Characteristic : MonoBehaviour{
+		[BoxGroup("Offset")] [SerializeField] private Vector3 positionOffset;
+		[BoxGroup("Offset")] [SerializeField] private Vector3 rotationOffset;
+		private Vector3 originPosition, sidePosition;
+		private Vector3 originRotation, sideRotation;
 
 		[HorizontalGroup("characteristic")] [ReadOnly] [SerializeField]
 		private List<GameObject> characteristicObjects;
@@ -15,9 +19,29 @@ namespace Environment.Characteristic.Scripts{
 		private void Refresh(){
 			var transforms = GetComponentsInChildren<Transform>();
 			characteristicObjects = transforms.Select(x => x.gameObject).ToList();
+			characteristicObjects.Remove(gameObject);
 		}
 
 		private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
+
+
+		private void Start(){
+			originPosition = transform.position;
+			sidePosition = originPosition + positionOffset;
+			originRotation = transform.eulerAngles;
+			sideRotation = originRotation + rotationOffset;
+		}
+
+		public void SetSide(bool isOrigin){
+			if(isOrigin){
+				transform.position = originPosition;
+				transform.eulerAngles = originRotation;
+			}
+			else{
+				transform.position = sidePosition;
+				transform.eulerAngles = sideRotation;
+			}
+		}
 
 		public void ModifyAllBrightness(float value){
 			if(characteristicObjects.Count < 1 || characteristicObjects == null){

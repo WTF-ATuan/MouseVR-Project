@@ -7,9 +7,6 @@ using Random = UnityEngine.Random;
 
 namespace Puzzle.GameLogic.Scripts{
 	public class BehavioralEnvironmentY : MonoBehaviour{
-		[BoxGroup("Point")] [SerializeField] private Transform rightPoint;
-		[BoxGroup("Point")] [SerializeField] private Transform leftPoint;
-
 		[BoxGroup("Characteristic")] [SerializeField]
 		private Characteristic square;
 
@@ -21,9 +18,6 @@ namespace Puzzle.GameLogic.Scripts{
 
 		[ReadOnly] [SerializeField] private int randomNumber;
 
-		private Vector3 LeftPosition => leftPoint.position;
-		private Vector3 RightPosition => rightPoint.position;
-
 		private void Start(){
 			areaL.onExperimentCompleted += OnExperimentCompleted;
 			areaR.onExperimentCompleted += OnExperimentCompleted;
@@ -32,15 +26,15 @@ namespace Puzzle.GameLogic.Scripts{
 		private void OnExperimentCompleted(AreaType obj){
 			randomNumber = Random.Range(0, 1);
 			if(randomNumber == 0){
-				square.transform.position = LeftPosition;
-				circle.transform.position = RightPosition;
+				square.SetSide(true);
+				circle.SetSide(false);
 				areaL.SetAreaType(AreaType.Award);
 				areaR.SetAreaType(AreaType.Punish);
 			}
 
 			if(randomNumber == 1){
-				square.transform.position = RightPosition;
-				circle.transform.position = LeftPosition;
+				square.SetSide(false);
+				circle.SetSide(true);
 				areaL.SetAreaType(AreaType.Punish);
 				areaR.SetAreaType(AreaType.Award);
 			}
