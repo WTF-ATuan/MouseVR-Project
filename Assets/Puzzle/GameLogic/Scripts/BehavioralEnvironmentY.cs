@@ -25,18 +25,23 @@ namespace Puzzle.GameLogic.Scripts{
 
 		private void OnExperimentCompleted(AreaType obj){
 			randomNumber = Random.Range(0, 1);
-			if(randomNumber == 0){
-				square.SetSide(true);
-				circle.SetSide(false);
-				areaL.SetAreaType(AreaType.Award);
-				areaR.SetAreaType(AreaType.Punish);
-			}
+			SetLevel(randomNumber);
+		}
 
-			if(randomNumber == 1){
-				square.SetSide(false);
-				circle.SetSide(true);
-				areaL.SetAreaType(AreaType.Punish);
-				areaR.SetAreaType(AreaType.Award);
+		private void SetLevel(int number){
+			switch(number){
+				case 0:
+					square.SetSide(true);
+					circle.SetSide(false);
+					areaL.SetAreaType(AreaType.Award);
+					areaR.SetAreaType(AreaType.Punish);
+					break;
+				case 1:
+					square.SetSide(false);
+					circle.SetSide(true);
+					areaL.SetAreaType(AreaType.Punish);
+					areaR.SetAreaType(AreaType.Award);
+					break;
 			}
 		}
 	}

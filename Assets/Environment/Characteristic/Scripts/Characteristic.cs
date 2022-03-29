@@ -6,13 +6,13 @@ using UnityEngine;
 
 namespace Environment.Characteristic.Scripts{
 	public class Characteristic : MonoBehaviour{
-		[BoxGroup("Offset")] [SerializeField] private Vector3 positionOffset;
-		[BoxGroup("Offset")] [SerializeField] private Vector3 rotationOffset;
-		private Vector3 originPosition, sidePosition;
-		private Vector3 originRotation, sideRotation;
+		[BoxGroup("Offset")] [SerializeField] private Transform sidePoint;
 
 		[HorizontalGroup("characteristic")] [ReadOnly] [SerializeField]
 		private List<GameObject> characteristicObjects;
+
+		private List<Vector3> characteristicLocalPositionList;
+		private List<Vector3> characteristicLocalRotationList;
 
 		[HorizontalGroup("characteristic")]
 		[Button(ButtonSizes.Small)]
@@ -20,26 +20,38 @@ namespace Environment.Characteristic.Scripts{
 			var transforms = GetComponentsInChildren<Transform>();
 			characteristicObjects = transforms.Select(x => x.gameObject).ToList();
 			characteristicObjects.Remove(gameObject);
+			InitLocalPosition();
 		}
 
 		private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
 
-
-		private void Start(){
-			originPosition = transform.position;
-			sidePosition = originPosition + positionOffset;
-			originRotation = transform.eulerAngles;
-			sideRotation = originRotation + rotationOffset;
+		private void InitLocalPosition(){
+			characteristicLocalPositionList = new List<Vector3>();
+			characteristicLocalRotationList = new List<Vector3>();
+			foreach(var characteristic in characteristicObjects){
+				characteristicLocalPositionList.Add(characteristic.transform.localPosition);
+				characteristicLocalRotationList.Add(characteristic.transform.localEulerAngles);
+			}
 		}
-
+		[Button]
 		public void SetSide(bool isOrigin){
 			if(isOrigin){
-				transform.position = originPosition;
-				transform.eulerAngles = originRotation;
+				foreach(var characteristicObject in characteristicObjects){
+					characteristicObject.transform.parent = transform;
+				}
 			}
 			else{
-				transform.position = sidePosition;
-				transform.eulerAngles = sideRotation;
+				foreach(var characteristicObject in characteristicObjects){
+					characteristicObject.transform.parent = sidePoint;
+				}
+			}
+
+			for(var index = 0; index < characteristicObjects.Count; index++){
+				var localPosition = characteristicLocalPositionList[index];
+				var localRotation = characteristicLocalRotationList[index];
+				var characteristicObject = characteristicObjects[index];
+				characteristicObject.transform.localPosition = localPosition;
+				characteristicObject.transform.localEulerAngles = localRotation;
 			}
 		}
 
