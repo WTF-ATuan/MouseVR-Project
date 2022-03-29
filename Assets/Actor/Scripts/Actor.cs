@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
 		[SerializeField] private float speed = 5;
-		[SerializeField] private int rotateAngle;
+		[SerializeField] private float rotateSpeed;
 
 
 		public Vector3 StartPosition{ get; private set; }
@@ -25,6 +25,7 @@ namespace Actor.Scripts{
 		public void Teleport(Vector3 targetPosition){
 			transform.position = targetPosition;
 		}
+
 		[Button]
 		public void ResetActor(){
 			Teleport(StartPosition);
@@ -36,9 +37,9 @@ namespace Actor.Scripts{
 		}
 
 		public void SelectDirection(bool isRight){
-			var angel = isRight ? rotateAngle : -rotateAngle;
-			var direction = new Vector3(0, angel, 0);
-			transform.eulerAngles += direction;
+			var eulerAngel = isRight ? Vector3.up : Vector3.down;
+			var deltaRotation = Quaternion.Euler(eulerAngel * rotateSpeed * Time.fixedDeltaTime);
+			rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
 		}
 
 		public void SetMoveSpeed(float moveSpeed){
