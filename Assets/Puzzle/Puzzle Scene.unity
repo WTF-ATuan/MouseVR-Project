@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 266748321}
   - component: {fileID: 266748325}
   - component: {fileID: 266748324}
+  - component: {fileID: 266748327}
   m_Layer: 0
   m_Name: Mouse
   m_TagString: Untagged
@@ -304,6 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   rotateSpeed: 50
+  canRotate: 1
 --- !u!4 &266748323
 Transform:
   m_ObjectHideFlags: 0
@@ -363,6 +365,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &266748327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266748320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a6659f5ce841d89e9452fdf8f73585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateAngle: 65
+  rotateSpeed: 20
 --- !u!1 &337926498
 GameObject:
   m_ObjectHideFlags: 0
