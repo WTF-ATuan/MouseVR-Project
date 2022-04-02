@@ -355,19 +355,6 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-  m_GameObject: {fileID: 266748320}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &266748327
-=======
   m_GameObject: {fileID: 237547248}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &253320273
@@ -528,7 +515,6 @@ BoxCollider:
   m_Size: {x: 0.5, y: 0.3902278, z: 0.38232374}
   m_Center: {x: 0, y: 0.24511391, z: -0.06511903}
 --- !u!114 &266748325
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -540,10 +526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a6659f5ce841d89e9452fdf8f73585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-  rotateAngle: 65
-  rotateSpeed: 20
-=======
 --- !u!54 &266748326
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -609,7 +591,6 @@ Transform:
   m_Father: {fileID: 1995241973}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Stashed changes
 --- !u!1 &337926498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,10 +1014,6 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< Updated upstream
-  - component: {fileID: 975019555}
-  - component: {fileID: 975019556}
-=======
   - component: {fileID: 514608750}
   - component: {fileID: 514608751}
   m_Layer: 0
@@ -3699,7 +3676,6 @@ GameObject:
   - component: {fileID: 1402586398}
   - component: {fileID: 1402586400}
   - component: {fileID: 1402586399}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: 'Track Cam: Mouse'
   m_TagString: TrackCam
@@ -3803,62 +3779,6 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021427012}
   m_Enabled: 1
-<<<<<<< Updated upstream
-  serializedVersion: 10
-  m_Type: 1
-  m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!1 &1148025765
-=======
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3997,7 +3917,6 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1578777048
->>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4396,11 +4315,7 @@ Transform:
   - {fileID: 771567911}
   - {fileID: 779383002}
   - {fileID: 1578777049}
-<<<<<<< Updated upstream
-  - {fileID: 2091468481}
-=======
   - {fileID: 594077087}
->>>>>>> Stashed changes
   m_Father: {fileID: 5348326999889818074}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
