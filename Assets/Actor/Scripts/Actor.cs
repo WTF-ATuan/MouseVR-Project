@@ -5,6 +5,8 @@ namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
 		[SerializeField] private float speed = 5;
 		[SerializeField] private float rotateSpeed;
+		[SerializeField] private bool canRotate = true;
+		private IRotate rotate;
 
 
 		public Vector3 StartPosition{ get; private set; }
@@ -13,6 +15,7 @@ namespace Actor.Scripts{
 
 		private void Start(){
 			StartPosition = transform.position;
+			rotate = GetComponent<IRotate>();
 			rigidbody = GetComponent<Rigidbody>();
 		}
 
@@ -37,9 +40,8 @@ namespace Actor.Scripts{
 		}
 
 		public void SelectDirection(bool isRight){
-			var eulerAngel = isRight ? Vector3.up : Vector3.down;
-			var deltaRotation = Quaternion.Euler(eulerAngel * rotateSpeed * Time.fixedDeltaTime);
-			rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
+			if(!canRotate) return;
+			rotate.Rotate(isRight);
 		}
 
 		public void SetMoveSpeed(float moveSpeed){
