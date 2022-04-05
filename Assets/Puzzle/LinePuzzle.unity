@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 0
-  LimitTime: 2.5
+  LimitTime: 10
   actor: {fileID: 266748322}
 --- !u!1 &319052919
 GameObject:
@@ -2689,6 +2689,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1401731247}
   - component: {fileID: 1401731246}
+  - component: {fileID: 1401731248}
   m_Layer: 0
   m_Name: LickTriggerArea
   m_TagString: Untagged
@@ -2717,12 +2718,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401731245}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.22068, y: 0.504, z: 12.46}
+  m_LocalPosition: {x: 0.22068, y: 0.504, z: 5.67}
   m_LocalScale: {x: 2.3315, y: 2.3315, z: 2.3315}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1401731248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401731245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e129c32e05fbe9243acfa5b6ceaaa246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctLickCount: 0
+  wrongLickCount: 0
+  correctLickCountLimit: 3
+  wrongLickCountLimit: 3
+  collider: {fileID: 0}
 --- !u!1 &1402586397
 GameObject:
   m_ObjectHideFlags: 0

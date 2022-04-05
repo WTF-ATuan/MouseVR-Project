@@ -1,4 +1,6 @@
-﻿using Actor.Scripts.Event;
+﻿using System.Threading.Tasks;
+using Actor.Scripts.Event;
+using Environment.Scripts.Events;
 using Project;
 using UnityEngine;
 
@@ -11,6 +13,25 @@ namespace Actor.Scripts{
 			actor = GetComponent<Actor>();
 			EventBus.Subscribe<ActorMoveDetected>(OnActorMoveDetected);
 			EventBus.Subscribe<ActorTeleportDetected>(OnActorTeleportDetected);
+			
+			//TODO
+			EventBus.Subscribe<ActorJudged>(OnActorJudged);
+		}
+
+		private async void OnActorJudged(ActorJudged obj)
+		{
+			var isPunish = obj.isPunish;
+			
+			if (isPunish)
+			{
+				await Task.Delay(1000);
+				actor.ResetActor();
+			}
+			else
+			{
+				actor.ReceiveReward("Lick");
+				actor.ResetActor();
+			}
 		}
 
 		private void OnActorTeleportDetected(ActorTeleportDetected obj){
