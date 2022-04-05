@@ -462,6 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 0
+  actor: {fileID: 266748322}
 --- !u!1 &319052919
 GameObject:
   m_ObjectHideFlags: 0

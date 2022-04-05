@@ -15,7 +15,7 @@ public class ScreenEffect : MonoBehaviour
     public void Start()
     {
         EventBus.Subscribe<ScreenEffectDetected>(OnScreenEffectDetected);
-        //EventBus.Post(new ScreenEffectDetected(0));
+        //EventBus.Post(new ScreenEffectDetected(1));
     }
 
     public async void OnScreenEffectDetected(ScreenEffectDetected value)
