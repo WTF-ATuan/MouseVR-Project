@@ -11,6 +11,7 @@ public class ActorTimer : MonoBehaviour
     [SerializeField] private float Timer = 0 , LimitTime = 2.5f;
 
     [SerializeField] private Actor.Scripts.Actor actor;
+    
     void Start()
     {
         EventBus.Subscribe<ActorMoveDetected>(OnActorMoveDetected);

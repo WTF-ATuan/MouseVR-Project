@@ -1,4 +1,6 @@
-﻿using Sirenix.OdinInspector;
+﻿using Actor.Scripts.Event;
+using Project;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Actor.Scripts{
@@ -42,6 +44,12 @@ namespace Actor.Scripts{
 		public void SelectDirection(bool isRight){
 			if(!canRotate) return;
 			rotate.Rotate(isRight);
+		}
+
+		public void Lick()
+		{
+			EventBus.Post(new ActorLickDetected(transform.position));
+			Debug.Log("lick");
 		}
 
 		public void SetMoveSpeed(float moveSpeed){

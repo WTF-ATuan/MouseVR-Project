@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Actor.Scripts{
 	public class ActorController : MonoBehaviour{
+		
 		private Actor actor;
 
 		private void Start(){
@@ -25,9 +26,18 @@ namespace Actor.Scripts{
 		private void Update(){
 			DetectMoveValue();
 			DetectDirectionAngle();
-			if(Input.GetKeyDown(KeyCode.Space)){
+			if(Input.GetKeyDown(KeyCode.Z)){
 				DetectTeleportValue();
 			}
+
+			if(Input.GetKeyDown(KeyCode.X)){
+				DetectActorLick();
+			}
+		}
+
+		private void DetectActorLick()
+		{
+			actor.Lick();
 		}
 
 		private void DetectDirectionAngle(){
