@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 0
-  LimitTime: 10
+  LimitTime: 2.5
   actor: {fileID: 266748322}
 --- !u!1 &558737153
 GameObject:
@@ -1308,9 +1308,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correctLickCount: 0
   wrongLickCount: 0
-  correctLickCountLimit: 3
-  wrongLickCountLimit: 3
-  collider: {fileID: 0}
+  correctLickCountLimit: 1
+  wrongLickCountLimit: 10
 --- !u!1 &1574076515
 GameObject:
   m_ObjectHideFlags: 0
