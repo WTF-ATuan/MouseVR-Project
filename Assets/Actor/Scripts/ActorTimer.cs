@@ -1,34 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Actor.Scripts.Event;
+﻿using Actor.Scripts.Event;
 using Environment.Scripts.Events;
 using Project;
-using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class ActorTimer : MonoBehaviour
-{
-	[SerializeField] private float Timer = 0, LimitTime = 2.5f;
+namespace Actor.Scripts{
+	public class ActorTimer : MonoBehaviour{
+		[SerializeField] private float timer = 0;
+		[SerializeField] private float limitTime = 2.5f;
 
-
-	void Start(){
-		EventBus.Subscribe<ActorMoveDetected>(OnActorMoveDetected);
-		
-	}
-
-	private void OnActorMoveDetected(ActorMoveDetected obj){
-		if(Timer > LimitTime)
-		{
-			EventBus.Post(new ActorJudged(true));
-			Timer = 0;
-		}
-		else{
-			if(Mathf.Abs(obj.InputSpeed) >= 0.3f){
-				Timer = 0;
+		public void OnActorMoveDetected(ActorMoveDetected obj){
+			if(timer > limitTime){
+				EventBus.Post(new ActorJudged(true));
+				timer = 0;
 			}
 			else{
-				Timer += Time.deltaTime;
+				if(Mathf.Abs(obj.InputSpeed) >= 0.3f){
+					timer = 0;
+				}
+				else{
+					timer += Time.deltaTime;
+				}
 			}
 		}
 	}

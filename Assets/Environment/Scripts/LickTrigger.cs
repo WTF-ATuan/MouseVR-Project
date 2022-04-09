@@ -1,5 +1,4 @@
-﻿using System;
-using Actor.Scripts.Event;
+﻿using Actor.Scripts.Event;
 using Environment.Scripts.Events;
 using Project;
 using Sirenix.OdinInspector;
@@ -15,11 +14,9 @@ namespace Environment.Scripts{
 
 		private void Start(){
 			collider = GetComponent<Collider>();
-
-			EventBus.Subscribe<ActorLickDetected>(OnActorLickDetected);
 		}
 
-		private void OnActorLickDetected(ActorLickDetected obj){
+		public void OnActorLickDetected(ActorLickDetected obj){
 			var isContains = collider.bounds.Contains(obj.LickPosition);
 
 			if(isContains){
