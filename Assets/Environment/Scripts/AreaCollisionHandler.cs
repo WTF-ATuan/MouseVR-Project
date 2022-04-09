@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Actor.Scripts;
+using Environment.Scripts.Events;
+using Project;
 using UnityEngine;
 
 namespace Environment.Scripts{
@@ -19,19 +21,14 @@ namespace Environment.Scripts{
 			type = areaType;
 		}
 
-		public async void ActorCollision(Actor.Scripts.Actor actor){
+		public void ActorCollision(Actor.Scripts.Actor actor){
 			switch(type){
 				case AreaType.Award:
-					Debug.Log($"Get Award waiting for 3s");
-					await Task.Delay(3000);
-					actor.ReceiveReward("Sugar Water");
-					actor.ResetActor();
+					EventBus.Post(new ActorJudged(false));
 					onExperimentCompleted?.Invoke(type);
 					break;
 				case AreaType.Punish:
-					Debug.Log($"Get Punish waiting for 6s");
-					await Task.Delay(6000);
-					actor.ResetActor();
+					EventBus.Post(new ActorJudged(true));
 					onExperimentCompleted?.Invoke(type);
 					break;
 				default:

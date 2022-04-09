@@ -6,7 +6,6 @@ using UnityEngine;
 namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
 		[SerializeField] private float speed = 5;
-		[SerializeField] private float rotateSpeed;
 		[SerializeField] private bool canRotate = true;
 		private IRotate rotate;
 
