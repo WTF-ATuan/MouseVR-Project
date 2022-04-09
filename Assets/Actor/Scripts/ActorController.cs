@@ -6,31 +6,18 @@ using UnityEngine;
 
 namespace Actor.Scripts{
 	public class ActorController : MonoBehaviour{
-		
 		private Actor actor;
 
 		private void Start(){
 			actor = GetComponent<Actor>();
 			EventBus.Subscribe<ActorMoveDetected>(OnActorMoveDetected);
 			EventBus.Subscribe<ActorTeleportDetected>(OnActorTeleportDetected);
-			
 			EventBus.Subscribe<ActorJudged>(OnActorJudged);
 		}
 
-		private async void OnActorJudged(ActorJudged obj)
-		{
+		private void OnActorJudged(ActorJudged obj){
 			var isPunish = obj.isPunish;
-			
-			if (isPunish)
-			{
-				await Task.Delay(1000);
-				actor.ResetActor();
-			}
-			else
-			{
-				actor.ReceiveReward("Lick");
-				actor.ResetActor();
-			}
+			actor.ReceiveJudged(isPunish);
 		}
 
 		private void OnActorTeleportDetected(ActorTeleportDetected obj){
@@ -55,8 +42,7 @@ namespace Actor.Scripts{
 			}
 		}
 
-		private void DetectActorLick()
-		{
+		private void DetectActorLick(){
 			actor.Lick();
 		}
 

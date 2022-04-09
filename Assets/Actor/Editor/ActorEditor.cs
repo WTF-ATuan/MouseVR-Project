@@ -74,10 +74,6 @@ namespace Actor.Editor{
 			EditorGUILayout.BeginVertical();
 			reward = EditorGUILayout.TextField("Reward Message", reward);
 			var isReceived = GUILayout.Button("Receive Reward");
-			if(isReceived){
-				actor.ReceiveReward(reward);
-			}
-
 			EditorGUILayout.EndVertical();
 		}
 	}

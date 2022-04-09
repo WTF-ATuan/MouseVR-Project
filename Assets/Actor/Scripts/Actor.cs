@@ -1,4 +1,5 @@
-﻿using Actor.Scripts.Event;
+﻿using System.Threading.Tasks;
+using Actor.Scripts.Event;
 using Project;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -7,6 +8,15 @@ namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
 		[SerializeField] private float speed = 5;
 		[SerializeField] private bool canRotate = true;
+
+
+		[BoxGroup("DelayTime")] [SerializeField]
+		private int punishDelayTime;
+
+		[BoxGroup("DelayTime")] [SerializeField]
+		private int rewardDelayTime;
+
+
 		private IRotate rotate;
 
 
@@ -36,8 +46,16 @@ namespace Actor.Scripts{
 			transform.eulerAngles = Vector3.zero;
 		}
 
-		public void ReceiveReward(string reward){
-			Debug.Log($"reward = {reward}");
+		public async void ReceiveJudged(bool isPunish){
+			if(isPunish){
+				await Task.Delay(punishDelayTime * 1000);
+				ResetActor();
+			}
+			else{
+				await Task.Delay(rewardDelayTime * 1000);
+				// Give Reward TODO;
+				ResetActor();
+			}
 		}
 
 		public void SelectDirection(bool isRight){
@@ -45,14 +63,9 @@ namespace Actor.Scripts{
 			rotate.Rotate(isRight);
 		}
 
-		public void Lick()
-		{
+		public void Lick(){
 			EventBus.Post(new ActorLickDetected(transform.position));
 			Debug.Log("lick");
-		}
-
-		public void SetMoveSpeed(float moveSpeed){
-			speed = moveSpeed;
 		}
 	}
 }
