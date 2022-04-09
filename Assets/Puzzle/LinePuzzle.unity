@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d689f55279aa2044598107c2cce578ed, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -428,7 +428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timer: 0
   LimitTime: 2.5
-  actor: {fileID: 266748322}
 --- !u!1 &558737153
 GameObject:
   m_ObjectHideFlags: 0
