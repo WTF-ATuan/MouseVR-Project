@@ -47,12 +47,10 @@ namespace Actor.Scripts{
 		}
 
 		private void DetectDirectionAngle(){
-			var left = Input.GetKey(KeyCode.A);
-			var right = Input.GetKey(KeyCode.D);
+			var left = Input.GetKeyDown(KeyCode.A);
+			var right = Input.GetKeyDown(KeyCode.D);
 			if(!right && !left) return;
-			var isRight = false;
-			if(!right && left) isRight = false;
-			if(right && !left) isRight = true;
+			var isRight = right && !left;
 			actor.SelectDirection(isRight);
 		}
 

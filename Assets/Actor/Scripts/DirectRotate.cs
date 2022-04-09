@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using DG.Tweening;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Actor.Scripts{
 	public class DirectRotate : MonoBehaviour, IRotate{
 		[SerializeField] private float rotateAngle;
+		[ProgressBar(30, 90)] [SerializeField] private float anglePerSecond = 40;
 
 		private new Rigidbody rigidbody;
 		private float currentAngle;
@@ -13,19 +17,11 @@ namespace Actor.Scripts{
 		}
 
 		public void Rotate(bool isRight){
+			currentAngle = transform.eulerAngles.y;
 			var angle = isRight ? rotateAngle : -rotateAngle;
-			if(isRight){
-				currentAngle += angle;
-				currentAngle = Mathf.Clamp(currentAngle, 0, angle);
-			}
-			else{
-				currentAngle += angle;
-				currentAngle = Mathf.Clamp(currentAngle, angle, 0);
-			}
-
+			currentAngle += angle;
 			var targetAngle = Vector3.up * currentAngle;
-			var deltaAngle = Quaternion.Euler(targetAngle);
-			rigidbody.MoveRotation(deltaAngle);
+			rigidbody.DORotate(targetAngle, rotateAngle / anglePerSecond);
 		}
 	}
 }

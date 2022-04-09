@@ -273,8 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6fc7b6378ecec41abdf89cbe7fb1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  canRotate: 0
+  speed: 8
+  canRotate: 1
   punishDelayTime: 1
   rewardDelayTime: 1
 --- !u!4 &266748323
@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateAngle: 65
+  anglePerSecond: 70.964714
 --- !u!54 &266748326
 Rigidbody:
   m_ObjectHideFlags: 0
