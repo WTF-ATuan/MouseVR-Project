@@ -14,7 +14,6 @@ namespace Actor.Scripts{
 			EventBus.Subscribe<ActorMoveDetected>(OnActorMoveDetected);
 			EventBus.Subscribe<ActorTeleportDetected>(OnActorTeleportDetected);
 			
-			//TODO
 			EventBus.Subscribe<ActorJudged>(OnActorJudged);
 		}
 

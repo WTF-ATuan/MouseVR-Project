@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Actor.Scripts.Event;
+using Environment.Scripts.Events;
 using Project;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class ActorTimer : MonoBehaviour{
+public class ActorTimer : MonoBehaviour
+{
 	[SerializeField] private float Timer = 0, LimitTime = 2.5f;
 
-	[SerializeField] private Actor.Scripts.Actor actor;
 
 	void Start(){
 		EventBus.Subscribe<ActorMoveDetected>(OnActorMoveDetected);
-		actor = GetComponent<Actor.Scripts.Actor>();
+		
 	}
 
 	private void OnActorMoveDetected(ActorMoveDetected obj){
-		if(Timer > LimitTime){
-			actor.ResetActor();
+		if(Timer > LimitTime)
+		{
+			EventBus.Post(new ActorJudged(true));
 			Timer = 0;
 		}
 		else{
