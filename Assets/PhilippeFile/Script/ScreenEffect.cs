@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Actor.Scripts.Event;
+using DG.Tweening;
 using Project;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,20 +13,54 @@ public class ScreenEffect : MonoBehaviour
 {
     [SerializeField] private Image ScreenPanel;
 
+    [SerializeField] private bool isClosePanel;
+
     public void Start()
     {
         EventBus.Subscribe<ScreenEffectDetected>(OnScreenEffectDetected);
         //EventBus.Post(new ScreenEffectDetected(1));
     }
 
-    public async void OnScreenEffectDetected(ScreenEffectDetected value)
+    private void Update()
     {
-        if (Mathf.Abs(ScreenPanel.color.a - value.value) > 0.1f)
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b, Mathf.Lerp(ScreenPanel.color.a , value.value , 0.05f));
-            await Task.Delay(30);
-            OnScreenEffectDetected(value);
+            if (isClosePanel)
+            {
+                EventBus.Post(new ScreenEffectDetected(1));
+            }
+            else
+            {
+                EventBus.Post(new ScreenEffectDetected(0));
+            }
+
+            isClosePanel = !isClosePanel;
         }
+    }
+
+    public async void OnScreenEffectDetected(ScreenEffectDetected obj)
+    {
+        StopAllCoroutines();
+        StartCoroutine(StartLerpEffect(obj.value , 0.1f));
+    }
+    
+    private IEnumerator StartLerpEffect(float value , float time)
+    {
+        
+        while (true)
+        {
+            if (Mathf.Abs(ScreenPanel.color.a - value) > 0.01f)
+            {
+                ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b, Mathf.Lerp(ScreenPanel.color.a , value , 0.05f));
+            }
+            else
+            {
+                break;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+        
+        
     }
     
     
