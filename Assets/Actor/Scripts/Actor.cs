@@ -7,9 +7,9 @@ using UnityEngine;
 namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
 		[SerializeField] private float speed = 5;
-		[SerializeField] private bool canRotate = true;
+		[SerializeField] public bool canRotate = true;
 
-		[SerializeField] private GameObject Bloacker;
+		[SerializeField] private GameObject blocker;
 		
 		[BoxGroup("DelayTime")] [SerializeField]
 		private int punishDelayTime;
@@ -49,17 +49,17 @@ namespace Actor.Scripts{
 
 		public async void ReceiveJudged(bool isPunish){
 			if(isPunish){
-				Bloacker.SetActive(true);
+				blocker.SetActive(true);
 				
 				await Task.Delay(punishDelayTime * 1000);
-				Bloacker.SetActive(false);
+				blocker.SetActive(false);
 				ResetActor();
 			}
 			else{
-				Bloacker.SetActive(true);
+				blocker.SetActive(true);
 				
 				await Task.Delay(rewardDelayTime * 1000);
-				Bloacker.SetActive(false);
+				blocker.SetActive(false);
 				// Give Reward TODO;
 				ResetActor();
 			}
