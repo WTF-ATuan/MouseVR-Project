@@ -49,17 +49,17 @@ namespace Actor.Scripts{
 
 		public async void ReceiveJudged(bool isPunish){
 			if(isPunish){
-				blocker.SetActive(true);
+				blocker?.SetActive(true);
 				
 				await Task.Delay(punishDelayTime * 1000);
-				blocker.SetActive(false);
+				blocker?.SetActive(false);
 				ResetActor();
 			}
 			else{
-				blocker.SetActive(true);
+				blocker?.SetActive(true);
 				
 				await Task.Delay(rewardDelayTime * 1000);
-				blocker.SetActive(false);
+				blocker?.SetActive(false);
 				// Give Reward TODO;
 				ResetActor();
 			}

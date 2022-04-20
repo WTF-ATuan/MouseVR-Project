@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Actor.Scripts{
 	public class DirectRotate : MonoBehaviour, IRotate{
 		[SerializeField] private float rotateAngle;
-		[ProgressBar(30, 90)] [SerializeField] private float anglePerSecond = 40;
+		[ProgressBar(30, 360)] [SerializeField] private float anglePerSecond = 60;
 
 		private new Rigidbody rigidbody;
 		private float currentAngle;
