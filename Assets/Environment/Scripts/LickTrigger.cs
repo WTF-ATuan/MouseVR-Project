@@ -11,6 +11,8 @@ namespace Environment.Scripts{
 
 		[SerializeField] private int correctLickCountLimit, wrongLickCountLimit;
 
+		[SerializeField] private bool isInfinite;
+
 		private new Collider collider;
 
 		private void Start(){
@@ -19,9 +21,19 @@ namespace Environment.Scripts{
 
 		private void OnTriggerExit(Collider other)
 		{
+			//TODO
 			if (other.GetComponent<Actor.Scripts.Actor>())
 			{
-				EventBus.Post(new ActorJudged(true));
+
+				if (isInfinite)
+				{
+					EventBus.Post(new InfiniteLevelIns());
+				}
+				else
+				{
+					EventBus.Post(new ActorJudged(true));
+				}
+				
 			}
 			
 		}
