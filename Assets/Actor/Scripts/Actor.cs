@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Timers;
 using Actor.Scripts.Event;
 using Project;
 using Sirenix.OdinInspector;
@@ -10,20 +11,18 @@ namespace Actor.Scripts{
 		[SerializeField] public bool canRotate = true;
 
 		[SerializeField] private GameObject blocker;
-		
+
 		[BoxGroup("DelayTime")] [SerializeField]
 		private int punishDelayTime;
 
 		[BoxGroup("DelayTime")] [SerializeField]
 		private int rewardDelayTime;
 
-
+		public Vector3 StartPosition{ get; private set; }
+		private new Rigidbody rigidbody;
 		private IRotate rotate;
 
-
-		public Vector3 StartPosition{ get; private set; }
-
-		private new Rigidbody rigidbody;
+		private float delayTime;
 
 		private void Start(){
 			StartPosition = transform.position;
@@ -47,22 +46,32 @@ namespace Actor.Scripts{
 			transform.eulerAngles = Vector3.zero;
 		}
 
-		public async void ReceiveJudged(bool isPunish){
+		public void ReceiveJudged(bool isPunish){
 			if(isPunish){
 				blocker?.SetActive(true);
-				
-				await Task.Delay(punishDelayTime * 1000);
-				blocker?.SetActive(false);
-				ResetActor();
+				delayTime = punishDelayTime;
 			}
 			else{
 				blocker?.SetActive(true);
-				
-				await Task.Delay(rewardDelayTime * 1000);
-				blocker?.SetActive(false);
+				delayTime = rewardDelayTime;
 				// Give Reward TODO;
-				ResetActor();
 			}
+		}
+
+		private void Update() => TickTime();
+		private bool invokeFlag = true;
+
+		private void TickTime(){
+			if(delayTime < 0 && !invokeFlag){
+				blocker?.SetActive(false);
+				ResetActor();
+				invokeFlag = true;
+				return;
+			}
+
+			if(delayTime < 0) return;
+			delayTime -= Time.deltaTime;
+			invokeFlag = false;
 		}
 
 		public void SelectDirection(bool isRight){
