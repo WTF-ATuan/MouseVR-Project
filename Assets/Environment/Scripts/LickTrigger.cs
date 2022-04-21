@@ -19,23 +19,16 @@ namespace Environment.Scripts{
 			collider = GetComponent<Collider>();
 		}
 
-		private void OnTriggerExit(Collider other)
-		{
+		private void OnTriggerExit(Collider other){
 			//TODO
-			if (other.GetComponent<Actor.Scripts.Actor>())
-			{
-
-				if (isInfinite)
-				{
+			if(other.GetComponent<Actor.Scripts.Actor>()){
+				if(isInfinite){
 					EventBus.Post(new InfiniteLevelIns());
 				}
-				else
-				{
+				else{
 					EventBus.Post(new ActorJudged(true));
 				}
-				
 			}
-			
 		}
 
 
@@ -60,7 +53,7 @@ namespace Environment.Scripts{
 			}
 
 			if(wrongLickCount >= wrongLickCountLimit){
-				EventBus.Post(new ActorJudged(true));
+				if(!isInfinite) EventBus.Post(new ActorJudged(true));
 				correctLickCount = 0;
 				wrongLickCount = 0;
 			}
