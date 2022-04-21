@@ -20,13 +20,20 @@ public class BlockCreate : MonoBehaviour
     {
         if (BlockCount != 1)
         {
-            Instantiate(BlockPre[BlockPre.Length - 1], new Vector3(0, 0, 50 + (BlockCount * 9.9f)), Quaternion.identity);
+            for (int i = 0 ; i < BlockPre.Length ; i++)
+            {
+                Instantiate(BlockPre[i], new Vector3(0, 0, 50 + (BlockCount * 9.86f)), Quaternion.identity);
+                BlockCount++;
+            }
         }
         else
         {
-            Instantiate(BlockPre[BlockPre.Length - 1], new Vector3(0, 0, 60), Quaternion.identity);
+            for (int i = 0 ; i < BlockPre.Length ; i++)
+            {
+                Instantiate(BlockPre[i], new Vector3(0, 0, 60 + (i * 9.86f)), Quaternion.identity);
+                BlockCount++;
+            }
         }
-        BlockCount++;
     }
 }
 
