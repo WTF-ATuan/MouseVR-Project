@@ -13,6 +13,9 @@ namespace Environment.Scripts{
 
 		[SerializeField] private bool isInfinite;
 
+		[SerializeField] private bool showGizmos;
+
+
 		private new Collider collider;
 
 		private void Start(){
@@ -60,12 +63,13 @@ namespace Environment.Scripts{
 		}
 
 		private void OnDrawGizmos(){
-			if(!collider) return;
+			if(!showGizmos) return;
+			collider = GetComponent<Collider>();
 			var bounds = collider.bounds;
 			var boundsCenter = bounds.center;
 			var boundsSize = bounds.size;
 			Gizmos.color = Color.red;
-			Gizmos.DrawWireCube(boundsCenter, boundsSize);
+			Gizmos.DrawCube(boundsCenter, boundsSize);
 		}
 	}
 }

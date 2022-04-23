@@ -1729,7 +1729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  limitTime: 2.5
+  limitTime: 3.5
 --- !u!114 &1355028476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1896,8 +1896,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401731245}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.22068, y: 0.504, z: 5.67}
-  m_LocalScale: {x: 2.3315, y: 2.3315, z: 2.3315}
+  m_LocalPosition: {x: 0.091252, y: 0, z: 5.67}
+  m_LocalScale: {x: 1.0127817, y: 0.39901292, z: 2.3315}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1919,6 +1919,7 @@ MonoBehaviour:
   correctLickCountLimit: 10
   wrongLickCountLimit: 10
   isInfinite: 0
+  showGizmos: 1
 --- !u!1 &1504550597
 GameObject:
   m_ObjectHideFlags: 0

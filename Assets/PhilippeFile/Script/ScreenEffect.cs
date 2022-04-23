@@ -38,7 +38,7 @@ public class ScreenEffect : MonoBehaviour
         }
     }
 
-    public async void OnScreenEffectDetected(ScreenEffectDetected obj)
+    private void OnScreenEffectDetected(ScreenEffectDetected obj)
     {
         StopAllCoroutines();
         StartCoroutine(StartLerpEffect(obj.value , 0.1f));
