@@ -346,6 +346,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!65 &97668485
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1320,7 +1321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.074971914, g: 1, b: 0, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1944,6 +1945,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!65 &1272723835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2059,6 +2061,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!65 &1380396212
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2263,6 +2266,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!1 &1536195969
 GameObject:
   m_ObjectHideFlags: 0
@@ -2377,6 +2381,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!65 &1563568897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2665,6 +2670,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!65 &1605176131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2773,6 +2779,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!65 &1829106402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2835,6 +2842,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!65 &2011135941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2883,6 +2891,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!65 &2014574857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3211,6 +3220,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
+  showGizmos: 0
 --- !u!65 &2107166077
 BoxCollider:
   m_ObjectHideFlags: 0
