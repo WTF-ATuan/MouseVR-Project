@@ -33,6 +33,8 @@ namespace Actor.Scripts{
 		private void Update(){
 			DetectMoveValue();
 			DetectDirectionAngle();
+			
+			
 			if(Input.GetKeyDown(KeyCode.Z)){
 				DetectTeleportValue();
 			}

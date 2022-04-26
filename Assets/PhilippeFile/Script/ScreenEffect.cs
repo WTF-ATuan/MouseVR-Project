@@ -15,6 +15,8 @@ public class ScreenEffect : MonoBehaviour
 
     [SerializeField] private bool isClosePanel;
 
+    [SerializeField] private float closeTime;
+
     public void Start()
     {
         EventBus.Subscribe<ScreenEffectDetected>(OnScreenEffectDetected);
@@ -41,7 +43,7 @@ public class ScreenEffect : MonoBehaviour
     private void OnScreenEffectDetected(ScreenEffectDetected obj)
     {
         StopAllCoroutines();
-        StartCoroutine(StartLerpEffect(obj.value , 0.1f));
+        StartCoroutine(StartLerpEffect(obj.value , closeTime));
     }
     
     private IEnumerator StartLerpEffect(float value , float time)
@@ -51,13 +53,13 @@ public class ScreenEffect : MonoBehaviour
         {
             if (Mathf.Abs(ScreenPanel.color.a - value) > 0.01f)
             {
-                ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b, Mathf.Lerp(ScreenPanel.color.a , value , 0.05f));
+                ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b, Mathf.Lerp(ScreenPanel.color.a , value , 0.01f));
             }
             else
             {
                 break;
             }
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(time);
         }
         
         

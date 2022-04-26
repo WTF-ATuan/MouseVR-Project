@@ -9,6 +9,7 @@ namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
 		[SerializeField] private float speed = 5;
 		[SerializeField] public bool canRotate = true;
+		[SerializeField] public bool canMoveBack = true;
 
 		[SerializeField] private GameObject blocker;
 
@@ -31,6 +32,8 @@ namespace Actor.Scripts{
 		}
 
 		public void Move(float inputValue){
+			if(!canMoveBack && (inputValue < 0)) return;
+			
 			var forwardDirection = transform.forward;
 			var moveDirection = inputValue * forwardDirection * speed;
 			rigidbody.velocity = moveDirection;
