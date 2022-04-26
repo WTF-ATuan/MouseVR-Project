@@ -48,19 +48,35 @@ public class ScreenEffect : MonoBehaviour
     
     private IEnumerator StartLerpEffect(float value , float time)
     {
-        
-        while (true)
+
+        if (time != 0)
         {
-            if (Mathf.Abs(ScreenPanel.color.a - value) > 0.01f)
+            while (true)
             {
-                ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b, Mathf.Lerp(ScreenPanel.color.a , value , 0.01f));
+                if (Mathf.Abs(ScreenPanel.color.a - value) > 0.01f)
+                {
+                    ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b, Mathf.Lerp(ScreenPanel.color.a , value , 0.01f));
+                }
+                else
+                {
+                    break;
+                }
+                yield return new WaitForSeconds(time);
+            }
+        }
+        else
+        {
+            if (value != 0)
+            {
+                ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b,0);
             }
             else
             {
-                break;
+                ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b,1);
             }
-            yield return new WaitForSeconds(time);
         }
+        
+        
         
         
     }

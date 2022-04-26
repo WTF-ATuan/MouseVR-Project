@@ -2206,7 +2206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScreenPanel: {fileID: 747819492}
   isClosePanel: 0
-  closeTime: 0.01
+  closeTime: 0
 --- !u!1 &1401731245
 GameObject:
   m_ObjectHideFlags: 0
