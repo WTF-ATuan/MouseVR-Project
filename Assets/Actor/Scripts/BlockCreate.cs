@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Actor.Scripts.Event;
 using Project;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BlockCreate : MonoBehaviour
 {
     [SerializeField] private GameObject[] BlockPre;
 
     [SerializeField] private int BlockCount = 1;
+
+    [SerializeField] private bool isRules;
     
     // Start is called before the first frame update
     void Start()
@@ -18,22 +22,46 @@ public class BlockCreate : MonoBehaviour
 
     private void OnInfiniteLevelIns(InfiniteLevelIns obj)
     {
-        if (BlockCount != 1)
+        if (isRules)
         {
-            for (int i = 0 ; i < BlockPre.Length ; i++)
+            if (BlockCount != 1)
             {
-                Instantiate(BlockPre[i], new Vector3(0, 0, 50 + (BlockCount * 9.86f)), Quaternion.identity);
-                BlockCount++;
+                for (int i = 0 ; i < BlockPre.Length ; i++)
+                {
+                    Instantiate(BlockPre[i], new Vector3(0, 0, 50 + (BlockCount * 9.86f)), Quaternion.identity);
+                    BlockCount++;
+                }
+            }
+            else
+            {
+                for (int i = 0 ; i < BlockPre.Length ; i++)
+                {
+                    Instantiate(BlockPre[i], new Vector3(0, 0, 60 + (i * 9.86f)), Quaternion.identity);
+                    BlockCount++;
+                }
             }
         }
         else
         {
-            for (int i = 0 ; i < BlockPre.Length ; i++)
+            if (BlockCount != 1)
             {
-                Instantiate(BlockPre[i], new Vector3(0, 0, 60 + (i * 9.86f)), Quaternion.identity);
-                BlockCount++;
+                for (int i = 0 ; i < BlockPre.Length ; i++)
+                {
+                    Instantiate(BlockPre[Random.Range(0 , BlockPre.Length)], new Vector3(0, 0, 50 + (BlockCount * 9.86f)), Quaternion.identity);
+                    BlockCount++;
+                }
+            }
+            else
+            {
+                for (int i = 0 ; i < BlockPre.Length ; i++)
+                {
+                    Instantiate(BlockPre[Random.Range(0 , BlockPre.Length)], new Vector3(0, 0, 60 + (i * 9.86f)), Quaternion.identity);
+                    BlockCount++;
+                }
             }
         }
+        
+        
     }
 }
 

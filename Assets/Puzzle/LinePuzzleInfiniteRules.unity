@@ -1911,6 +1911,7 @@ MonoBehaviour:
   - {fileID: 96490307}
   - {fileID: 96490307}
   BlockCount: 1
+  isRules: 1
 --- !u!1 &1272723833
 GameObject:
   m_ObjectHideFlags: 0
