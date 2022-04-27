@@ -15,11 +15,20 @@ namespace Environment.Scripts{
 
 		[SerializeField] private bool showGizmos;
 
+		[SerializeField] private float incentiveRate;
+
 
 		private new Collider collider;
 
 		private void Start(){
 			collider = GetComponent<Collider>();
+			
+			EventBus.Subscribe<ChangeIncentiveRateDetected>(OnChangeIncentiveRateDetected);
+		}
+
+		private void OnChangeIncentiveRateDetected(ChangeIncentiveRateDetected obj)
+		{
+			incentiveRate = obj.incentiveRate;
 		}
 
 		private void OnTriggerExit(Collider other){

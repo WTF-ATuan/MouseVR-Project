@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Actor.Scripts.Event;
 using Project;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,6 +14,8 @@ public class BlockCreate : MonoBehaviour
     [SerializeField] private int BlockCount = 1;
 
     [SerializeField] private bool isRules;
+
+    [SerializeField] [Range(0, 100)] private float incentiveRate;
     
     // Start is called before the first frame update
     void Start()
@@ -62,6 +65,12 @@ public class BlockCreate : MonoBehaviour
         }
         
         
+    }
+    
+    [Button]
+    private void SetIncentiveRate()
+    {
+        EventBus.Post(new ChangeIncentiveRateDetected(incentiveRate));
     }
 }
 
