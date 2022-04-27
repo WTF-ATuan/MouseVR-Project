@@ -2209,7 +2209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScreenPanel: {fileID: 747819492}
-  isClosePanel: 0
+  isClosePanel: 1
   closeTime: 0.01
 --- !u!1 &1401731245
 GameObject:
