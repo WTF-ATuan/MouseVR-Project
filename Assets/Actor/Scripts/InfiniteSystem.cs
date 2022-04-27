@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BlockCreate : MonoBehaviour
+public class InfiniteSystem : MonoBehaviour
 {
     [SerializeField] private GameObject[] BlockPre;
 
