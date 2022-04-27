@@ -55,10 +55,17 @@ namespace Actor.Scripts{
 				delayTime = punishDelayTime;
 			}
 			else{
-				blocker?.SetActive(true);
+				blocker?.SetActive(false);
 				delayTime = rewardDelayTime;
 				// Give Reward TODO;
+		
+				GetReward();
 			}
+		}
+
+		public void GetReward()
+		{
+			Debug.Log("Get Reward");
 		}
 
 		private void Update() => TickTime();

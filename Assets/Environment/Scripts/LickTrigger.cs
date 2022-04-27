@@ -4,6 +4,7 @@ using Environment.Scripts.Events;
 using Project;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Environment.Scripts{
 	public class LickTrigger : MonoBehaviour{
@@ -36,6 +37,13 @@ namespace Environment.Scripts{
 			if(other.GetComponent<Actor.Scripts.Actor>()){
 				if(isInfinite){
 					EventBus.Post(new InfiniteLevelIns());
+
+					var rate = Random.Range(0, 100);
+					
+					if (rate <= incentiveRate)
+					{
+						EventBus.Post(new ActorInfiniteRewardDetected());
+					}
 				}
 				else{
 					EventBus.Post(new ActorJudged(true));

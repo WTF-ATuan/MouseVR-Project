@@ -13,6 +13,12 @@ namespace Actor.Scripts{
 			EventBus.Subscribe<ActorMoveDetected>(OnActorMoveDetected);
 			EventBus.Subscribe<ActorTeleportDetected>(OnActorTeleportDetected);
 			EventBus.Subscribe<ActorJudged>(OnActorJudged);
+			EventBus.Subscribe<ActorInfiniteRewardDetected>(OnActorInfiniteRewardDetected);
+		}
+
+		private void OnActorInfiniteRewardDetected(ActorInfiniteRewardDetected obj)
+		{
+			actor.GetReward();
 		}
 
 		private void OnActorJudged(ActorJudged obj){
