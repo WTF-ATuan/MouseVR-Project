@@ -39,7 +39,7 @@ namespace Environment.Scripts{
 					EventBus.Post(new InfiniteLevelIns());
 
 					var rate = Random.Range(0, 100);
-					
+					Debug.Log($"rate = {rate}");
 					if (rate <= incentiveRate)
 					{
 						EventBus.Post(new ActorInfiniteRewardDetected());

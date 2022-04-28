@@ -57,8 +57,6 @@ namespace Actor.Scripts{
 			else{
 				blocker?.SetActive(false);
 				delayTime = rewardDelayTime;
-				// Give Reward TODO;
-		
 				GetReward();
 			}
 		}
