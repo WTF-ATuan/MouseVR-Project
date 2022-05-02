@@ -347,6 +347,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!65 &97668485
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1871,7 +1872,7 @@ GameObject:
   - component: {fileID: 1153766609}
   - component: {fileID: 1153766610}
   m_Layer: 0
-  m_Name: BlockSystem
+  m_Name: InfiniteSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1911,7 +1912,8 @@ MonoBehaviour:
   - {fileID: 96490307}
   - {fileID: 96490307}
   BlockCount: 1
-  isRules: 0
+  isRules: 1
+  incentiveRate: 49.2
 --- !u!1 &1272723833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,6 +1950,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!65 &1272723835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2064,6 +2067,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!65 &1380396212
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2205,8 +2209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScreenPanel: {fileID: 747819492}
-  isClosePanel: 0
-  closeTime: 0
+  isClosePanel: 1
+  closeTime: 0.01
 --- !u!1 &1401731245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,6 +2274,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!1 &1536195969
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,6 +2390,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!65 &1563568897
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2674,6 +2680,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!65 &1605176131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2783,6 +2790,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!65 &1829106402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2846,6 +2854,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!65 &2011135941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2895,6 +2904,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!65 &2014574857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3224,6 +3234,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  incentiveRate: 0
 --- !u!65 &2107166077
 BoxCollider:
   m_ObjectHideFlags: 0
