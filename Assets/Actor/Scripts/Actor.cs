@@ -60,8 +60,13 @@ namespace Actor.Scripts{
 				EventBus.Post(new ScreenEffectDetected(0 , 0));
 
 				delayTime = rewardDelayTime;
-				// Give Reward TODO;
+				GetReward();
 			}
+		}
+
+		public void GetReward()
+		{
+			Debug.Log("Get Reward");
 		}
 
 		private void Update() => TickTime();

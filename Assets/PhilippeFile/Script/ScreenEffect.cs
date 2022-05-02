@@ -15,7 +15,7 @@ public class ScreenEffect : MonoBehaviour
 
     [SerializeField] private bool isClosePanel;
 
-    [SerializeField] private float closeTime;
+    [SerializeField] [Range(0 , 0.05f)] private float closeTime;
 
     public void Start()
     {
@@ -55,7 +55,7 @@ public class ScreenEffect : MonoBehaviour
             {
                 if (Mathf.Abs(ScreenPanel.color.a - value) > 0.01f)
                 {
-                    ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b, Mathf.Lerp(ScreenPanel.color.a , value , 0.01f));
+                    ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b, Mathf.Lerp(ScreenPanel.color.a , value , 0.05f));
                 }
                 else
                 {
@@ -66,7 +66,7 @@ public class ScreenEffect : MonoBehaviour
         }
         else
         {
-            if (value != 0)
+            if (value == 0)
             {
                 ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b,0);
             }

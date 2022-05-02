@@ -3,6 +3,7 @@ using Environment.Characteristic.Scripts;
 using Environment.Scripts;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Characteristic = Environment.Characteristic.Scripts.Characteristic;
 using Random = UnityEngine.Random;
 
 namespace Puzzle.GameLogic.Scripts{
