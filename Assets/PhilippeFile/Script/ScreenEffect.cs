@@ -29,11 +29,11 @@ public class ScreenEffect : MonoBehaviour
         {
             if (isClosePanel)
             {
-                EventBus.Post(new ScreenEffectDetected(1));
+                EventBus.Post(new ScreenEffectDetected(1 , closeTime));
             }
             else
             {
-                EventBus.Post(new ScreenEffectDetected(0));
+                EventBus.Post(new ScreenEffectDetected(0 , closeTime));
             }
 
             isClosePanel = !isClosePanel;
@@ -43,7 +43,7 @@ public class ScreenEffect : MonoBehaviour
     private void OnScreenEffectDetected(ScreenEffectDetected obj)
     {
         StopAllCoroutines();
-        StartCoroutine(StartLerpEffect(obj.value , closeTime));
+        StartCoroutine(StartLerpEffect(obj.value , obj.time));
     }
     
     private IEnumerator StartLerpEffect(float value , float time)
