@@ -2039,7 +2039,7 @@ MonoBehaviour:
   wrongLickCount: 0
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
-  isInfinite: 0
+  isInfinite: 1
   showGizmos: 0
   incentiveRate: 0
 --- !u!65 &1272723835
@@ -2156,7 +2156,7 @@ MonoBehaviour:
   wrongLickCount: 0
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
-  isInfinite: 0
+  isInfinite: 1
   showGizmos: 0
   incentiveRate: 0
 --- !u!65 &1380396212
@@ -2363,7 +2363,7 @@ MonoBehaviour:
   wrongLickCount: 0
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
-  isInfinite: 0
+  isInfinite: 1
   showGizmos: 0
   incentiveRate: 0
 --- !u!1 &1536195969
@@ -2479,7 +2479,7 @@ MonoBehaviour:
   wrongLickCount: 0
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
-  isInfinite: 0
+  isInfinite: 1
   showGizmos: 0
   incentiveRate: 0
 --- !u!65 &1563568897
@@ -2769,7 +2769,7 @@ MonoBehaviour:
   wrongLickCount: 0
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
-  isInfinite: 0
+  isInfinite: 1
   showGizmos: 0
   incentiveRate: 0
 --- !u!65 &1605176131
@@ -2993,7 +2993,7 @@ MonoBehaviour:
   wrongLickCount: 0
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
-  isInfinite: 0
+  isInfinite: 1
   showGizmos: 0
   incentiveRate: 0
 --- !u!65 &2014574857
