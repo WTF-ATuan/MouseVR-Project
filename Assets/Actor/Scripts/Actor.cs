@@ -51,13 +51,13 @@ namespace Actor.Scripts{
 		public void ReceiveJudged(bool isPunish){
 			if(isPunish){
 				//blocker?.SetActive(true);
-				EventBus.Post(new ScreenEffectDetected(0 , 0));
+				EventBus.Post(new ScreenEffectDetected(1 , 0));
 				
 				delayTime = punishDelayTime;
 			}
 			else{
 				//blocker?.SetActive(true);
-				EventBus.Post(new ScreenEffectDetected(0 , 0));
+				EventBus.Post(new ScreenEffectDetected(1 , 0));
 
 				delayTime = rewardDelayTime;
 				GetReward();
@@ -75,7 +75,7 @@ namespace Actor.Scripts{
 		private void TickTime(){
 			if(delayTime < 0 && !invokeFlag){
 				//blocker?.SetActive(false);
-				EventBus.Post(new ScreenEffectDetected(1 , 0));
+				EventBus.Post(new ScreenEffectDetected(0 , 0));
 
 				ResetActor();
 				invokeFlag = true;
