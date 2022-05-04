@@ -7,11 +7,10 @@ using UnityEngine;
 
 namespace Actor.Scripts{
 	public class Actor : MonoBehaviour{
+	
 		[SerializeField] private float speed = 5;
 		[SerializeField] public bool canRotate = true;
 		[SerializeField] public bool canMoveBack = true;
-
-		[SerializeField] private GameObject blocker;
 
 		[BoxGroup("DelayTime")] [SerializeField]
 		private int punishDelayTime;
@@ -51,11 +50,15 @@ namespace Actor.Scripts{
 
 		public void ReceiveJudged(bool isPunish){
 			if(isPunish){
-				blocker?.SetActive(true);
+				//blocker?.SetActive(true);
+				EventBus.Post(new ScreenEffectDetected(1 , 0));
+				
 				delayTime = punishDelayTime;
 			}
 			else{
-				blocker?.SetActive(false);
+				//blocker?.SetActive(true);
+				EventBus.Post(new ScreenEffectDetected(1 , 0));
+
 				delayTime = rewardDelayTime;
 				GetReward();
 			}
@@ -71,7 +74,9 @@ namespace Actor.Scripts{
 
 		private void TickTime(){
 			if(delayTime < 0 && !invokeFlag){
-				blocker?.SetActive(false);
+				//blocker?.SetActive(false);
+				EventBus.Post(new ScreenEffectDetected(0 , 0));
+
 				ResetActor();
 				invokeFlag = true;
 				return;

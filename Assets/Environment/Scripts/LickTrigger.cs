@@ -35,17 +35,12 @@ namespace Environment.Scripts{
 		private void OnTriggerExit(Collider other){
 			//TODO
 			if(other.GetComponent<Actor.Scripts.Actor>()){
-				if(isInfinite){
+				if(isInfinite)
+				{
 					EventBus.Post(new InfiniteLevelIns());
-
-					var rate = Random.Range(0, 100);
-					Debug.Log($"rate = {rate}");
-					if (rate <= incentiveRate)
-					{
-						EventBus.Post(new ActorInfiniteRewardDetected());
-					}
 				}
-				else{
+				else
+				{
 					EventBus.Post(new ActorJudged(true));
 				}
 			}
