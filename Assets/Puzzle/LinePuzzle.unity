@@ -604,7 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   canRotate: 1
-  blocker: {fileID: 191738638}
+  canMoveBack: 1
   punishDelayTime: 1
   rewardDelayTime: 1
 --- !u!4 &266748323
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.10980661, g: 0.5188679, b: 0.03671235, a: 0}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1857,6 +1857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScreenPanel: {fileID: 747819492}
   isClosePanel: 0
+  closeTime: 0
 --- !u!1 &1401731245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,6 +1921,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 0
   showGizmos: 1
+  incentiveRate: 0
 --- !u!1 &1504550597
 GameObject:
   m_ObjectHideFlags: 0

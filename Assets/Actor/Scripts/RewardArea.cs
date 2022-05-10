@@ -28,11 +28,9 @@ public class RewardArea : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other){
-        //TODO
         if(other.GetComponent<Actor.Scripts.Actor>()){
             
             var rate = Random.Range(0, 100);
-            Debug.Log($"rate = {rate}");
             if (rate <= incentiveRate)
             {
                 EventBus.Post(new ActorInfiniteRewardDetected());
@@ -48,7 +46,7 @@ public class RewardArea : MonoBehaviour
         var boundsCenter = bounds.center;
         var boundsSize = bounds.size;
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(boundsCenter, boundsSize);
+        Gizmos.DrawWireCube(boundsCenter, boundsSize);
     }
     
 }
