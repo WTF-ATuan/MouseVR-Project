@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6553716a0e4ef4d8c2c3fbdc835383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rewardCount: 0
+  rewardLimit: 3
+  incentiveRate: 0
 --- !u!4 &20062196
 Transform:
   m_ObjectHideFlags: 0

@@ -48,6 +48,11 @@ namespace Actor.Scripts{
 			if(Input.GetKeyDown(KeyCode.X)){
 				DetectActorLick();
 			}
+
+			if (Input.GetKeyDown(KeyCode.N))
+			{
+				UnityEditor.EditorApplication.isPlaying = false;
+			}
 		}
 
 		private void DetectActorLick(){
@@ -72,4 +77,5 @@ namespace Actor.Scripts{
 			EventBus.Post(new ActorTeleportDetected(actorStartPosition));
 		}
 	}
+	
 }
