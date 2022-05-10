@@ -46,7 +46,7 @@ public class RewardArea : MonoBehaviour
         var boundsCenter = bounds.center;
         var boundsSize = bounds.size;
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(boundsCenter, boundsSize);
+        Gizmos.DrawWireCube(boundsCenter, boundsSize);
     }
     
 }
