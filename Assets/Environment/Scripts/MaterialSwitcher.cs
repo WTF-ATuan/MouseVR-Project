@@ -7,12 +7,18 @@ using UnityEngine;
 namespace Environment.Scripts{
 	public class MaterialSwitcher : MonoBehaviour{
 		[SerializeField] private GameObject targetObject;
-		[SerializeField] private Material targetMaterial;
+		[SerializeField] private Material targetMaterial , currentMaterial;
 		[SerializeField] private int materialIndex;
+		[SerializeField] private bool isSwitch;
 		private Material _originMaterial;
 
 		private void Start()
 		{
+			var meshRenderer = GetComponent<MeshRenderer>();
+			var currentMaterials = meshRenderer.materials;
+			currentMaterial = currentMaterials[materialIndex];
+			
+			
 			EventBus.Subscribe<SwitchMaterialDetected>(OnSwitchMaterialDetected);
 		}
 
@@ -31,19 +37,41 @@ namespace Environment.Scripts{
 
 		[Button]
 		private void Switch(){
-			
-			if(targetObject == null){
-				var meshRenderer = GetComponent<MeshRenderer>();
-				var currentMaterials = meshRenderer.materials;
-				currentMaterials[materialIndex] = targetMaterial;
-				meshRenderer.materials = currentMaterials;
+
+			if (isSwitch)
+			{
+				if(targetObject == null){
+					var meshRenderer = GetComponent<MeshRenderer>();
+					var currentMaterials = meshRenderer.materials;
+					currentMaterials[materialIndex] = targetMaterial;
+					meshRenderer.materials = currentMaterials;
+				}
+				else{
+					var meshRenderer = targetObject.GetComponent<MeshRenderer>();
+					var currentMaterials = meshRenderer.materials;
+					currentMaterials[materialIndex] = targetMaterial;
+					meshRenderer.materials = currentMaterials;
+				}
 			}
-			else{
-				var meshRenderer = targetObject.GetComponent<MeshRenderer>();
-				var currentMaterials = meshRenderer.materials;
-				currentMaterials[materialIndex] = targetMaterial;
-				meshRenderer.materials = currentMaterials;
+			else
+			{
+				if(targetObject == null){
+					var meshRenderer = GetComponent<MeshRenderer>();
+					var currentMaterials = meshRenderer.materials;
+					currentMaterials[materialIndex] = currentMaterial;
+					meshRenderer.materials = currentMaterials;
+				}
+				else{
+					var meshRenderer = targetObject.GetComponent<MeshRenderer>();
+					var currentMaterials = meshRenderer.materials;
+					currentMaterials[materialIndex] = currentMaterial;
+					meshRenderer.materials = currentMaterials;
+				}
 			}
+
+			isSwitch = !isSwitch;
+
+
 		}
 	}
 }
