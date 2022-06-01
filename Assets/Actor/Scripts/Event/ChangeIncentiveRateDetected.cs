@@ -1,5 +1,6 @@
 ﻿namespace Actor.Scripts.Event
 {
+    //機率修改
     public class ChangeIncentiveRateDetected
     {
         public float incentiveRate;
