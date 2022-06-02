@@ -23,7 +23,7 @@ public class SettingPanel : MonoBehaviour
 
         if (rewardCount >= rewardLimit)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false; //哈哈我不是唯讀
         }
         
         Debug.Log("Get Reward Count : " + rewardCount);

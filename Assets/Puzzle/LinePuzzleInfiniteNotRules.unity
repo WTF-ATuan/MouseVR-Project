@@ -574,7 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardCount: 0
   rewardLimit: 5
-  incentiveRate: 0
+  incentiveRate: 41.7
 --- !u!4 &78930613
 Transform:
   m_ObjectHideFlags: 0
