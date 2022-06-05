@@ -25,16 +25,13 @@ namespace Actor.Scripts.EventMessage{
 		}
 
 		public string TranslateMessage<T>(T info) where T : MessageInfo{
-			var messageType = typeof(T).Name;
 			var jsonFile = JsonUtility.ToJson(info);
 			jsonFile += $"Time :{Time.time}" + "\r\n";
-			return messageType + jsonFile;
+			return jsonFile;
 		}
 
 		public void SaveToJsonFile(string rawMessage){
-			var subs = rawMessage.Split('{');
-			var messageType = subs[0];
-			var saveFilePath = FilePath + "/" + $"{messageType}" + ".json";
+			var saveFilePath = FilePath + "/" + $"{FileName}" + ".json";
 			var fileStream = new FileStream(saveFilePath, FileMode.CreateNew);
 			using(var streamWriter = new StreamWriter(fileStream)){
 				streamWriter.Write(rawMessage);

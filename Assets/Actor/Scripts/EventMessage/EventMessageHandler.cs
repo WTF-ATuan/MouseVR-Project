@@ -18,17 +18,25 @@ namespace Actor.Scripts.EventMessage{
 		private EventMessageStore _messageStore;
 
 		private void Start(){
-			EventBus.Subscribe<SavedDataMessage<MessageInfo>>(OnSavedDataMessage);
+			EventBus.Subscribe<SavedDataMessage>(OnSavedDataMessage);
 			_messageStore = new EventMessageStore();
 			_messageExporter = new MessageExporter(path, dataName);
 		}
 
-		private void OnSavedDataMessage(SavedDataMessage<MessageInfo> obj){
-			var type = obj.Type;
-			var data = obj.Data;
-			_messageStore.Store(type, data);
+		[Button]
+		private void TestPostEvent(){
+			var actorPositionInfo = new ActorBehaviorInfo();
+			actorPositionInfo.Animal_Speed = 1;
+			EventBus.Post(new SavedDataMessage(actorPositionInfo, actorPositionInfo.GetType()));
 		}
 
+		private void OnSavedDataMessage(SavedDataMessage obj){
+			var type = obj.Type;
+			var message = obj.Message;
+			_messageStore.Store(type, message);
+		}
+
+		[Button]
 		public void ExportMessage(){
 			_messageExporter.SetFilePath(path);
 			var allTypeMessage = _messageStore.GetAll();

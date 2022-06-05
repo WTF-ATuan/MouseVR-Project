@@ -5,43 +5,26 @@ namespace Actor.Scripts.EventMessage{
 	[Serializable]
 	public abstract class MessageInfo{ }
 
-	public class ActorPositionInfo : MessageInfo{
-		public Vector3 position;
-		public float baseVelocity;
-		public float gameVelocity;
+	public class ActorBehaviorInfo : MessageInfo{
+		public float Animal_Speed;
+		public float Animal_Distance;
+		public float Actor_Speed;
+		public float Actor_PositionX;
+		public float Actor_PositionZ;
+		public float Time;
 
-		public ActorPositionInfo(){ }
-
-		public ActorPositionInfo(Vector3 position, float baseVelocity, float gameVelocity){
-			this.position = position;
-			this.baseVelocity = baseVelocity;
-			this.gameVelocity = gameVelocity;
+		public ActorBehaviorInfo(float animalSpeed, float actorSpeed, float animalDistance, float actorPositionX,
+			float actorPositionZ){
+			Animal_Speed = animalSpeed;
+			Actor_Speed = actorSpeed;
+			Animal_Distance = animalDistance;
+			Actor_PositionX = actorPositionX;
+			Actor_PositionZ = actorPositionZ;
+			Time = UnityEngine.Time.time;
 		}
-	}
 
-	public class ActorTeleportedInfo : MessageInfo{
-		public Vector3 originPosition;
-		public Vector3 teleportedPosition;
-
-		public ActorTeleportedInfo(Vector3 originPosition, Vector3 teleportedPosition){
-			this.originPosition = originPosition;
-			this.teleportedPosition = teleportedPosition;
-		}
-	}
-
-	public class ActorRewardTimeInfo : MessageInfo{
-		public string rewardType;
-
-		public ActorRewardTimeInfo(string rewardType){
-			this.rewardType = rewardType;
-		}
-	}
-
-	public class ActorSelectedInfo : MessageInfo{
-		public bool isRight;
-
-		public ActorSelectedInfo(bool isRight){
-			this.isRight = isRight;
+		public ActorBehaviorInfo(){
+			Time = UnityEngine.Time.time;
 		}
 	}
 }

@@ -16,8 +16,7 @@ namespace Actor.Scripts{
 			EventBus.Subscribe<ActorInfiniteRewardDetected>(OnActorInfiniteRewardDetected);
 		}
 
-		private void OnActorInfiniteRewardDetected(ActorInfiniteRewardDetected obj)
-		{
+		private void OnActorInfiniteRewardDetected(ActorInfiniteRewardDetected obj){
 			actor.GetReward();
 		}
 
@@ -33,14 +32,15 @@ namespace Actor.Scripts{
 
 		private void OnActorMoveDetected(ActorMoveDetected obj){
 			var inputSpeed = obj.InputSpeed;
+			actor.WriteMessage(inputSpeed);
 			actor.Move(inputSpeed);
 		}
 
 		private void Update(){
 			DetectMoveValue();
 			DetectDirectionAngle();
-			
-			
+
+
 			if(Input.GetKeyDown(KeyCode.Z)){
 				DetectTeleportValue();
 			}
@@ -49,8 +49,7 @@ namespace Actor.Scripts{
 				DetectActorLick();
 			}
 
-			if (Input.GetKeyDown(KeyCode.N))
-			{
+			if(Input.GetKeyDown(KeyCode.N)){
 				UnityEditor.EditorApplication.isPlaying = false;
 			}
 		}
@@ -77,5 +76,4 @@ namespace Actor.Scripts{
 			EventBus.Post(new ActorTeleportDetected(actorStartPosition));
 		}
 	}
-	
 }
