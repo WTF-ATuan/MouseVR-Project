@@ -5,13 +5,15 @@ using UnityEngine;
 namespace Actor.Scripts.EventMessage{
 	public class MessageExporter{
 		public string FilePath{ get; private set; }
+		public string FileName{ get; }
 
-		public MessageExporter(string filePath){
+		public MessageExporter(string filePath , string fileName){
 			if(!Directory.Exists(filePath)){
 				throw new Exception("File Path is Not found");
 			}
 
 			FilePath = filePath;
+			FileName = fileName;
 		}
 
 		public void SetFilePath(string path){

@@ -8,37 +8,39 @@ using UnityEngine;
 
 namespace Actor.Scripts.EventMessage{
 	public class EventMessageHandler : MonoBehaviour{
-		[SerializeField] [FolderPath] [Required]
+		[SerializeField] [FolderPath] [Required] [ReadOnly]
 		private string path;
 
 		[SerializeField] [Required] private string dataName;
 
 
-		private readonly MessageExporter messageExporter;
-		private readonly EventMessageStore messageStore;
+		private MessageExporter _messageExporter;
+		private EventMessageStore _messageStore;
 
 		private void Start(){
 			EventBus.Subscribe<SavedDataMessage<MessageInfo>>(OnSavedDataMessage);
+			_messageStore = new EventMessageStore();
+			_messageExporter = new MessageExporter(path, dataName);
 		}
 
 		private void OnSavedDataMessage(SavedDataMessage<MessageInfo> obj){
 			var type = obj.Type;
 			var data = obj.Data;
-			messageStore.Store(type, data);
+			_messageStore.Store(type, data);
 		}
 
 		public void ExportMessage(){
-			messageExporter.SetFilePath(path);
-			var allTypeMessage = messageStore.GetAll();
+			_messageExporter.SetFilePath(path);
+			var allTypeMessage = _messageStore.GetAll();
 			var allMessage = TranslateAllMessage(allTypeMessage);
-			messageExporter.SaveToJsonFile(allMessage);
+			_messageExporter.SaveToJsonFile(allMessage);
 		}
 
 		private string TranslateAllMessage(IEnumerable<List<MessageInfo>> allTypeMessage){
 			var allMessage =
 					(from messages in allTypeMessage
 						from message in messages
-						select messageExporter.TranslateMessage(message))
+						select _messageExporter.TranslateMessage(message))
 					.Aggregate(string.Empty, (current, s) => current + s);
 			return allMessage;
 		}
