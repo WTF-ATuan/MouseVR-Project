@@ -7,7 +7,7 @@ namespace Actor.Scripts.EventMessage{
 		public string FilePath{ get; private set; }
 		public string FileName{ get; }
 
-		public MessageExporter(string filePath , string fileName){
+		public MessageExporter(string filePath, string fileName){
 			if(!Directory.Exists(filePath)){
 				throw new Exception("File Path is Not found");
 			}
@@ -26,7 +26,7 @@ namespace Actor.Scripts.EventMessage{
 
 		public string TranslateMessage<T>(T info) where T : MessageInfo{
 			var jsonFile = JsonUtility.ToJson(info);
-			jsonFile += $"Time :{Time.time}" + "\r\n";
+			jsonFile += "\r\n";
 			return jsonFile;
 		}
 

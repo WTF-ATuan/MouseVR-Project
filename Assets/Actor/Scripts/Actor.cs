@@ -23,7 +23,6 @@ namespace Actor.Scripts{
 		private IRotate _rotate;
 		private float _delayTime;
 
-		private ActorBehaviorInfo _behaviorInfo = new ActorBehaviorInfo();
 
 		private void Start(){
 			StartPosition = transform.position;
@@ -40,14 +39,16 @@ namespace Actor.Scripts{
 
 		public void WriteMessage(float inputValue){
 			var actorTransform = transform;
-			_behaviorInfo.Animal_Speed = inputValue;
-			_behaviorInfo.Actor_Speed = inputValue * speed;
+			var positionInfo = new ActorPositionInfo{
+				Animal_Speed = inputValue,
+				Actor_Speed = inputValue * speed
+			};
 			var position = actorTransform.position;
-			_behaviorInfo.Actor_PositionX = position.x;
-			_behaviorInfo.Actor_PositionZ = position.z;
-			_behaviorInfo.Animal_Distance = Vector3.Distance(position, StartPosition);
-			_behaviorInfo.Time = Time.time;
-			EventBus.Post(_behaviorInfo);
+			positionInfo.Actor_PositionX = position.x;
+			positionInfo.Actor_PositionZ = position.z;
+			positionInfo.Animal_Distance = Vector3.Distance(position, StartPosition);
+			positionInfo.Time = Time.time;
+			EventBus.Post(new SavedDataMessage(positionInfo, positionInfo.GetType()));
 		}
 
 		public void Teleport(Vector3 targetPosition){

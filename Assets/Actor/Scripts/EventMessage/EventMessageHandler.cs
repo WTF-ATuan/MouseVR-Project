@@ -25,8 +25,17 @@ namespace Actor.Scripts.EventMessage{
 
 		[Button]
 		private void TestPostEvent(){
-			var actorPositionInfo = new ActorBehaviorInfo();
+			var actorPositionInfo = new ActorPositionInfo();
 			actorPositionInfo.Animal_Speed = 1;
+			actorPositionInfo.Time = Time.time;
+			EventBus.Post(new SavedDataMessage(actorPositionInfo, actorPositionInfo.GetType()));
+		}
+
+		[Button]
+		private void TestPostEvent1(){
+			var actorPositionInfo = new ActorPositionInfo();
+			actorPositionInfo.Animal_Speed = 3;
+			actorPositionInfo.Time = Time.time;
 			EventBus.Post(new SavedDataMessage(actorPositionInfo, actorPositionInfo.GetType()));
 		}
 
