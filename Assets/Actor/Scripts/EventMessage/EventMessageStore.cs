@@ -6,9 +6,8 @@ namespace Actor.Scripts.EventMessage{
 	public class EventMessageStore{
 		private readonly Dictionary<Type, List<MessageInfo>> storeMessageInfos =
 				new Dictionary<Type, List<MessageInfo>>();
-
-		public void Store<T>(T message) where T : MessageInfo{
-			var type = typeof(T);
+		
+		public void Store(Type type , MessageInfo message){
 			var containsKey = storeMessageInfos.ContainsKey(type);
 			if(containsKey){
 				storeMessageInfos[type].Add(message);

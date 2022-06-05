@@ -1,21 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Actor.Scripts.Event;
+using Project;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Actor.Scripts.EventMessage{
-	public class EventMessageHandler{
+	public class EventMessageHandler : MonoBehaviour{
+		[SerializeField] [FolderPath] [Required]
+		private string path;
+
+		[SerializeField] [Required] private string dataName;
+
+
 		private readonly MessageExporter messageExporter;
 		private readonly EventMessageStore messageStore;
 
-		public EventMessageHandler(MessageExporter messageExporter, EventMessageStore messageStore){
-			this.messageExporter = messageExporter;
-			this.messageStore = messageStore;
+		private void Start(){
+			EventBus.Subscribe<SavedDataMessage<MessageInfo>>(OnSavedDataMessage);
 		}
 
-		public void SaveMessage<T>(T messageInfo) where T : MessageInfo{
-			messageStore.Store(messageInfo);
+		private void OnSavedDataMessage(SavedDataMessage<MessageInfo> obj){
+			var type = obj.Type;
+			var data = obj.Data;
+			messageStore.Store(type, data);
 		}
 
-		public void ExportMessage(string path){
+		public void ExportMessage(){
 			messageExporter.SetFilePath(path);
 			var allTypeMessage = messageStore.GetAll();
 			var allMessage = TranslateAllMessage(allTypeMessage);

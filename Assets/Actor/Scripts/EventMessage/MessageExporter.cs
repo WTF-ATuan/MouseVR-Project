@@ -7,7 +7,7 @@ namespace Actor.Scripts.EventMessage{
 		public string FilePath{ get; private set; }
 
 		public MessageExporter(string filePath){
-			if(!System.IO.Directory.Exists(filePath)){
+			if(!Directory.Exists(filePath)){
 				throw new Exception("File Path is Not found");
 			}
 
@@ -15,7 +15,7 @@ namespace Actor.Scripts.EventMessage{
 		}
 
 		public void SetFilePath(string path){
-			if(!System.IO.Directory.Exists(path)){
+			if(!Directory.Exists(path)){
 				throw new Exception("File Path is Not found");
 			}
 
