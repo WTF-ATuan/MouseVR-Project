@@ -23,7 +23,7 @@ public class SettingPanel : MonoBehaviour
 
         if (rewardCount >= rewardLimit)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false; //哈哈我不是唯讀
         }
         
         Debug.Log("Get Reward Count : " + rewardCount);
@@ -39,8 +39,8 @@ public class SettingPanel : MonoBehaviour
     }
 
     [Button]
-    private void SettingReward()
+    public void SettingReward(float _incentiveRate)
     {
-        EventBus.Post(new ChangeIncentiveRateDetected(incentiveRate));
+        EventBus.Post(new ChangeIncentiveRateDetected(_incentiveRate));
     }
 }

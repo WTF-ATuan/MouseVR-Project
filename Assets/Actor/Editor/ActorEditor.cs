@@ -3,6 +3,7 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 namespace Actor.Editor{
@@ -39,6 +40,7 @@ namespace Actor.Editor{
 			ActorTeleport();
 			ActorSelectDirection();
 			ActorReceiveReward();
+			RewardArea();
 		}
 
 		private int directionIndex;
@@ -75,6 +77,17 @@ namespace Actor.Editor{
 			reward = EditorGUILayout.TextField("Reward Message", reward);
 			var isReceived = GUILayout.Button("Receive Reward");
 			EditorGUILayout.EndVertical();
+		}
+		
+		static string selectedLayer;
+		
+		private void RewardArea()
+		{
+			EditorGUILayout.BeginVertical();
+			selectedLayer = EditorGUILayout.TextField("Object Name: ", Selection.activeGameObject.name);
+			var isOpen = GUILayout.Button("Open/Close Reward Area");
+			EditorGUILayout.EndVertical();
+
 		}
 	}
 }
