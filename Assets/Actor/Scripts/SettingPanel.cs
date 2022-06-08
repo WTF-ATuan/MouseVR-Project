@@ -39,8 +39,8 @@ public class SettingPanel : MonoBehaviour
     }
 
     [Button]
-    private void SettingReward()
+    public void SettingReward(float _incentiveRate)
     {
-        EventBus.Post(new ChangeIncentiveRateDetected(incentiveRate));
+        EventBus.Post(new ChangeIncentiveRateDetected(_incentiveRate));
     }
 }
