@@ -29,7 +29,7 @@ namespace Actor.Editor
 		{
 			actor = FindObjectOfType<Scripts.Actor>();
 			settingPanel = FindObjectOfType<SettingPanel>();
-			//arduinoBasic = FindObjectOfType<ArduinoBasic>();
+			arduinoBasic = FindObjectOfType<ArduinoBasic>();
 		}
 
 		protected override void OnGUI()
