@@ -17,6 +17,8 @@ public class ArduinoBasic : MonoBehaviour
     public string readMessage;
     bool isNewMessage;
 
+    public string connectAction = "Disconnect";
+
 
     void Start()
     {
@@ -30,10 +32,12 @@ public class ArduinoBasic : MonoBehaviour
                 readThread = new Thread(new ThreadStart(ArduinoRead)); //實例化執行緒與指派呼叫函式
                 readThread.Start(); //開啟執行緒
                 Debug.Log("SerialPort開啟連接");
+                connectAction = "Connect";
             }
             catch
             {
                 Debug.Log("SerialPort連接失敗");
+                connectAction = "Disconnect";
             }
         }
     }

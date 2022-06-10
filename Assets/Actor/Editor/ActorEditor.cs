@@ -26,6 +26,7 @@ namespace Actor.Editor{
 			EditorGUILayout.LabelField("Actor");
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.ObjectField(actor, typeof(Scripts.Actor), true);
+			
 			if(GUILayout.Button("Refresh")){
 				actor = FindObjectOfType<Scripts.Actor>();
 			}
