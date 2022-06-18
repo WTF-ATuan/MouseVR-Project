@@ -37,10 +37,21 @@ namespace PhilippeFile.Script
             return SplitData[1];
         }
 
+        private float lastLickValue;
+
         public bool IsLick()
         {
             var lickValue = SplitData[3];
-            return lickValue.Equals(1);
+            if (lastLickValue.Equals(0))
+            {
+                if (lickValue.Equals(1))
+                {
+                    return true;
+                }
+            }
+
+            lastLickValue = lickValue;
+            return false;
         }
 
         /// <summary>
