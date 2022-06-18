@@ -10,9 +10,11 @@ namespace Actor.Scripts{
 
 		private new Rigidbody rigidbody;
 		private float currentAngle;
+		private Actor actor;
 
 		private void Start(){
 			rigidbody = GetComponent<Rigidbody>();
+			actor = GetComponent<Actor>();
 			currentAngle = transform.eulerAngles.y;
 		}
 
@@ -23,6 +25,7 @@ namespace Actor.Scripts{
 			currentAngle += angle;
 			var targetAngle = Vector3.up * currentAngle;
 			rigidbody.DORotate(targetAngle, rotateAngle / anglePerSecond);
+			actor.canMoveForward = true;
 		}
 	}
 }

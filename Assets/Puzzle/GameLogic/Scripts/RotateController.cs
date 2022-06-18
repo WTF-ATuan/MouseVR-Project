@@ -14,8 +14,6 @@ namespace Puzzle.GameLogic.Scripts{
 
 		private void OnTriggerExit(Collider other){
 			enterActor.canRotate = false;
-			enterActor.canMoveForward = false;
-
 		}
 	}
 }
