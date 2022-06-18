@@ -82,6 +82,13 @@ public class ArduinoBasic : MonoBehaviour
                 EventBus.Post(new ActorLickRequested());
             }
 
+            var leverDirection = arduinoDataReader.GetLeverDirection();
+            if (leverDirection != 0)
+            {
+                var isRight = leverDirection.Equals(1);
+                EventBus.Post(new ActorRotateRequested(isRight));
+            }
+
             Debug.Log(readMessage);
         }
 
