@@ -19,6 +19,7 @@ namespace Actor.Scripts{
 		public void Rotate(bool isRight){
 			currentAngle = transform.eulerAngles.y;
 			var angle = isRight ? rotateAngle : -rotateAngle;
+			if(currentAngle != 0) return;
 			currentAngle += angle;
 			var targetAngle = Vector3.up * currentAngle;
 			rigidbody.DORotate(targetAngle, rotateAngle / anglePerSecond);
