@@ -9,10 +9,13 @@ namespace Puzzle.GameLogic.Scripts{
 		public void ActorCollision(Actor.Scripts.Actor actor){
 			enterActor = actor;
 			actor.canRotate = true;
+			actor.canMoveForward = false;
 		}
 
 		private void OnTriggerExit(Collider other){
 			enterActor.canRotate = false;
+			enterActor.canMoveForward = false;
+
 		}
 	}
 }

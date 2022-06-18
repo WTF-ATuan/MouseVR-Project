@@ -12,6 +12,7 @@ namespace Actor.Scripts{
 		[SerializeField] private float speed = 5;
 		[SerializeField] public bool canRotate = true;
 		[SerializeField] public bool canMoveBack = true;
+		[SerializeField] public bool canMoveForward = true;
 
 		[BoxGroup("DelayTime")] [SerializeField]
 		private int punishDelayTime;
@@ -33,6 +34,7 @@ namespace Actor.Scripts{
 
 		public void Move(float inputValue){
 			if(!canMoveBack && (inputValue < 0)) return;
+			if(!canMoveForward && inputValue > 0 )return;
 			var forwardDirection = transform.forward;
 			var moveDirection = inputValue * forwardDirection * speed;
 			_rigidbody.velocity = moveDirection;
@@ -100,7 +102,6 @@ namespace Actor.Scripts{
 			if(!canRotate) return;
 			_rotate.Rotate(isRight);
 		}
-
 		public void Lick(){
 			EventBus.Post(new ActorLickDetected(transform.position));
 		}
