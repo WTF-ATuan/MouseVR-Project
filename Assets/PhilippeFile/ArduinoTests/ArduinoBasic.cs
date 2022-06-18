@@ -27,7 +27,7 @@ public class ArduinoBasic : MonoBehaviour
     void Start()
     {
         EventBus.Subscribe<ArduinoTriggerRequested>(OnArduinoTriggerRequested);
-        
+
         if (port != "")
         {
             arduinoStream = new SerialPort(port, 9600); //指定連接埠、鮑率並實例化SerialPort
@@ -49,22 +49,20 @@ public class ArduinoBasic : MonoBehaviour
     }
 
     private void OnArduinoTriggerRequested(ArduinoTriggerRequested obj)
-    { 
+    {
         var sendText = obj.sendText;
         var time = obj.time;
-        
+
         ArduinoWrite(sendText);
 
         if (time != 0)
         {
             StartCoroutine(DelayTrigger(sendText, time));
         }
-        
     }
 
 
-
-    public IEnumerator DelayTrigger(string item , float time)
+    public IEnumerator DelayTrigger(string item, float time)
     {
         yield return new WaitForSeconds(time);
         ArduinoWrite(item);
@@ -78,6 +76,11 @@ public class ArduinoBasic : MonoBehaviour
         {
             arduinoDataReader.ReadData(readMessage);
             EventBus.Post(new ActorMoveDetected(arduinoDataReader.GetSpeed()));
+
+            if (arduinoDataReader.IsLick())
+            {
+                EventBus.Post(new ActorLickRequested());
+            }
 
             Debug.Log(readMessage);
         }
@@ -129,5 +132,4 @@ public class ArduinoBasic : MonoBehaviour
     {
         port = com;
     }
-    
 }

@@ -14,6 +14,7 @@ namespace Actor.Scripts{
 			EventBus.Subscribe<ActorTeleportDetected>(OnActorTeleportDetected);
 			EventBus.Subscribe<ActorJudged>(OnActorJudged);
 			EventBus.Subscribe<ActorInfiniteRewardDetected>(OnActorInfiniteRewardDetected);
+			EventBus.Subscribe<ActorLickRequested>(x => DetectActorLick());
 		}
 
 		private void OnActorInfiniteRewardDetected(ActorInfiniteRewardDetected obj){
