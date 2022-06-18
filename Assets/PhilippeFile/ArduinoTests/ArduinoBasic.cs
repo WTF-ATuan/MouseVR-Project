@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Threading;
+using System.Threading.Tasks;
+using Actor.Editor;
 using Actor.Scripts.Event;
 using PhilippeFile.Script;
 using Project;
@@ -19,9 +21,13 @@ public class ArduinoBasic : MonoBehaviour
 
     public string connectAction = "Disconnect";
 
+    public float limitTime;
+
 
     void Start()
     {
+        EventBus.Subscribe<ArduinoTriggerRequested>(OnArduinoTriggerRequested);
+        
         if (port != "")
         {
             arduinoStream = new SerialPort(port, 9600); //指定連接埠、鮑率並實例化SerialPort
@@ -41,7 +47,29 @@ public class ArduinoBasic : MonoBehaviour
             }
         }
     }
-    
+
+    private void OnArduinoTriggerRequested(ArduinoTriggerRequested obj)
+    { 
+        var sendText = obj.sendText;
+        var time = obj.time;
+        
+        ArduinoWrite(sendText);
+
+        if (time != 0)
+        {
+            StartCoroutine(DelayTrigger(sendText, time));
+        }
+        
+    }
+
+
+
+    public IEnumerator DelayTrigger(string item , float time)
+    {
+        yield return new WaitForSeconds(time);
+        ArduinoWrite(item);
+    }
+
     //ok
 
     void Update()
@@ -101,4 +129,5 @@ public class ArduinoBasic : MonoBehaviour
     {
         port = com;
     }
+    
 }

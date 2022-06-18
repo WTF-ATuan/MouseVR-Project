@@ -668,6 +668,7 @@ MonoBehaviour:
   port: 
   readMessage: 
   connectAction: Disconnect
+  limitTime: 0
 --- !u!4 &353488763
 Transform:
   m_ObjectHideFlags: 0

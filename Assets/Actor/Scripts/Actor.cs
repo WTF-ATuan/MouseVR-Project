@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Timers;
+using Actor.Editor;
 using Actor.Scripts.Event;
 using Actor.Scripts.EventMessage;
 using Project;
@@ -74,6 +75,8 @@ namespace Actor.Scripts{
 		}
 
 		public void GetReward(){
+			EventBus.Post(new ArduinoTriggerRequested("Valve_Open"));
+			EventBus.Post(new ArduinoTriggerRequested("Valve_Close" , 0.06f));
 			Debug.Log("Get Reward");
 		}
 
