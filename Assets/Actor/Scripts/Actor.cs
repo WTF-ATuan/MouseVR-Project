@@ -85,7 +85,8 @@ namespace Actor.Scripts{
 		private void Update() => TickTime();
 		private bool invokeFlag = true;
 
-		private void TickTime(){
+		private void TickTime()
+		{
 			if(_delayTime < 0 && !invokeFlag){
 				EventBus.Post(new ScreenEffectDetected(0, 0));
 				ResetActor();
@@ -93,9 +94,9 @@ namespace Actor.Scripts{
 				return;
 			}
 
-			if(_delayTime < 0) return;
-			_delayTime -= Time.deltaTime;
+			if (_delayTime < 0) return;
 			invokeFlag = false;
+			_delayTime -= Time.fixedDeltaTime;
 		}
 
 		public void SelectDirection(bool isRight){
