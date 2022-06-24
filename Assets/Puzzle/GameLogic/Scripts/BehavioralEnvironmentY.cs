@@ -46,5 +46,15 @@ namespace Puzzle.GameLogic.Scripts{
 					break;
 			}
 		}
+
+		public void SetRightSide()
+		{
+			SetLevel(0);
+		}
+
+		public void SetLeftSide()
+		{
+			SetLevel(1);
+		}
 	}
 }

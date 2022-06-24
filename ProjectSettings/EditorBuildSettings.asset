@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Puzzle/UnLimitLinePuzzleRandom.unity
     guid: 54f477594353d7c4997cab6328820e41
   - enabled: 1
-    path: Assets/Puzzle/UnLimitLinePuzzleRule.unity
+    path: Assets/Puzzle/LinePuzzleRule.unity
     guid: 4cd576bd2fa9c94459ec28480c226e28
   - enabled: 1
     path: Assets/Puzzle/UnLimitLinePuzzle.unity

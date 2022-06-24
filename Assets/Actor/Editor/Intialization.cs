@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Actor.Editor;
 using PhilippeFile.Script;
 using Project;
+using Puzzle.GameLogic.Scripts;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
@@ -38,6 +39,7 @@ namespace Actor.Editor{
 			settingPanel = FindObjectOfType<SettingPanel>();
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
 			screenEffect = FindObjectOfType<ScreenEffect>();
+			behavioraYEditor = FindObjectOfType<BehavioralEnvironmentY>();
 		}
 
 		protected override void OnGUI(){
@@ -59,6 +61,7 @@ namespace Actor.Editor{
 
 		public TeleportPoint tp;
 		public SceneObject scene;
+		public BehavioralEnvironmentY behavioraYEditor;
 
 		public string screenState = "Disconnect";
 
@@ -73,7 +76,19 @@ namespace Actor.Editor{
 			EditorGUILayout.BeginHorizontal();
 			tp = (TeleportPoint)EditorGUILayout.EnumPopup("Teleport", tp);
 
-			if(GUILayout.Button("Teleport")){ }
+			if (GUILayout.Button("Teleport"))
+			{
+				if (tp == TeleportPoint.Left)
+				{
+					behavioraYEditor.SetRightSide();
+					actor.ResetActor();
+				}
+				else
+				{
+					behavioraYEditor.SetRightSide();
+					actor.ResetActor();
+				}
+			}
 
 			EditorGUILayout.EndHorizontal();
 
