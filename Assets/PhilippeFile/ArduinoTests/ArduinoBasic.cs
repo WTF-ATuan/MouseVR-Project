@@ -139,4 +139,34 @@ public class ArduinoBasic : MonoBehaviour
     {
         port = com;
     }
+
+    public float GetSpeed()
+    {
+        try
+        {
+            return arduinoDataReader.GetSpeed();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return 0;
+            throw;
+        }
+    }
+
+    public float GetDistance()
+    {
+        try
+        {
+            return arduinoDataReader.GetDistance();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return 0;
+            throw;
+        }
+    }
+    
+    
 }

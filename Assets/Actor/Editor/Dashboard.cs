@@ -40,6 +40,13 @@ namespace Actor.Editor
 			EditorGUILayout.BeginHorizontal();
 			
 			EditorGUILayout.LabelField("Task Info");
+			
+			if(GUILayout.Button("Refresh"))
+			{
+				actor = FindObjectOfType<Scripts.Actor>();
+				settingPanel = FindObjectOfType<SettingPanel>();
+				arduinoBasic = FindObjectOfType<ArduinoBasic>();
+			}
 
 			EditorGUILayout.EndHorizontal();
 			if (actor || Application.isEditor && Application.isPlaying)
@@ -63,8 +70,8 @@ namespace Actor.Editor
 			DashLine();
 
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Distance : ");
-			EditorGUILayout.LabelField("Speed : ");
+			EditorGUILayout.LabelField("Distance : " + arduinoBasic.GetDistance());
+			EditorGUILayout.LabelField("Speed : " + arduinoBasic.GetSpeed());
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginHorizontal();
@@ -94,7 +101,7 @@ namespace Actor.Editor
 
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Success : " + settingPanel.GetRewardCount());
-			EditorGUILayout.LabelField("Reward Size : ");
+			EditorGUILayout.LabelField("Reward Size : " + "Null");
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginVertical();

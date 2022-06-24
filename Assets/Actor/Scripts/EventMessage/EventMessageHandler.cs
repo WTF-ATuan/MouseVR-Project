@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Actor.Scripts.EventMessage{
 	public class EventMessageHandler : MonoBehaviour{
-		[SerializeField] [FolderPath] [Required] [ReadOnly]
+		[SerializeField] [FolderPath] [Required]
 		private string path;
 
 		[SerializeField] [Required] private string dataName;

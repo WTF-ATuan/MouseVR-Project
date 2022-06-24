@@ -31,12 +31,14 @@ namespace Actor.Editor{
 		private SettingPanel settingPanel;
 		private ArduinoBasic arduinoBasic;
 		private ArduinoDataReader arduinoDataReader;
+		private ScreenEffect screenEffect;
 
 
 		protected override void OnEnable(){
 			actor = FindObjectOfType<Scripts.Actor>();
 			settingPanel = FindObjectOfType<SettingPanel>();
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
+			screenEffect = FindObjectOfType<ScreenEffect>();
 		}
 
 		protected override void OnGUI(){
@@ -85,7 +87,10 @@ namespace Actor.Editor{
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Blank display : " + arduinoBasic.connectAction); //Blank display
 
-			if(GUILayout.Button("Change")){ }
+			if (GUILayout.Button("Change"))
+			{
+				screenEffect.ChangeScreenBlank();
+			}
 
 			EditorGUILayout.EndHorizontal();
 		}

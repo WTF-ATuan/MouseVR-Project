@@ -40,6 +40,20 @@ public class ScreenEffect : MonoBehaviour
         }
     }
 
+    public void ChangeScreenBlank()
+    {
+        if (isClosePanel)
+        {
+            EventBus.Post(new ScreenEffectDetected(1 , closeTime));
+        }
+        else
+        {
+            EventBus.Post(new ScreenEffectDetected(0 , closeTime));
+        }
+
+        isClosePanel = !isClosePanel;
+    }
+
     private void OnScreenEffectDetected(ScreenEffectDetected obj)
     {
         StopAllCoroutines();
@@ -75,10 +89,7 @@ public class ScreenEffect : MonoBehaviour
                 ScreenPanel.color = new Color(ScreenPanel.color.r, ScreenPanel.color.g, ScreenPanel.color.b,1);
             }
         }
-        
-        
-        
-        
+   
     }
     
     

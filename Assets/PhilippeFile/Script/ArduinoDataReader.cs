@@ -37,6 +37,16 @@ namespace PhilippeFile.Script
             return SplitData[1];
         }
 
+        public float GetDistance()
+        {
+            return SplitData[2];
+        }
+
+        public float GetCurrentTime()
+        {
+            return SplitData[0];
+        }
+
         private float lastLickValue;
 
         public bool IsLick()
