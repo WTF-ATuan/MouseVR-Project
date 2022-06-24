@@ -78,6 +78,10 @@ namespace Actor.Editor{
 		}
 
 		private void MazeBackGroundValueChanged(){
+			if(!Application.isPlaying){
+				return;
+			}
+
 			foreach(var mesh in backGroundMesh){
 				var nextColor = new Color(mazeBackgroundBrightness, mazeBackgroundBrightness, mazeBackgroundBrightness);
 				mesh.materials.ForEach(x => x.color = nextColor);
@@ -85,6 +89,10 @@ namespace Actor.Editor{
 		}
 
 		private void AllCueBrightValueChanged(){
+			if(!Application.isPlaying){
+				return;
+			}
+
 			foreach(var mesh in allCueMesh){
 				var nextColor = new Color(allCueBrightness, allCueBrightness, allCueBrightness);
 				mesh.materials.ForEach(x => x.color = nextColor);

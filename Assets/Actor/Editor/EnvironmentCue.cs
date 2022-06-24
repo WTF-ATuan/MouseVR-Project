@@ -12,7 +12,6 @@ using UnityEngine.UI;
 
 namespace Actor.Editor{
 	public class EnvironmentCue : OdinEditorWindow{
-		[MenuItem("Tools/Project/EnvironmentCue")]
 		private static void OpenWindow(){
 			var window = GetWindow<EnvironmentCue>();
 			window.position = GUIHelper.GetEditorWindowRect().AlignCenter(500, 500);
