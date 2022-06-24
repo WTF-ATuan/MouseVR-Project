@@ -60,6 +60,7 @@ namespace Actor.Editor{
 			allCamera = cameras;
 			allLight = lights;
 			backGroundMesh = groundMesh;
+			allCueMesh = cueMesh;
 		}
 
 		private void LightValueChanged(){
