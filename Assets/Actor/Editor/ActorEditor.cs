@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace Actor.Editor{
 	public class ActorEditor : OdinEditorWindow{
-		[MenuItem("Tools/Project/ActorEditor")]
 		private static void OpenWindow(){
 			var window = GetWindow<ActorEditor>();
 			window.position = GUIHelper.GetEditorWindowRect().AlignCenter(800, 600);
