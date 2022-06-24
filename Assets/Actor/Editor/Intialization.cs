@@ -1,17 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Actor.Editor;
-using PhilippeFile.Script;
-using Project;
-using Puzzle.GameLogic.Scripts;
-using Sirenix.OdinInspector;
+﻿using PhilippeFile.Script;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public enum TeleportPoint{
 	Left,
@@ -69,9 +62,15 @@ namespace Actor.Editor{
 			EditorGUILayout.BeginVertical();
 			var serializedObject = new SerializedObject(this);
 			var serializedProperty = serializedObject.FindProperty("scene");
+			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.PropertyField(serializedProperty, GUILayout.Width(400));
 			serializedObject.ApplyModifiedProperties();
+			if(GUILayout.Button("Load")){
+				// EditorSceneManager.OpenScene(scene.ToString());
+			}
+
 			EditorGUILayout.EndVertical();
+			EditorGUILayout.EndHorizontal();
 
 			EditorGUILayout.BeginHorizontal();
 			tp = (TeleportPoint)EditorGUILayout.EnumPopup("Teleport", tp);
@@ -103,12 +102,10 @@ namespace Actor.Editor{
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Blank display : " + screenState + "(hot key B)"); //Blank display
 
-			if (GUILayout.Button("Change"))
-			{
+			if(GUILayout.Button("Change")){
 				screenEffect.ChangeScreenBlank();
 
 				screenState = screenEffect.GetState();
-
 			}
 
 			EditorGUILayout.EndHorizontal();
