@@ -6,25 +6,25 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Puzzle/Behavioral Environment (Y).unity
+    path: Assets/Puzzle/TrashScenes/Behavioral Environment (Y).unity
     guid: 9c8ef9d760434754f9cdb958f7f63305
   - enabled: 1
-    path: Assets/Puzzle/Behavioral Environment Y Matiral.unity
+    path: Assets/Puzzle/TrashScenes/Behavioral Environment Y Matiral.unity
     guid: 009343495cde0904ba2354831a65facf
   - enabled: 1
-    path: Assets/Puzzle/CirclePuzzle.unity
+    path: Assets/Puzzle/TrashScenes/CirclePuzzle.unity
     guid: 1519d925cb378c04dbb2018582d9af2e
   - enabled: 1
-    path: Assets/Puzzle/LinePuzzle.unity
+    path: Assets/Puzzle/TrashScenes/LinePuzzle.unity
     guid: 41ede10af5807634a8957b65264c9465
   - enabled: 1
-    path: Assets/Puzzle/LinePuzzleInfiniteNotRules.unity
+    path: Assets/Puzzle/UnLimitLinePuzzleRandom.unity
     guid: 54f477594353d7c4997cab6328820e41
   - enabled: 1
-    path: Assets/Puzzle/LinePuzzleInfiniteRulesNoReward.unity
+    path: Assets/Puzzle/UnLimitLinePuzzleRule.unity
     guid: 4cd576bd2fa9c94459ec28480c226e28
   - enabled: 1
-    path: Assets/Puzzle/LinePuzzleInfiniteRulesReward.unity
+    path: Assets/Puzzle/UnLimitLinePuzzle.unity
     guid: e1ae382c278f0bd4d9c2cf2301841667
   - enabled: 1
     path: Assets/Puzzle/Y Map Basic.unity

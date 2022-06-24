@@ -154,6 +154,10 @@ MonoBehaviour:
   rewardCount: 0
   rewardLimit: 3
   incentiveRate: 0
+  lickCount: 0
+  fallCount: 0
+  successCount: 0
+  manualReward: 0
 --- !u!4 &20062196
 Transform:
   m_ObjectHideFlags: 0
@@ -464,6 +468,7 @@ MonoBehaviour:
   speed: 8
   canRotate: 0
   canMoveBack: 1
+  canMoveForward: 1
   punishDelayTime: 1
   rewardDelayTime: 1
 --- !u!4 &266748323
@@ -1247,6 +1252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   port: 
   readMessage: 
+  connectAction: Disconnect
+  limitTime: 0
 --- !u!4 &734343106
 Transform:
   m_ObjectHideFlags: 0
