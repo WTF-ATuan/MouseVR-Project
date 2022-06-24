@@ -61,6 +61,8 @@ namespace Actor.Editor{
 		public TeleportPoint tp;
 		public SceneObject scene;
 
+		public string screenState = "Disconnect";
+
 		private void DashboardUpPos(){
 			EditorGUILayout.BeginVertical();
 			var serializedObject = new SerializedObject(this);
@@ -85,11 +87,14 @@ namespace Actor.Editor{
 			EditorGUILayout.EndHorizontal();
 
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Blank display : " + arduinoBasic.connectAction); //Blank display
+			EditorGUILayout.LabelField("Blank display : " + screenState); //Blank display
 
 			if (GUILayout.Button("Change"))
 			{
 				screenEffect.ChangeScreenBlank();
+
+				screenState = screenEffect.GetState();
+
 			}
 
 			EditorGUILayout.EndHorizontal();

@@ -54,6 +54,18 @@ public class ScreenEffect : MonoBehaviour
         isClosePanel = !isClosePanel;
     }
 
+    public string GetState()
+    {
+        if (isClosePanel)
+        {
+            return "Disconnect";
+        }
+        else
+        {
+            return "Connect";
+        }
+    }
+
     private void OnScreenEffectDetected(ScreenEffectDetected obj)
     {
         StopAllCoroutines();
