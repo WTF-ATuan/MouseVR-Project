@@ -90,7 +90,7 @@ namespace Actor.Editor
 			DashLine();
 			
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Trial num : " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+			EditorGUILayout.LabelField("Trial num : " + (settingPanel.GetFallCount() + settingPanel.GetSuccessCount()));
 			EditorGUILayout.LabelField("Reward position : 500cm");
 			EditorGUILayout.EndHorizontal();
 			
@@ -115,6 +115,10 @@ namespace Actor.Editor
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Miss : " + settingPanel.GetFallCount());
 			EditorGUILayout.LabelField("Time of Recording : " + settingPanel.GetFallCount());
+			EditorGUILayout.EndHorizontal();
+			
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.LabelField("Manual Reward : " + settingPanel.GetManualReward());
 			EditorGUILayout.EndHorizontal();
 			
 			

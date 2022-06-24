@@ -14,13 +14,20 @@ public class SettingPanel : MonoBehaviour
     
     [SerializeField] [Range(0, 100)] private float incentiveRate;
 
-    [SerializeField] private int lickCount , fallCount , successCount;
+    [SerializeField] protected int lickCount , fallCount , successCount , manualReward;
 
     private void Start()
     {
         EventBus.Subscribe<ActorInfiniteRewardDetected>(OnActorInfiniteRewardDetected);
         EventBus.Subscribe<ActorLickDetected>(OnActorLickDetected);
         EventBus.Subscribe<ActorJudged>(OnActorJudged);
+    }
+    
+    [Button]
+    public void GetReward()
+    {
+        EventBus.Post(new ActorJudged(false));
+        manualReward++;
     }
 
     private void OnActorJudged(ActorJudged obj)
@@ -88,5 +95,10 @@ public class SettingPanel : MonoBehaviour
     public int GetSuccessCount()
     {
         return successCount;
+    }
+
+    public int GetManualReward()
+    {
+        return manualReward;
     }
 }
