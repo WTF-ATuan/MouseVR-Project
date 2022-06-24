@@ -90,7 +90,7 @@ namespace Actor.Editor
 			DashLine();
 			
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Trial num : " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+			EditorGUILayout.LabelField("Trial num : 0");
 			EditorGUILayout.LabelField("Reward position : 500cm");
 			EditorGUILayout.EndHorizontal();
 			

@@ -13,9 +13,8 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public enum TeleportPoint{
-	CUBE = 0,
-	SPHERE = 1,
-	PLANE = 2
+	Left,
+	Right,
 }
 
 namespace Actor.Editor{
@@ -80,14 +79,14 @@ namespace Actor.Editor{
 
 
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Arduino Connect : " + arduinoBasic.connectAction); //Blank display
+			EditorGUILayout.LabelField("Arduino Connect : " + arduinoBasic.connectAction + "(hot key C)");
 
 			if(GUILayout.Button("Change")){ }
 
 			EditorGUILayout.EndHorizontal();
 
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Blank display : " + screenState); //Blank display
+			EditorGUILayout.LabelField("Blank display : " + screenState + "(hot key B)"); //Blank display
 
 			if (GUILayout.Button("Change"))
 			{
