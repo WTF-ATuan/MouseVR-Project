@@ -1,9 +1,9 @@
 ﻿using PhilippeFile.Script;
+using Puzzle.GameLogic.Scripts;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public enum TeleportPoint{

@@ -101,4 +101,8 @@ public class SettingPanel : MonoBehaviour
     {
         return manualReward;
     }
+
+    public void SetRewardLimit(int limitValue){
+        rewardLimit = limitValue;
+    }
 }
