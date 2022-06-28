@@ -14,15 +14,29 @@ public class SettingPanel : MonoBehaviour
     
     [SerializeField] [Range(0, 100)] private float incentiveRate;
 
-    [SerializeField] protected int lickCount , fallCount , successCount , manualReward;
+    [SerializeField] protected int lickCount , fallCount , successCount , manualReward , chooseLeft , chooseRight;
 
     private void Start()
     {
         EventBus.Subscribe<ActorInfiniteRewardDetected>(OnActorInfiniteRewardDetected);
         EventBus.Subscribe<ActorLickDetected>(OnActorLickDetected);
         EventBus.Subscribe<ActorJudged>(OnActorJudged);
+        
+        EventBus.Subscribe<ChooseLeftRight>(OnChooseLeftRight);
     }
-    
+
+    private void OnChooseLeftRight(ChooseLeftRight obj)
+    {
+        if (obj.isLeft)
+        {
+            chooseLeft++;
+        }
+        else
+        {
+            chooseRight++;
+        }
+    }
+
     [Button]
     public void GetReward()
     {
@@ -100,6 +114,49 @@ public class SettingPanel : MonoBehaviour
     public int GetManualReward()
     {
         return manualReward;
+    }
+
+    public int GetChooseLeft()
+    {
+        return chooseLeft;
+    }
+
+    public int GetChooseRight()
+    {
+        return chooseRight;
+    }
+
+    public string GetRewardSize()
+    {
+        var allRewardArea = GameObject.FindGameObjectsWithTag("RewardArea");
+        float sizeX = 0 , sizeY = 0 , sizeZ = 0;
+
+        if (allRewardArea.Length != 0)
+        {
+            foreach (var rewardArea in allRewardArea)
+            {
+                sizeX = sizeX + rewardArea.GetComponent<Collider>().bounds.size.x;
+                sizeY = sizeY + rewardArea.GetComponent<Collider>().bounds.size.y;
+                sizeZ = sizeZ + rewardArea.GetComponent<Collider>().bounds.size.z;
+            }
+
+            return "x : " + sizeX + "  " + "y : " + sizeY + "  " + "z : " + sizeZ;
+        }
+        else
+        {
+            return "x : 0  y : 0  z : 0";
+        }
+        
+        
+    }
+
+    public float GetRewardDistance()
+    {
+        var allRewardArea = GameObject.FindGameObjectsWithTag("RewardArea");
+        var dis = Vector3.Distance(allRewardArea[0].transform.position , allRewardArea[allRewardArea.Length - 1].transform.position);
+
+        return (dis / allRewardArea.Length);
+
     }
 
     public void SetRewardLimit(int limitValue){

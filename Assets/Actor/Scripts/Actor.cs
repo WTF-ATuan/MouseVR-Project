@@ -106,5 +106,15 @@ namespace Actor.Scripts{
 		public void Lick(){
 			EventBus.Post(new ActorLickDetected(transform.position));
 		}
+
+		public float GetDistance()
+		{
+			return Vector3.Distance(transform.position, StartPosition);
+		}
+
+		public float GetSpeed()
+		{
+			return speed;
+		}
 	}
 }

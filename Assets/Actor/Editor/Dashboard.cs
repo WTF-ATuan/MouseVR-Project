@@ -70,8 +70,8 @@ namespace Actor.Editor
 			DashLine();
 
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Distance : " + arduinoBasic.GetDistance());
-			EditorGUILayout.LabelField("Speed : " + arduinoBasic.GetSpeed());
+			EditorGUILayout.LabelField("Distance : " + actor.GetDistance().ToString("0.00"));
+			EditorGUILayout.LabelField("Speed : " + actor.GetSpeed());
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginHorizontal();
@@ -80,8 +80,8 @@ namespace Actor.Editor
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Choose L : ");
-			EditorGUILayout.LabelField("Choose R : ");
+			EditorGUILayout.LabelField("Choose L : " + settingPanel.GetChooseLeft());
+			EditorGUILayout.LabelField("Choose R : " + settingPanel.GetChooseRight());
 			EditorGUILayout.EndHorizontal();
 		}
 
@@ -91,7 +91,7 @@ namespace Actor.Editor
 			
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Trial num : " + (settingPanel.GetFallCount() + settingPanel.GetSuccessCount()));
-			EditorGUILayout.LabelField("Reward position : 500cm");
+			EditorGUILayout.LabelField("Reward position : " + settingPanel.GetRewardDistance());
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginVertical();
@@ -101,7 +101,7 @@ namespace Actor.Editor
 
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Success : " + settingPanel.GetRewardCount());
-			EditorGUILayout.LabelField("Reward Size : " + "Null");
+			EditorGUILayout.LabelField("Reward Size : " + settingPanel.GetRewardSize());
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginVertical();
@@ -114,7 +114,7 @@ namespace Actor.Editor
 			
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField("Miss : " + settingPanel.GetFallCount());
-			EditorGUILayout.LabelField("Time of Recording : " + settingPanel.GetFallCount());
+			EditorGUILayout.LabelField("Time of Recording : " + GetPlayTime());
 			EditorGUILayout.EndHorizontal();
 			
 			EditorGUILayout.BeginHorizontal();
@@ -134,6 +134,19 @@ namespace Actor.Editor
 			EditorGUILayout.LabelField("----------");
 			EditorGUILayout.EndHorizontal();
 		}
+
+		private string GetPlayTime()
+		{
+			if (Application.isPlaying)
+			{
+				return Time.realtimeSinceStartup.ToString("0.0");
+			}
+			else
+			{
+				return "0";
+			}
+		}
+		
 		
 	}
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5896357472351892577}
   m_Layer: 0
   m_Name: RewardArea (40)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 5896357472358388404}
   m_Layer: 0
   m_Name: RewardArea (18)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 5896357472394444139}
   m_Layer: 0
   m_Name: RewardArea (33)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 5896357472419924812}
   m_Layer: 0
   m_Name: RewardArea (34)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 5896357472429226699}
   m_Layer: 0
   m_Name: RewardArea (12)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 5896357472482354343}
   m_Layer: 0
   m_Name: RewardArea (46)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 5896357472534024526}
   m_Layer: 0
   m_Name: RewardArea (48)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 5896357472583913143}
   m_Layer: 0
   m_Name: RewardArea (17)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 5896357472585261091}
   m_Layer: 0
   m_Name: RewardArea (51)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 5896357472602668407}
   m_Layer: 0
   m_Name: RewardArea (39)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 5896357472693892200}
   m_Layer: 0
   m_Name: RewardArea (54)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 5896357472720467799}
   m_Layer: 0
   m_Name: RewardArea (24)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 5896357472726652558}
   m_Layer: 0
   m_Name: RewardArea (42)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 5896357472777255499}
   m_Layer: 0
   m_Name: RewardArea (5)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 5896357472784257897}
   m_Layer: 0
   m_Name: RewardArea (3)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -898,7 +898,7 @@ GameObject:
   - component: {fileID: 5896357472826400620}
   m_Layer: 0
   m_Name: RewardArea (25)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -957,7 +957,7 @@ GameObject:
   - component: {fileID: 5896357472855770002}
   m_Layer: 0
   m_Name: RewardArea (6)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1016,7 +1016,7 @@ GameObject:
   - component: {fileID: 5896357472860583240}
   m_Layer: 0
   m_Name: RewardArea (32)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 5896357472885258326}
   m_Layer: 0
   m_Name: RewardArea (13)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 5896357472898556592}
   m_Layer: 0
   m_Name: RewardArea (21)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1193,7 +1193,7 @@ GameObject:
   - component: {fileID: 5896357472943910613}
   m_Layer: 0
   m_Name: RewardArea (43)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1252,7 +1252,7 @@ GameObject:
   - component: {fileID: 5896357473097208923}
   m_Layer: 0
   m_Name: RewardArea (9)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1311,7 +1311,7 @@ GameObject:
   - component: {fileID: 5896357473104792385}
   m_Layer: 0
   m_Name: RewardArea (35)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1370,7 +1370,7 @@ GameObject:
   - component: {fileID: 5896357473147239459}
   m_Layer: 0
   m_Name: RewardArea (15)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1429,7 +1429,7 @@ GameObject:
   - component: {fileID: 5896357473202253134}
   m_Layer: 0
   m_Name: RewardArea (20)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1488,7 +1488,7 @@ GameObject:
   - component: {fileID: 5896357473248899961}
   m_Layer: 0
   m_Name: RewardArea (55)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1547,7 +1547,7 @@ GameObject:
   - component: {fileID: 5896357473359139256}
   m_Layer: 0
   m_Name: RewardArea (11)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1606,7 +1606,7 @@ GameObject:
   - component: {fileID: 5896357473372713764}
   m_Layer: 0
   m_Name: RewardArea (29)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1665,7 +1665,7 @@ GameObject:
   - component: {fileID: 5896357473375890520}
   m_Layer: 0
   m_Name: RewardArea (14)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1724,7 +1724,7 @@ GameObject:
   - component: {fileID: 5896357473410179071}
   m_Layer: 0
   m_Name: RewardArea
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1783,7 +1783,7 @@ GameObject:
   - component: {fileID: 5896357473419800451}
   m_Layer: 0
   m_Name: RewardArea (37)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1842,7 +1842,7 @@ GameObject:
   - component: {fileID: 5896357473438528084}
   m_Layer: 0
   m_Name: RewardArea (30)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1901,7 +1901,7 @@ GameObject:
   - component: {fileID: 5896357473465571200}
   m_Layer: 0
   m_Name: RewardArea (26)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1962,7 +1962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5896357473478035293
 Transform:
   m_ObjectHideFlags: 0
@@ -2046,7 +2046,7 @@ GameObject:
   - component: {fileID: 5896357473502146862}
   m_Layer: 0
   m_Name: RewardArea (31)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2105,7 +2105,7 @@ GameObject:
   - component: {fileID: 5896357473503361650}
   m_Layer: 0
   m_Name: RewardArea (36)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2164,7 +2164,7 @@ GameObject:
   - component: {fileID: 5896357473522711210}
   m_Layer: 0
   m_Name: RewardArea (49)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2223,7 +2223,7 @@ GameObject:
   - component: {fileID: 5896357473536025203}
   m_Layer: 0
   m_Name: RewardArea (38)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2282,7 +2282,7 @@ GameObject:
   - component: {fileID: 5896357473565436793}
   m_Layer: 0
   m_Name: RewardArea (23)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2341,7 +2341,7 @@ GameObject:
   - component: {fileID: 5896357473620066146}
   m_Layer: 0
   m_Name: RewardArea (1)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2400,7 +2400,7 @@ GameObject:
   - component: {fileID: 5896357473636544010}
   m_Layer: 0
   m_Name: RewardArea (27)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2459,7 +2459,7 @@ GameObject:
   - component: {fileID: 5896357473681064897}
   m_Layer: 0
   m_Name: RewardArea (2)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2518,7 +2518,7 @@ GameObject:
   - component: {fileID: 5896357473793162064}
   m_Layer: 0
   m_Name: RewardArea (19)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2577,7 +2577,7 @@ GameObject:
   - component: {fileID: 5896357473842649951}
   m_Layer: 0
   m_Name: RewardArea (47)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2636,7 +2636,7 @@ GameObject:
   - component: {fileID: 5896357473866198727}
   m_Layer: 0
   m_Name: RewardArea (10)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2695,7 +2695,7 @@ GameObject:
   - component: {fileID: 5896357473939289896}
   m_Layer: 0
   m_Name: RewardArea (44)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2754,7 +2754,7 @@ GameObject:
   - component: {fileID: 5896357473948130858}
   m_Layer: 0
   m_Name: RewardArea (8)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2813,7 +2813,7 @@ GameObject:
   - component: {fileID: 5896357474033729145}
   m_Layer: 0
   m_Name: RewardArea (28)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2872,7 +2872,7 @@ GameObject:
   - component: {fileID: 5896357474037587492}
   m_Layer: 0
   m_Name: RewardArea (50)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2931,7 +2931,7 @@ GameObject:
   - component: {fileID: 5896357474078231832}
   m_Layer: 0
   m_Name: RewardArea (7)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2990,7 +2990,7 @@ GameObject:
   - component: {fileID: 5896357474090692462}
   m_Layer: 0
   m_Name: RewardArea (45)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3049,7 +3049,7 @@ GameObject:
   - component: {fileID: 5896357474149409758}
   m_Layer: 0
   m_Name: RewardArea (53)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3108,7 +3108,7 @@ GameObject:
   - component: {fileID: 5896357474177886708}
   m_Layer: 0
   m_Name: RewardArea (4)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3167,7 +3167,7 @@ GameObject:
   - component: {fileID: 5896357474283420427}
   m_Layer: 0
   m_Name: RewardArea (41)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3226,7 +3226,7 @@ GameObject:
   - component: {fileID: 5896357474340841665}
   m_Layer: 0
   m_Name: RewardArea (22)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3316,6 +3316,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6553716a0e4ef4d8c2c3fbdc835383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rewardCount: 0
+  rewardLimit: 0
+  incentiveRate: 0
+  lickCount: 0
+  fallCount: 0
+  successCount: 0
+  manualReward: 0
 --- !u!1 &5896357474368509242
 GameObject:
   m_ObjectHideFlags: 0
@@ -3329,7 +3336,7 @@ GameObject:
   - component: {fileID: 5896357474368509236}
   m_Layer: 0
   m_Name: RewardArea (52)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3388,7 +3395,7 @@ GameObject:
   - component: {fileID: 5896357474476532896}
   m_Layer: 0
   m_Name: RewardArea (16)
-  m_TagString: Untagged
+  m_TagString: RewardArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
