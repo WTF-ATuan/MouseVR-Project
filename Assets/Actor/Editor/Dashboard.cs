@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Actor.Editor;
 using PhilippeFile.Script;
 using Project;
+using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
@@ -22,6 +23,27 @@ namespace Actor.Editor
 			window.Show();
 		}
 
+		[ReadOnly] [HorizontalGroup("Trail")] [LabelText("Trail Number :")] public int trialNum;
+		[ReadOnly] [HorizontalGroup("Trail")] [LabelText("Reward position : ")] public float rewardPosition;
+		
+		[ReadOnly] [HorizontalGroup("Success")] [LabelText("Success : ")] public int success;
+		[ReadOnly] [HorizontalGroup("Success")] [LabelText("Reward Size : ")] public string rewardSize;
+		
+		[ReadOnly] [HorizontalGroup("Stop")] [LabelText("Stop : ")] public int stop;
+		
+		[ReadOnly] [HorizontalGroup("Miss")] [LabelText("Miss : ")] public int miss;
+		[ReadOnly] [HorizontalGroup("Miss")] [LabelText("Time of Recording : ")] public string timeOfRecording;
+		
+		[ReadOnly] [HorizontalGroup("Stop")] [LabelText("Manual Reward : ")] public int manualReward;
+		[ReadOnly] [HorizontalGroup("Distance")] [LabelText("Distance : ")] public string distance;
+		[ReadOnly] [HorizontalGroup("Distance")] [LabelText("Speed : ")] public string speed;
+		
+		[ReadOnly] [HorizontalGroup("Lick")] [LabelText("Lick : ")] public int lick;
+		[ReadOnly] [HorizontalGroup("Lick")] [LabelText("Press : ")] public int press;
+		
+		[ReadOnly] [HorizontalGroup("Choose")] [LabelText("ChooseL : ")] public int chooseL;
+		[ReadOnly] [HorizontalGroup("Choose")] [LabelText("ChooseR : ")] public int chooseR;
+
 		private Scripts.Actor actor;
 		private SettingPanel settingPanel;
 		private ArduinoBasic arduinoBasic;
@@ -36,10 +58,32 @@ namespace Actor.Editor
 
 		protected override void OnGUI()
 		{
-			EditorGUILayout.BeginVertical();
-			EditorGUILayout.BeginHorizontal();
 			
-			EditorGUILayout.LabelField("Task Info");
+			actor = FindObjectOfType<Scripts.Actor>();
+			settingPanel = FindObjectOfType<SettingPanel>();
+			arduinoBasic = FindObjectOfType<ArduinoBasic>();
+
+			distance = actor.GetDistance().ToString("0.00");
+			speed = actor.GetSpeed().ToString("0");
+			
+			lick = settingPanel.GetLickCount();
+			press = settingPanel.GetSuccessCount();
+
+			chooseL = settingPanel.GetChooseLeft();
+			chooseR = settingPanel.GetChooseRight();
+
+			trialNum = (settingPanel.GetFallCount() + settingPanel.GetSuccessCount());
+			rewardPosition = settingPanel.GetRewardDistance();
+
+			success = settingPanel.GetRewardCount();
+			rewardSize = settingPanel.GetRewardSize();
+
+			stop = settingPanel.GetFallCount();
+			miss = settingPanel.GetFallCount();
+
+			timeOfRecording = GetPlayTime();
+			manualReward = settingPanel.GetManualReward();
+			
 			
 			if(GUILayout.Button("Refresh"))
 			{
@@ -47,12 +91,16 @@ namespace Actor.Editor
 				settingPanel = FindObjectOfType<SettingPanel>();
 				arduinoBasic = FindObjectOfType<ArduinoBasic>();
 			}
-
+			/*
 			EditorGUILayout.EndHorizontal();
 			if (actor || Application.isEditor && Application.isPlaying)
 			{
-				DrawMethodButton();
+				
 			}
+			
+			DrawMethodButton();
+			*/
+			base.OnGUI();
 		}
 
 		private void DrawMethodButton()

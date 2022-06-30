@@ -25,7 +25,7 @@ namespace Actor.Editor{
 		[OnValueChanged("OnArduinoPortValueChanged")]
 		private string arduinoPort;
 
-		[Title("Load Scene")] [SerializeField] [OnValueChanged("OnScenePathChanged")] [FilePath]
+		[FilePath]
 		private string scenePath;
 
 		[Title("Save Scene")] [HorizontalGroup("Save")] [SerializeField] [FolderPath] [HideLabel]

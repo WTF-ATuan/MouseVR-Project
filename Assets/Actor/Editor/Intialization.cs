@@ -1,5 +1,6 @@
 ﻿using PhilippeFile.Script;
 using Puzzle.GameLogic.Scripts;
+using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
@@ -25,6 +26,16 @@ namespace Actor.Editor{
 		private ArduinoBasic arduinoBasic;
 		private ArduinoDataReader arduinoDataReader;
 		private ScreenEffect screenEffect;
+		
+				
+		public SceneObject scene;
+
+		[ReadOnly] [VerticalGroup("Connect")] public string arduinoConnect = "Disconnect";
+		[ReadOnly] [VerticalGroup("Connect")] public string screenConnect = "Disconnect";
+		private BehavioralEnvironmentY behavioraYEditor;
+
+		private string screenState = "Disconnect";
+		
 
 
 		protected override void OnEnable(){
@@ -33,9 +44,23 @@ namespace Actor.Editor{
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
 			screenEffect = FindObjectOfType<ScreenEffect>();
 			behavioraYEditor = FindObjectOfType<BehavioralEnvironmentY>();
+			
+			arduinoConnect = "Disconnect";
+			screenConnect = "Disconnect";
 		}
 
 		protected override void OnGUI(){
+			
+			actor = FindObjectOfType<Scripts.Actor>();
+			settingPanel = FindObjectOfType<SettingPanel>();
+			arduinoBasic = FindObjectOfType<ArduinoBasic>();
+			screenEffect = FindObjectOfType<ScreenEffect>();
+			behavioraYEditor = FindObjectOfType<BehavioralEnvironmentY>();
+
+			arduinoConnect = arduinoBasic.connectAction;
+			screenConnect = screenState;
+			
+			/*
 			EditorGUILayout.BeginVertical();
 			EditorGUILayout.BeginHorizontal();
 
@@ -43,6 +68,14 @@ namespace Actor.Editor{
 			if(actor || Application.isEditor && Application.isPlaying){
 				DrawMethodButton();
 			}
+			*/
+			
+			base.OnGUI();
+		}
+
+		private void TargetColorChanged()
+		{
+			
 		}
 
 		private void DrawMethodButton(){
@@ -53,10 +86,31 @@ namespace Actor.Editor{
 		private void DashboardDownPos(){ }
 
 		public TeleportPoint tp;
-		public SceneObject scene;
-		public BehavioralEnvironmentY behavioraYEditor;
+		
+		[Button]
+		public void Teleport()
+		{
+			if (tp == TeleportPoint.Left)
+			{
+				behavioraYEditor.SetRightSide();
+				actor.ResetActor();
+			}
+			else
+			{
+				behavioraYEditor.SetRightSide();
+				actor.ResetActor();
+			}
+		}
+		
+		[Button]
+		public void ChangeScene()
+		{
+			screenEffect.ChangeScreenBlank();
 
-		public string screenState = "Disconnect";
+			screenState = screenEffect.GetState();
+		}
+		
+
 
 		private void DashboardUpPos(){
 			EditorGUILayout.BeginVertical();
