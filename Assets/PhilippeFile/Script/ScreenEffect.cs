@@ -58,11 +58,11 @@ public class ScreenEffect : MonoBehaviour
     {
         if (isClosePanel)
         {
-            return "Disconnect";
+            return "Disable";
         }
         else
         {
-            return "Connect";
+            return "Enable";
         }
     }
 
@@ -102,6 +102,11 @@ public class ScreenEffect : MonoBehaviour
             }
         }
    
+    }
+
+    public void SetColor(Color color)
+    {
+        ScreenPanel.color = color;
     }
     
     

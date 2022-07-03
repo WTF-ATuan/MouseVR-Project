@@ -167,6 +167,10 @@ public class ArduinoBasic : MonoBehaviour
             throw;
         }
     }
-    
-    
+
+    public float GetRewardLimit()
+    {
+
+        return limitTime;
+    }
 }

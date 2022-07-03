@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Actor.Editor;
 using PhilippeFile.Script;
 using Project;
+using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
@@ -28,6 +29,23 @@ namespace Actor.Editor
 		private ArduinoDataReader arduinoDataReader;
 
 		private SerializedObject serializedObject;
+
+		private bool isLick;
+
+
+		[TitleGroup("Other Setting")] [LabelText("Lick")] [ReadOnly] public string lickString;
+		[TitleGroup("Other Setting")] [LabelText("Random reward at reward zone")] [ReadOnly] public string RandomRewardAtRewardZone;
+		[TitleGroup("Other Setting")] [LabelText("Random reward at check zone")] [ReadOnly] public string RandomRewardAtCheckZone;
+		[TitleGroup("Other Setting")] [LabelText("Reward probability")] [Range(0 , 100)] public float rewardProbability;
+		
+		
+		[TitleGroup("Reward Setting")] [LabelText("Maze position range")] [ReadOnly] public string mazePositionRange;
+		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Position")] [ReadOnly] public string rewardZonePosition;
+		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Size")] [ReadOnly] public string rewardZoneSize;
+		[TitleGroup("Reward Setting")] [LabelText("Reward check zone periodiocity")] [ReadOnly] public string rewardCheckZonePeriodiocity;
+		[TitleGroup("Reward Setting")] [LabelText("Reward valve duration (ms)")] [ReadOnly] public string rewardValveDuration;
+
+		
 		
 
 		protected override void OnEnable()
@@ -35,18 +53,42 @@ namespace Actor.Editor
 			actor = FindObjectOfType<Scripts.Actor>();
 			settingPanel = FindObjectOfType<SettingPanel>();
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
+
+			lickString = "";
 		}
 
 		protected override void OnGUI()
 		{
-			EditorGUILayout.BeginVertical();
-			EditorGUILayout.BeginHorizontal();
-
-			EditorGUILayout.EndHorizontal();
+			
 			if (actor || Application.isEditor && Application.isPlaying)
 			{
-				DrawMethodButton();
+				//DrawMethodButton();
 			}
+			
+			base.OnGUI();
+		}
+
+		[Button]
+		public void GetReward()
+		{
+			settingPanel.GetReward();
+		}
+		
+		[Button]
+		public void SwitchLickOption()
+		{
+			isLick = !isLick;
+			
+			if (isLick)
+			{
+				
+			}
+			else
+			{
+				
+			}
+				
+			
 		}
 
 		private void DrawMethodButton()
@@ -64,7 +106,6 @@ namespace Actor.Editor
 
 		private bool isLickOption , randomRewardAtRewardZone , randomRewardAtCheckZone;
 		private string startRange, endRange , checkZonePeriodiocity , rewardPeriodiocity , rewardDuration;
-		private float rewardProbability;
 
 		private void DashboardUpPos()
 		{
@@ -131,25 +172,7 @@ namespace Actor.Editor
 					
 				}
 			}
-			EditorGUILayout.EndHorizontal();
-			
-			
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Reward Check Zone Periodiocity");
-			startRange = EditorGUILayout.TextField("Size", startRange);
-			EditorGUILayout.EndHorizontal();
-			
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Reward Probability (%)");
-			rewardProbability = EditorGUILayout.Slider(rewardProbability, 1f, 100f);
-			EditorGUILayout.EndHorizontal();
-			
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Reward Value Duration(ms)");
-			startRange = EditorGUILayout.TextField("Time", startRange);
-			EditorGUILayout.EndHorizontal();
-			
-			
+
 		}
 
 		private void DashLine()

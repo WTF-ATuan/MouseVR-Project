@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Actor.Editor;
 using PhilippeFile.Script;
@@ -23,26 +24,26 @@ namespace Actor.Editor
 			window.Show();
 		}
 
-		[ReadOnly] [HorizontalGroup("Trail")] [LabelText("Trail Number :")] public int trialNum;
-		[ReadOnly] [HorizontalGroup("Trail")] [LabelText("Reward position : ")] public float rewardPosition;
+		[ReadOnly] [FoldoutGroup("Task")]  [LabelText("Trail Number :")] public int trialNum;
+		[ReadOnly] [FoldoutGroup("Task")] [LabelText("Reward position : ")] public float rewardPosition;
 		
-		[ReadOnly] [HorizontalGroup("Success")] [LabelText("Success : ")] public int success;
-		[ReadOnly] [HorizontalGroup("Success")] [LabelText("Reward Size : ")] public string rewardSize;
+		[ReadOnly] [FoldoutGroup("Trial")] [LabelText("Success : ")] public int success;
+		[ReadOnly] [FoldoutGroup("Task")] [LabelText("Reward size (valve open T): : ")] public float rewardSize;
 		
-		[ReadOnly] [HorizontalGroup("Stop")] [LabelText("Stop : ")] public int stop;
+		[ReadOnly] [FoldoutGroup("Trial")] [LabelText("Failure : ")] public int stop;
 		
-		[ReadOnly] [HorizontalGroup("Miss")] [LabelText("Miss : ")] public int miss;
-		[ReadOnly] [HorizontalGroup("Miss")] [LabelText("Time of Recording : ")] public string timeOfRecording;
+		[ReadOnly] [FoldoutGroup("Trial")] public string timeOfRecording;
 		
-		[ReadOnly] [HorizontalGroup("Stop")] [LabelText("Manual Reward : ")] public int manualReward;
-		[ReadOnly] [HorizontalGroup("Distance")] [LabelText("Distance : ")] public string distance;
-		[ReadOnly] [HorizontalGroup("Distance")] [LabelText("Speed : ")] public string speed;
+		[ReadOnly] [FoldoutGroup("Trial")] public int manualReward;
+		[ReadOnly] [FoldoutGroup("Behavior")] [LabelText("Distance : ")] public string distance;
+		[ReadOnly] [FoldoutGroup("Behavior")] [LabelText("VR Speed : ")] public string vrSpeed;
+		[ReadOnly] [FoldoutGroup("Behavior")] [LabelText("Treadmill Speed : ")] public string treadmillSpeed;
 		
-		[ReadOnly] [HorizontalGroup("Lick")] [LabelText("Lick : ")] public int lick;
-		[ReadOnly] [HorizontalGroup("Lick")] [LabelText("Press : ")] public int press;
+		[ReadOnly] [FoldoutGroup("Behavior")] [LabelText("Lick : ")] public int lick;
+		[ReadOnly] [FoldoutGroup("Trial")] public int press;
 		
-		[ReadOnly] [HorizontalGroup("Choose")] [LabelText("ChooseL : ")] public int chooseL;
-		[ReadOnly] [HorizontalGroup("Choose")] [LabelText("ChooseR : ")] public int chooseR;
+		[ReadOnly] [FoldoutGroup("Trial")]  [LabelText("ChooseL : ")] public int chooseL;
+		[ReadOnly] [FoldoutGroup("Trial")]  [LabelText("ChooseR : ")] public int chooseR;
 
 		private Scripts.Actor actor;
 		private SettingPanel settingPanel;
@@ -54,6 +55,8 @@ namespace Actor.Editor
 			actor = FindObjectOfType<Scripts.Actor>();
 			settingPanel = FindObjectOfType<SettingPanel>();
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
+			
+			
 		}
 
 		protected override void OnGUI()
@@ -64,7 +67,8 @@ namespace Actor.Editor
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
 
 			distance = actor.GetDistance().ToString("0.00");
-			speed = actor.GetSpeed().ToString("0");
+			vrSpeed = actor.GetSpeed().ToString("0");
+			treadmillSpeed = arduinoBasic.GetSpeed().ToString("0.00");
 			
 			lick = settingPanel.GetLickCount();
 			press = settingPanel.GetSuccessCount();
@@ -76,13 +80,14 @@ namespace Actor.Editor
 			rewardPosition = settingPanel.GetRewardDistance();
 
 			success = settingPanel.GetRewardCount();
-			rewardSize = settingPanel.GetRewardSize();
+			rewardSize = arduinoBasic.GetRewardLimit();
 
 			stop = settingPanel.GetFallCount();
-			miss = settingPanel.GetFallCount();
 
-			timeOfRecording = GetPlayTime();
+			timeOfRecording = FormatTime(GetPlayTime());
 			manualReward = settingPanel.GetManualReward();
+			Repaint();
+			
 			
 			
 			if(GUILayout.Button("Refresh"))
@@ -101,6 +106,39 @@ namespace Actor.Editor
 			DrawMethodButton();
 			*/
 			base.OnGUI();
+		}
+
+		private void Update()
+		{
+			if (Event.current != null)
+			{
+				actor = FindObjectOfType<Scripts.Actor>();
+				settingPanel = FindObjectOfType<SettingPanel>();
+				arduinoBasic = FindObjectOfType<ArduinoBasic>();
+
+				distance = actor.GetDistance().ToString("0.00");
+				vrSpeed = actor.GetSpeed().ToString("0");
+				treadmillSpeed = arduinoBasic.GetSpeed().ToString("0.00");
+			
+				lick = settingPanel.GetLickCount();
+				press = settingPanel.GetSuccessCount();
+
+				chooseL = settingPanel.GetChooseLeft();
+				chooseR = settingPanel.GetChooseRight();
+
+				trialNum = (settingPanel.GetFallCount() + settingPanel.GetSuccessCount());
+				rewardPosition = settingPanel.GetRewardDistance();
+
+				success = settingPanel.GetRewardCount();
+				rewardSize = arduinoBasic.GetRewardLimit();
+
+				stop = settingPanel.GetFallCount();
+
+				timeOfRecording = FormatTime(GetPlayTime());
+				manualReward = settingPanel.GetManualReward();
+
+			}
+
 		}
 
 		private void DrawMethodButton()
@@ -183,16 +221,22 @@ namespace Actor.Editor
 			EditorGUILayout.EndHorizontal();
 		}
 
-		private string GetPlayTime()
+		private float GetPlayTime()
 		{
 			if (Application.isPlaying)
 			{
-				return Time.realtimeSinceStartup.ToString("0.0");
+				return Time.realtimeSinceStartup;
 			}
 			else
 			{
-				return "0";
+				return 0f;
 			}
+		}
+		
+		public string FormatTime( float time )
+		{
+			System.TimeSpan calc = System.TimeSpan.FromSeconds(time);
+			return string.Format("{0:00}:{1:00}:{2:00}" , calc.Hours , calc.Minutes, calc.Seconds);
 		}
 		
 		

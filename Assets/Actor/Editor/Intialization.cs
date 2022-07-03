@@ -32,10 +32,17 @@ namespace Actor.Editor{
 
 		[ReadOnly] [VerticalGroup("Connect")] public string arduinoConnect = "Disconnect";
 		[ReadOnly] [VerticalGroup("Connect")] public string screenConnect = "Disconnect";
+
+		[VerticalGroup("Connect")] [OnValueChanged("OnChangeColor")] public Color blankColor;
 		private BehavioralEnvironmentY behavioraYEditor;
 
-		private string screenState = "Disconnect";
-		
+		private string screenState = "Disable";
+
+		private void OnChangeColor()
+		{
+			screenEffect.SetColor(blankColor);
+		}
+
 
 
 		protected override void OnEnable(){
@@ -46,7 +53,7 @@ namespace Actor.Editor{
 			behavioraYEditor = FindObjectOfType<BehavioralEnvironmentY>();
 			
 			arduinoConnect = "Disconnect";
-			screenConnect = "Disconnect";
+			screenConnect = "Disable";
 		}
 
 		protected override void OnGUI(){
@@ -85,12 +92,12 @@ namespace Actor.Editor{
 
 		private void DashboardDownPos(){ }
 
-		public TeleportPoint tp;
+		public TeleportPoint teleportMazePoint;
 		
 		[Button]
 		public void Teleport()
 		{
-			if (tp == TeleportPoint.Left)
+			if (teleportMazePoint == TeleportPoint.Left)
 			{
 				behavioraYEditor.SetRightSide();
 				actor.ResetActor();
@@ -103,11 +110,17 @@ namespace Actor.Editor{
 		}
 		
 		[Button]
-		public void ChangeScene()
+		public void ChangeBlankScreen()
 		{
 			screenEffect.ChangeScreenBlank();
 
 			screenState = screenEffect.GetState();
+		}
+
+		[Button]
+		public void GetReward()
+		{
+			settingPanel.GetReward();
 		}
 		
 
@@ -127,11 +140,11 @@ namespace Actor.Editor{
 			EditorGUILayout.EndHorizontal();
 
 			EditorGUILayout.BeginHorizontal();
-			tp = (TeleportPoint)EditorGUILayout.EnumPopup("Teleport", tp);
+			teleportMazePoint = (TeleportPoint)EditorGUILayout.EnumPopup("Teleport", teleportMazePoint);
 
 			if (GUILayout.Button("Teleport"))
 			{
-				if (tp == TeleportPoint.Left)
+				if (teleportMazePoint == TeleportPoint.Left)
 				{
 					behavioraYEditor.SetRightSide();
 					actor.ResetActor();
