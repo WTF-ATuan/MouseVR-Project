@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Actor.Editor;
+using Environment.Scripts;
 using PhilippeFile.Script;
 using Project;
 using Sirenix.OdinInspector;
@@ -30,13 +32,15 @@ namespace Actor.Editor
 
 		private SerializedObject serializedObject;
 
+		private LickTrigger[] lickTrigger;
+
 		private bool isLick;
 
 
-		[TitleGroup("Other Setting")] [LabelText("Lick")] [ReadOnly] public string lickString;
-		[TitleGroup("Other Setting")] [LabelText("Random reward at reward zone")] [ReadOnly] public string RandomRewardAtRewardZone;
-		[TitleGroup("Other Setting")] [LabelText("Random reward at check zone")] [ReadOnly] public string RandomRewardAtCheckZone;
-		[TitleGroup("Other Setting")] [LabelText("Reward probability")] [Range(0 , 100)] public float rewardProbability;
+		[TitleGroup("Other Setting")] [LabelText("Lick")] [InfoBox("")] [OnValueChanged("OnLickChange")] public bool lick;
+		[TitleGroup("Other Setting")] [LabelText("Random reward at reward zone")] [OnValueChanged("OnRandomRewardAtRewardZoneChange")] public bool randomRewardAtRewardZone;
+		[TitleGroup("Other Setting")] [LabelText("Random reward at check zone")] [OnValueChanged("OnRandomRewardAtCheckZoneChange")] public bool randomRewardAtCheckZone;
+		[TitleGroup("Other Setting")] [LabelText("Reward probability")] [Range(0 , 100)] [OnValueChanged("OnRewardProbabilityChanged")] public float rewardProbability;
 		
 		
 		[TitleGroup("Reward Setting")] [LabelText("Maze position range")] [ReadOnly] public string mazePositionRange;
@@ -44,17 +48,18 @@ namespace Actor.Editor
 		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Size")] [ReadOnly] public string rewardZoneSize;
 		[TitleGroup("Reward Setting")] [LabelText("Reward check zone periodiocity")] [ReadOnly] public string rewardCheckZonePeriodiocity;
 		[TitleGroup("Reward Setting")] [LabelText("Reward valve duration (ms)")] [ReadOnly] public string rewardValveDuration;
+		
+		[TitleGroup("Reward Setting")] [LabelText("Current Lick Count Limit")] [OnValueChanged("OnCurrentLickCountLimit")] public int currentLickCountLimit;
+		[TitleGroup("Reward Setting")] [LabelText("Wrong Lick Count Limit")] [OnValueChanged("OnWrongLickCountLimit")] public int wrongLickCountLimit;
+		[TitleGroup("Reward Setting")] [LabelText("Show Gizmos")] [OnValueChanged("OnShowGizmosChange")] public bool showGizmos;
 
-		
-		
+
 
 		protected override void OnEnable()
 		{
 			actor = FindObjectOfType<Scripts.Actor>();
 			settingPanel = FindObjectOfType<SettingPanel>();
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
-
-			lickString = "";
 		}
 
 		protected override void OnGUI()
@@ -68,7 +73,7 @@ namespace Actor.Editor
 			base.OnGUI();
 		}
 
-		[Button]
+		[PropertyOrder(-1)][Button]
 		public void GetReward()
 		{
 			settingPanel.GetReward();
@@ -91,6 +96,64 @@ namespace Actor.Editor
 			
 		}
 
+		private void OnCurrentLickCountLimit()
+		{
+			foreach (var lick in lickTrigger)
+			{
+				lick.SetCorrectLickCountLimit(currentLickCountLimit);
+			}
+		}
+
+		private void OnLickChange()
+		{
+			
+		}
+
+		private void OnWrongLickCountLimit()
+		{
+			foreach (var lick in lickTrigger)
+			{
+				lick.SetCorrectLickCountLimit(wrongLickCountLimit);
+			}
+		}
+
+		private void OnShowGizmosChange()
+		{
+			foreach (var lick in lickTrigger)
+			{
+				lick.SetGizmos(showGizmos);
+			}
+		}
+
+		private void OnRandomRewardAtRewardZoneChange()
+		{
+			var rewardZone = FindObjectsOfType<RewardArea>();
+
+			foreach (var VARIABLE in rewardZone)
+			{
+				VARIABLE.enabled = randomRewardAtRewardZone;
+			}
+		}
+
+		private void OnRandomRewardAtCheckZoneChange()
+		{
+			foreach (var kLickTrigger in lickTrigger)
+			{
+				kLickTrigger.enabled = randomRewardAtCheckZone;
+			}
+		}
+
+		private void Update()
+		{
+			lickTrigger = FindObjectsOfType<LickTrigger>();
+		}
+
+		private void OnRewardProbabilityChanged()
+		{
+			settingPanel.SettingReward(rewardProbability);
+			Debug.Log("Change");
+		}
+
 		private void DrawMethodButton()
 		{
 			DashboardUpPos();
@@ -104,74 +167,9 @@ namespace Actor.Editor
 			
 		}
 
-		private bool isLickOption , randomRewardAtRewardZone , randomRewardAtCheckZone;
-		private string startRange, endRange , checkZonePeriodiocity , rewardPeriodiocity , rewardDuration;
-
 		private void DashboardUpPos()
 		{
-			EditorGUILayout.BeginVertical();
-
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Give Reward");
 			
-			if (GUILayout.Button("Deliver Reward"))
-			{
-				
-			}
-			
-			EditorGUILayout.EndHorizontal();
-			
-			
-			
-			EditorGUILayout.LabelField("Lick Option");
-			isLickOption = EditorGUILayout.Toggle("Lick Option", isLickOption);
-			
-			if (GUILayout.Button("Check"))
-			{
-				if (isLickOption)
-				{
-				
-				
-				}
-			}
-			EditorGUILayout.EndHorizontal();
-			EditorGUILayout.EndVertical();
-			
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Maze Position Range");
-			startRange = EditorGUILayout.TextField("Start", startRange);
-			endRange = EditorGUILayout.TextField("End", endRange);
-			EditorGUILayout.EndHorizontal();
-			
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Reward Zone Position");
-			startRange = EditorGUILayout.TextField("Start", startRange);
-			EditorGUILayout.EndHorizontal();
-			
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Reward Zone Size");
-			startRange = EditorGUILayout.TextField("Size", startRange);
-			EditorGUILayout.EndHorizontal();
-			
-			EditorGUILayout.BeginHorizontal();
-			randomRewardAtRewardZone = EditorGUILayout.Toggle("Random Reward at Reward Zone", randomRewardAtRewardZone);
-			randomRewardAtCheckZone = EditorGUILayout.Toggle("Random Reward at Check Zone", randomRewardAtCheckZone);
-			EditorGUILayout.EndHorizontal();
-			
-			EditorGUILayout.BeginHorizontal();
-			if (GUILayout.Button("Check"))
-			{
-				if (randomRewardAtRewardZone)
-				{
-				
-				
-				}
-
-				if (randomRewardAtCheckZone)
-				{
-					
-				}
-			}
 
 		}
 

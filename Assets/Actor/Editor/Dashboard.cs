@@ -90,12 +90,6 @@ namespace Actor.Editor
 			
 			
 			
-			if(GUILayout.Button("Refresh"))
-			{
-				actor = FindObjectOfType<Scripts.Actor>();
-				settingPanel = FindObjectOfType<SettingPanel>();
-				arduinoBasic = FindObjectOfType<ArduinoBasic>();
-			}
 			/*
 			EditorGUILayout.EndHorizontal();
 			if (actor || Application.isEditor && Application.isPlaying)
@@ -106,6 +100,14 @@ namespace Actor.Editor
 			DrawMethodButton();
 			*/
 			base.OnGUI();
+		}
+
+		[Button]
+		private void Refresh()
+		{
+			actor = FindObjectOfType<Scripts.Actor>();
+			settingPanel = FindObjectOfType<SettingPanel>();
+			arduinoBasic = FindObjectOfType<ArduinoBasic>();
 		}
 
 		private void Update()

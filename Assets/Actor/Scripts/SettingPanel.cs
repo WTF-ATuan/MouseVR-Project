@@ -158,8 +158,5 @@ public class SettingPanel : MonoBehaviour
         return (dis / allRewardArea.Length);
 
     }
-
-    public void SetRewardLimit(int limitValue){
-        rewardLimit = limitValue;
-    }
+    
 }

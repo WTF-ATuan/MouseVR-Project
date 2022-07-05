@@ -70,7 +70,7 @@ namespace Actor.Editor{
 		}
 
 		private void OnTrialsEndNumber(){
-			settingPanel.SetRewardLimit(numberOfTrialsToEndTheSession);
+			settingPanel.SettingReward(numberOfTrialsToEndTheSession);
 		}
 
 		private void OnArduinoPortValueChanged(){

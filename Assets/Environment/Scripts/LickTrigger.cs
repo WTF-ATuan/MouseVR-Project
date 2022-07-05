@@ -83,5 +83,20 @@ namespace Environment.Scripts{
 			Gizmos.color = Color.red;
 			Gizmos.DrawCube(boundsCenter, boundsSize);
 		}
+
+		public void SetCorrectLickCountLimit(int count)
+		{
+			correctLickCountLimit = count;
+		}
+		
+		public void SetWrongLickCountLimit(int count)
+		{
+			wrongLickCountLimit = count;
+		}
+
+		public void SetGizmos(bool isActive)
+		{
+			showGizmos = isActive;
+		}
 	}
 }

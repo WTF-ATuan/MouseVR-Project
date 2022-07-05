@@ -346,7 +346,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!65 &97668485
 BoxCollider:
@@ -1944,7 +1944,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 0
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!65 &1272723835
 BoxCollider:
@@ -2061,7 +2061,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 0
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!65 &1380396212
 BoxCollider:
@@ -2152,7 +2152,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 0
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!1 &1536195969
 GameObject:
@@ -2268,7 +2268,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 0
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!65 &1563568897
 BoxCollider:
@@ -2492,7 +2492,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 0
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!65 &1605176131
 BoxCollider:
@@ -2602,7 +2602,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!65 &1829106402
 BoxCollider:
@@ -2666,7 +2666,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!65 &2011135941
 BoxCollider:
@@ -2716,7 +2716,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 0
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!65 &2014574857
 BoxCollider:
@@ -3115,7 +3115,7 @@ MonoBehaviour:
   correctLickCountLimit: 1
   wrongLickCountLimit: 10
   isInfinite: 1
-  showGizmos: 0
+  showGizmos: 1
   incentiveRate: 0
 --- !u!65 &2107166077
 BoxCollider:
