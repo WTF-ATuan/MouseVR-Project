@@ -1,4 +1,5 @@
-﻿using PhilippeFile.Script;
+﻿using System;
+using PhilippeFile.Script;
 using Puzzle.GameLogic.Scripts;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
@@ -30,8 +31,10 @@ namespace Actor.Editor{
 				
 		public SceneObject scene;
 
-		[ReadOnly] [VerticalGroup("Connect")] public string arduinoConnect = "Disconnect";
-		[ReadOnly] [VerticalGroup("Connect")] public string screenConnect = "Disconnect";
+		[ReadOnly] [InfoBox("Hot Key 'C'")] [VerticalGroup("Connect")] public string arduinoConnect = "Disconnect";
+		[ReadOnly] [InfoBox("Hot Key 'B'")] [VerticalGroup("Connect")] public string screenConnect = "Disconnect";
+
+		[VerticalGroup("Connect")] public Vector3 targetPoint;
 
 		[VerticalGroup("Connect")] [OnValueChanged("OnChangeColor")] public Color blankColor;
 		private BehavioralEnvironmentY behavioraYEditor;
@@ -66,7 +69,7 @@ namespace Actor.Editor{
 
 			arduinoConnect = arduinoBasic.connectAction;
 			screenConnect = screenState;
-			
+
 			/*
 			EditorGUILayout.BeginVertical();
 			EditorGUILayout.BeginHorizontal();
@@ -99,12 +102,12 @@ namespace Actor.Editor{
 		{
 			if (teleportMazePoint == TeleportPoint.Left)
 			{
-				behavioraYEditor.SetRightSide();
+				behavioraYEditor?.SetRightSide();
 				actor.ResetActor();
 			}
 			else
 			{
-				behavioraYEditor.SetRightSide();
+				behavioraYEditor?.SetRightSide();
 				actor.ResetActor();
 			}
 		}
@@ -122,7 +125,12 @@ namespace Actor.Editor{
 		{
 			settingPanel.GetReward();
 		}
-		
+
+		[Button]
+		public void TeleportOnTargetPoint()
+		{
+			actor.Teleport(targetPoint);
+		}
 
 
 		private void DashboardUpPos(){

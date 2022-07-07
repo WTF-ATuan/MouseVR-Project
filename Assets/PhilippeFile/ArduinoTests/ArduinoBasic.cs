@@ -51,13 +51,12 @@ public class ArduinoBasic : MonoBehaviour
     private void OnArduinoTriggerRequested(ArduinoTriggerRequested obj)
     {
         var sendText = obj.sendText;
-        var time = obj.time;
 
         ArduinoWrite(sendText);
 
-        if (time != 0)
+        if (limitTime > 0)
         {
-            StartCoroutine(DelayTrigger(sendText, time));
+            StartCoroutine(DelayTrigger(sendText, limitTime));
         }
     }
 
@@ -172,5 +171,10 @@ public class ArduinoBasic : MonoBehaviour
     {
 
         return limitTime;
+    }
+
+    public void SetLimitTime(float time)
+    {
+        limitTime = time;
     }
 }

@@ -77,7 +77,7 @@ namespace Actor.Editor
 			chooseR = settingPanel.GetChooseRight();
 
 			trialNum = (settingPanel.GetFallCount() + settingPanel.GetSuccessCount());
-			rewardPosition = settingPanel.GetRewardDistance();
+			//rewardPosition = settingPanel.GetRewardDistance();
 
 			success = settingPanel.GetRewardCount();
 			rewardSize = arduinoBasic.GetRewardLimit();

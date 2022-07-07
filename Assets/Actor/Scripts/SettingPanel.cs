@@ -91,6 +91,11 @@ public class SettingPanel : MonoBehaviour
         EventBus.Post(new ChangeIncentiveRateDetected(_incentiveRate));
     }
 
+    public void SetReward(int value)
+    {
+        rewardLimit = value;
+    }
+
     public int GetRewardCount()
     {
         return rewardCount;
@@ -158,5 +163,12 @@ public class SettingPanel : MonoBehaviour
         return (dis / allRewardArea.Length);
 
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            UnityEditor.EditorApplication.isPlaying = false; //哈哈我不是唯讀
+        }
+    }
 }

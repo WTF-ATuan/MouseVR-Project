@@ -37,7 +37,7 @@ namespace Actor.Editor
 		private bool isLick;
 
 
-		[TitleGroup("Other Setting")] [LabelText("Lick")] [InfoBox("")] [OnValueChanged("OnLickChange")] public bool lick;
+		[TitleGroup("Other Setting")] [LabelText("Lick")] [OnValueChanged("OnLickChange")] public bool lick;
 		[TitleGroup("Other Setting")] [LabelText("Random reward at reward zone")] [OnValueChanged("OnRandomRewardAtRewardZoneChange")] public bool randomRewardAtRewardZone;
 		[TitleGroup("Other Setting")] [LabelText("Random reward at check zone")] [OnValueChanged("OnRandomRewardAtCheckZoneChange")] public bool randomRewardAtCheckZone;
 		[TitleGroup("Other Setting")] [LabelText("Reward probability")] [Range(0 , 100)] [OnValueChanged("OnRewardProbabilityChanged")] public float rewardProbability;
@@ -47,11 +47,12 @@ namespace Actor.Editor
 		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Position")] [ReadOnly] public string rewardZonePosition;
 		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Size")] [ReadOnly] public string rewardZoneSize;
 		[TitleGroup("Reward Setting")] [LabelText("Reward check zone periodiocity")] [ReadOnly] public string rewardCheckZonePeriodiocity;
-		[TitleGroup("Reward Setting")] [LabelText("Reward valve duration (ms)")] [ReadOnly] public string rewardValveDuration;
+		[TitleGroup("Reward Setting")] [LabelText("Reward valve duration (ms)")] [OnValueChanged("OnRewardValveDurationChanged")] public float rewardValveDuration;
 		
-		[TitleGroup("Reward Setting")] [LabelText("Current Lick Count Limit")] [OnValueChanged("OnCurrentLickCountLimit")] public int currentLickCountLimit;
-		[TitleGroup("Reward Setting")] [LabelText("Wrong Lick Count Limit")] [OnValueChanged("OnWrongLickCountLimit")] public int wrongLickCountLimit;
-		[TitleGroup("Reward Setting")] [LabelText("Show Gizmos")] [OnValueChanged("OnShowGizmosChange")] public bool showGizmos;
+		[TitleGroup("Only In Line Maze")] [LabelText("Current Lick Count Limit")] [OnValueChanged("OnCurrentLickCountLimit")] public int currentLickCountLimit;
+		[TitleGroup("Only In Line Maze")] [LabelText("Wrong Lick Count Limit")] [OnValueChanged("OnWrongLickCountLimit")] public int wrongLickCountLimit;
+		[InfoBox("How many times does the mouse get the reward to stop the game")] [TitleGroup("Reward Setting")] [LabelText("Reward Count Limit")] [OnValueChanged("OnRewardCountLimit")] public int rewardLimit;
+		[TitleGroup("Only In Line Maze")] [LabelText("Show Gizmos")] [OnValueChanged("OnShowGizmosChange")] public bool showGizmos;
 
 
 
@@ -73,27 +74,18 @@ namespace Actor.Editor
 			base.OnGUI();
 		}
 
-		[PropertyOrder(-1)][Button]
+		[Button]
 		public void GetReward()
 		{
 			settingPanel.GetReward();
 		}
 		
 		[Button]
-		public void SwitchLickOption()
+		public void Refresh()
 		{
-			isLick = !isLick;
-			
-			if (isLick)
-			{
-				
-			}
-			else
-			{
-				
-			}
-				
-			
+			actor = FindObjectOfType<Scripts.Actor>();
+			settingPanel = FindObjectOfType<SettingPanel>();
+			arduinoBasic = FindObjectOfType<ArduinoBasic>();
 		}
 
 		private void OnCurrentLickCountLimit()
@@ -108,6 +100,12 @@ namespace Actor.Editor
 		{
 			
 		}
+
+		private void OnRewardValveDurationChanged()
+		{
+			arduinoBasic.SetLimitTime(rewardValveDuration);
+		}
+		
 
 		private void OnWrongLickCountLimit()
 		{
@@ -131,7 +129,7 @@ namespace Actor.Editor
 
 			foreach (var VARIABLE in rewardZone)
 			{
-				VARIABLE.enabled = randomRewardAtRewardZone;
+				VARIABLE.GetComponent<BoxCollider>().enabled = randomRewardAtRewardZone;
 			}
 		}
 
@@ -139,8 +137,13 @@ namespace Actor.Editor
 		{
 			foreach (var kLickTrigger in lickTrigger)
 			{
-				kLickTrigger.enabled = randomRewardAtCheckZone;
+				kLickTrigger.GetComponent<BoxCollider>().enabled = randomRewardAtCheckZone;
 			}
+		}
+
+		private void OnRewardCountLimit()
+		{
+			settingPanel.SetReward(rewardLimit);
 		}
 
 		private void Update()
