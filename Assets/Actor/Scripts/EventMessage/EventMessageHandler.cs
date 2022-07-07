@@ -43,7 +43,8 @@ namespace Actor.Scripts.EventMessage{
 
 		private void OnSavedDataMessage(SavedDataMessage obj){
 			var dataInfo = obj.Message;
-			switch(dataInfo.eventType){
+			var eventType = obj.EventType;
+			switch(eventType){
 				case BehaviorEventType.Actor:
 					_actorData = dataInfo;
 					break;
@@ -60,9 +61,21 @@ namespace Actor.Scripts.EventMessage{
 
 		private void WriteMessage(){
 			var dataInfo = new BehaviorDataInfo();
-			dataInfo.CombineActorData(_actorData);
-			dataInfo.CombineTrailData(_trailData);
-			dataInfo.CombineEventData(_eventData);
+			if(_actorData != null){
+				dataInfo.CombineActorData(_actorData);
+				_actorData = null;
+			}
+
+			if(_trailData != null){
+				dataInfo.CombineTrailData(_trailData);
+				_trailData = null;
+			}
+
+			if(_eventData != null){
+				dataInfo.CombineEventData(_eventData);
+				_eventData = null;
+			}
+
 			dataInfo.time = Time.time;
 			_messageExporter.WriteMessage(dataInfo);
 		}

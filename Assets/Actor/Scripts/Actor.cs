@@ -45,13 +45,12 @@ namespace Actor.Scripts{
 			var positionInfo = new BehaviorDataInfo{
 				Animal_Speed = inputValue,
 				Actor_Speed = inputValue * speed,
-				eventType = BehaviorEventType.Actor
 			};
 			var position = actorTransform.position;
 			positionInfo.Actor_PositionX = position.x;
 			positionInfo.Actor_PositionZ = position.z;
 			positionInfo.Animal_Distance = Vector3.Distance(position, StartPosition);
-			EventBus.Post(new SavedDataMessage(positionInfo, positionInfo.GetType()));
+			EventBus.Post(new SavedDataMessage(positionInfo, positionInfo.GetType(), BehaviorEventType.Actor));
 		}
 
 		public void Teleport(Vector3 targetPosition){

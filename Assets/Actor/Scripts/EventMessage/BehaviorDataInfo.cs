@@ -7,8 +7,6 @@ namespace Actor.Scripts.EventMessage{
 
 	[Serializable]
 	public class BehaviorDataInfo{
-		public BehaviorEventType eventType;
-
 		//Actor
 		public float Animal_Speed = default;
 		public float Animal_Distance = default;
