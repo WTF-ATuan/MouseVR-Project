@@ -22,7 +22,7 @@ namespace Actor.Scripts.EventMessage{
 			FileName = fileName;
 			AssetDatabase.Refresh();
 		}
-		
+
 
 		public void WriteMessage(BehaviorDataInfo message){
 			var jsonString = JsonUtility.ToJson(message);
@@ -34,6 +34,7 @@ namespace Actor.Scripts.EventMessage{
 			_streamWriter.Flush();
 			_streamWriter.Close();
 			_streamWriter.Dispose();
+			AssetDatabase.Refresh();
 		}
 	}
 }

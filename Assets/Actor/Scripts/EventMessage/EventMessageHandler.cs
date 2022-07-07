@@ -8,11 +8,11 @@ using UnityEngine;
 namespace Actor.Scripts.EventMessage{
 	public class EventMessageHandler : MonoBehaviour{
 		[SerializeField] [FolderPath] [Required]
-		private string path;
+		public string path;
 
-		[SerializeField] [Required] private string dataName;
+		[SerializeField] [Required] public string dataName;
 
-		[SerializeField] [Range(0.05f, 0.2f)] private float writeDuring = 0.1f;
+		[SerializeField] [Range(0.05f, 0.2f)] public float writeDuring = 0.1f;
 
 
 		private MessageExporter _messageExporter;
