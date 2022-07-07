@@ -34,7 +34,7 @@ namespace Actor.Scripts{
 
 		public void Move(float inputValue){
 			if(!canMoveBack && (inputValue < 0)) return;
-			if(!canMoveForward && inputValue > 0 )return;
+			if(!canMoveForward && inputValue > 0) return;
 			var forwardDirection = transform.forward;
 			var moveDirection = inputValue * forwardDirection * speed;
 			_rigidbody.velocity = moveDirection;
@@ -44,13 +44,13 @@ namespace Actor.Scripts{
 			var actorTransform = transform;
 			var positionInfo = new BehaviorDataInfo{
 				Animal_Speed = inputValue,
-				Actor_Speed = inputValue * speed
+				Actor_Speed = inputValue * speed,
+				eventType = BehaviorEventType.Actor
 			};
 			var position = actorTransform.position;
 			positionInfo.Actor_PositionX = position.x;
 			positionInfo.Actor_PositionZ = position.z;
 			positionInfo.Animal_Distance = Vector3.Distance(position, StartPosition);
-			positionInfo.Time = Time.time;
 			EventBus.Post(new SavedDataMessage(positionInfo, positionInfo.GetType()));
 		}
 
@@ -78,15 +78,14 @@ namespace Actor.Scripts{
 
 		public void GetReward(){
 			EventBus.Post(new ArduinoTriggerRequested("Valve_Open"));
-			EventBus.Post(new ArduinoTriggerRequested("Valve_Close" , 0.06f));
+			EventBus.Post(new ArduinoTriggerRequested("Valve_Close", 0.06f));
 			Debug.Log("Get Reward");
 		}
 
 		private void Update() => TickTime();
 		private bool invokeFlag = true;
 
-		private void TickTime()
-		{
+		private void TickTime(){
 			if(_delayTime < 0 && !invokeFlag){
 				EventBus.Post(new ScreenEffectDetected(0, 0));
 				ResetActor();
@@ -94,7 +93,7 @@ namespace Actor.Scripts{
 				return;
 			}
 
-			if (_delayTime < 0) return;
+			if(_delayTime < 0) return;
 			invokeFlag = false;
 			_delayTime -= Time.fixedDeltaTime;
 		}
@@ -103,17 +102,16 @@ namespace Actor.Scripts{
 			if(!canRotate) return;
 			_rotate.Rotate(isRight);
 		}
+
 		public void Lick(){
 			EventBus.Post(new ActorLickDetected(transform.position));
 		}
 
-		public float GetDistance()
-		{
+		public float GetDistance(){
 			return Vector3.Distance(transform.position, StartPosition);
 		}
 
-		public float GetSpeed()
-		{
+		public float GetSpeed(){
 			return speed;
 		}
 	}

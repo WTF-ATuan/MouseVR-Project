@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine.Serialization;
 
 namespace Actor.Scripts.EventMessage{
 	[Serializable]
@@ -6,6 +7,8 @@ namespace Actor.Scripts.EventMessage{
 
 	[Serializable]
 	public class BehaviorDataInfo{
+		public BehaviorEventType eventType;
+
 		//Actor
 		public float Animal_Speed = default;
 		public float Animal_Distance = default;
@@ -13,7 +16,7 @@ namespace Actor.Scripts.EventMessage{
 		public float Actor_PositionX = default;
 		public float Actor_PositionZ = default;
 
-		//Behavior
+		//Trial
 		public int Licking = default;
 		public int LeverPress = default;
 		public int Trial_Failed = default;
@@ -23,7 +26,7 @@ namespace Actor.Scripts.EventMessage{
 		public string Reward_Event = "NaN";
 		public string Sync_Event = "NaN";
 		public string Other_Event = "NaN";
-		public float Time;
+		public float time;
 
 		public BehaviorDataInfo(){ }
 
@@ -49,7 +52,7 @@ namespace Actor.Scripts.EventMessage{
 			}
 		}
 
-		public void CombineBehaviorData(BehaviorDataInfo dataInfo){
+		public void CombineTrailData(BehaviorDataInfo dataInfo){
 			if(Licking == default){
 				Licking = dataInfo.Licking;
 			}
@@ -80,5 +83,11 @@ namespace Actor.Scripts.EventMessage{
 				Other_Event = dataInfo.Other_Event;
 			}
 		}
+	}
+
+	public enum BehaviorEventType{
+		Actor,
+		Trial,
+		Event,
 	}
 }
