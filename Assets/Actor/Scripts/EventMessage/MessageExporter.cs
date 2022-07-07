@@ -1,45 +1,39 @@
 ﻿using System;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 namespace Actor.Scripts.EventMessage{
 	public class MessageExporter{
-		public string FilePath{ get; private set; }
+		public string FilePath{ get; }
 		public string FileName{ get; }
 
-		public MessageExporter(string filePath, string fileName){
-			if(!Directory.Exists(filePath)){
-				throw new Exception("File Path is Not found");
-			}
+		private readonly FileStream _file;
 
+		private string _fileFullName;
+
+		private StreamWriter _streamWriter;
+
+		public MessageExporter(string filePath, string fileName){
+			_fileFullName = filePath + "/" + $"{fileName}" + ".json";
+			_file = new FileStream(_fileFullName, FileMode.CreateNew);
+			_streamWriter = new StreamWriter(_file);
 			FilePath = filePath;
 			FileName = fileName;
+			AssetDatabase.Refresh();
+		}
+		
+
+		public void WriteMessage(BehaviorDataInfo message){
+			var jsonString = JsonUtility.ToJson(message);
+			_streamWriter.Write(jsonString + System.Environment.NewLine);
+			_streamWriter.Flush();
 		}
 
-		public void SetFilePath(string path){
-			if(!Directory.Exists(path)){
-				throw new Exception("File Path is Not found");
-			}
-
-			FilePath = path;
-		}
-
-		public string TranslateMessage<T>(T info) where T : MessageInfo{
-			var jsonFile = JsonUtility.ToJson(info);
-			jsonFile += "\r\n";
-			return jsonFile;
-		}
-
-		public void SaveToJsonFile(string rawMessage){
-			var saveFilePath = FilePath + "/" + $"{FileName}" + ".json";
-			var fileStream = new FileStream(saveFilePath, FileMode.CreateNew);
-			using(var streamWriter = new StreamWriter(fileStream)){
-				streamWriter.Write(rawMessage);
-			}
-		}
-
-		public void WriteMessage(MessageInfo message){
-			
+		public void Timeout(){
+			_streamWriter.Flush();
+			_streamWriter.Close();
+			_streamWriter.Dispose();
 		}
 	}
 }

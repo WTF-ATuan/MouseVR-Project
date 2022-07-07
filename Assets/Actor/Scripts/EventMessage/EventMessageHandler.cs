@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
+using System;
 using Actor.Scripts.Event;
 using Project;
 using Sirenix.OdinInspector;
@@ -29,18 +28,13 @@ namespace Actor.Scripts.EventMessage{
 			EventBus.Post(new SavedDataMessage(actorPositionInfo, actorPositionInfo.GetType()));
 		}
 
-		[Button]
-		private void TestPostEvent1(){
-			var actorPositionInfo = new BehaviorDataInfo();
-			actorPositionInfo.Animal_Speed = 3;
-			actorPositionInfo.Time = Time.time;
-			EventBus.Post(new SavedDataMessage(actorPositionInfo, actorPositionInfo.GetType()));
-		}
-
 		private void OnSavedDataMessage(SavedDataMessage obj){
 			var message = obj.Message;
 			_messageExporter.WriteMessage(message);
 		}
 
+		private void OnDisable(){
+			_messageExporter.Timeout();
+		}
 	}
 }

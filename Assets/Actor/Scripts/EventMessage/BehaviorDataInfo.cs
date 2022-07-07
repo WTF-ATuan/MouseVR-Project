@@ -1,11 +1,11 @@
 ﻿using System;
-using UnityEngine;
 
 namespace Actor.Scripts.EventMessage{
 	[Serializable]
 	public abstract class MessageInfo{ }
 
-	public class BehaviorDataInfo : MessageInfo{
+	[Serializable]
+	public class BehaviorDataInfo{
 		//Actor
 		public float Animal_Speed = default;
 		public float Animal_Distance = default;
