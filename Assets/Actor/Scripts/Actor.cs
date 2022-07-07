@@ -42,7 +42,7 @@ namespace Actor.Scripts{
 
 		public void WriteMessage(float inputValue){
 			var actorTransform = transform;
-			var positionInfo = new ActorPositionInfo{
+			var positionInfo = new BehaviorDataInfo{
 				Animal_Speed = inputValue,
 				Actor_Speed = inputValue * speed
 			};

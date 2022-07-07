@@ -37,5 +37,9 @@ namespace Actor.Scripts.EventMessage{
 				streamWriter.Write(rawMessage);
 			}
 		}
+
+		public void WriteMessage(MessageInfo message){
+			
+		}
 	}
 }
