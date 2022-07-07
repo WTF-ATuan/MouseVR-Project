@@ -3153,7 +3153,7 @@ GameObject:
   - component: {fileID: 1481259206}
   - component: {fileID: 1481259205}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Message Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3172,8 +3172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: Assets/Actor/MessageData
-  dataName: bb
-  writeDuring: 0.2
+  dataName: AAA
+  writeDuring: 0.19978449
 --- !u!4 &1481259206
 Transform:
   m_ObjectHideFlags: 0
