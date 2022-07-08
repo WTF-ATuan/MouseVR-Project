@@ -80,16 +80,11 @@ namespace Actor.Editor
 			trialNum = (settingPanel.GetFallCount() + settingPanel.GetSuccessCount());
 
 
-			if (FindObjectOfType<BehavioralEnvironmentY>())
+			if (rewardPosition < actor.GetDistance())
 			{
-				rewardPosition = Vector3.Distance(actor.transform.position,
-					FindObjectOfType<BehavioralEnvironmentY>().GetAwardVector());
+				rewardPosition = actor.GetDistance();
 			}
-			else
-			{
-				rewardPosition = 0;
-			}
-
+			
 			success = settingPanel.GetRewardCount();
 			rewardSize = arduinoBasic.GetRewardLimit();
 

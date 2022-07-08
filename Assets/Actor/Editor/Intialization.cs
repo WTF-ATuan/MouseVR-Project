@@ -34,7 +34,7 @@ namespace Actor.Editor{
 		[ReadOnly] [InfoBox("Hot Key 'C'")] [VerticalGroup("Connect")] public string arduinoConnect = "Disconnect";
 		[ReadOnly] [InfoBox("Hot Key 'B'")] [VerticalGroup("Connect")] public string screenConnect = "Disconnect";
 
-		[VerticalGroup("Connect")] public Vector3 targetPoint;
+		[VerticalGroup("Connect")] public Vector2 targetPoint;
 
 		[VerticalGroup("Connect")] [OnValueChanged("OnChangeColor")] public Color blankColor;
 		private BehavioralEnvironmentY behavioraYEditor;
@@ -129,7 +129,7 @@ namespace Actor.Editor{
 		[Button]
 		public void TeleportOnTargetPoint()
 		{
-			actor.Teleport(targetPoint);
+			actor.Teleport(new Vector3(targetPoint.x , actor.transform.position.y , targetPoint.y));
 		}
 
 

@@ -16,6 +16,8 @@ namespace Environment.Scripts{
 
 		[SerializeField] private bool showGizmos;
 
+		[SerializeField] private bool skipJudge;
+
 		[SerializeField] private float incentiveRate;
 
 
@@ -41,7 +43,14 @@ namespace Environment.Scripts{
 				}
 				else
 				{
-					EventBus.Post(new ActorJudged(true));
+					if (skipJudge)
+					{
+						EventBus.Post(new ActorJudged(false));
+					}
+					else
+					{
+						EventBus.Post(new ActorJudged(true));
+					}
 				}
 			}
 		}
@@ -97,6 +106,11 @@ namespace Environment.Scripts{
 		public void SetGizmos(bool isActive)
 		{
 			showGizmos = isActive;
+		}
+
+		public void SetSkipJudge(bool isJudge)
+		{
+			skipJudge = isJudge;
 		}
 	}
 }
