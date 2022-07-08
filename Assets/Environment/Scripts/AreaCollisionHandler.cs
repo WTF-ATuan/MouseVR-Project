@@ -23,6 +23,11 @@ namespace Environment.Scripts{
 			type = areaType;
 		}
 
+		public AreaType GetAreaType()
+		{
+			return type;
+		}
+
 		public void ActorCollision(Actor.Scripts.Actor actor){
 			var behaviorDataInfo = new BehaviorDataInfo();
 			switch(type){

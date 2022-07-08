@@ -56,5 +56,17 @@ namespace Puzzle.GameLogic.Scripts{
 		{
 			SetLevel(1);
 		}
+
+		public Vector3 GetAwardVector()
+		{
+			if (areaL.GetAreaType() == AreaType.Award)
+			{
+				return areaL.transform.position;
+			}
+			else
+			{
+				return areaR.transform.position;
+			}
+		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Actor.Editor;
 using PhilippeFile.Script;
 using Project;
+using Puzzle.GameLogic.Scripts;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
@@ -77,7 +78,17 @@ namespace Actor.Editor
 			chooseR = settingPanel.GetChooseRight();
 
 			trialNum = (settingPanel.GetFallCount() + settingPanel.GetSuccessCount());
-			//rewardPosition = settingPanel.GetRewardDistance();
+
+
+			if (FindObjectOfType<BehavioralEnvironmentY>())
+			{
+				rewardPosition = Vector3.Distance(actor.transform.position,
+					FindObjectOfType<BehavioralEnvironmentY>().GetAwardVector());
+			}
+			else
+			{
+				rewardPosition = 0;
+			}
 
 			success = settingPanel.GetRewardCount();
 			rewardSize = arduinoBasic.GetRewardLimit();
