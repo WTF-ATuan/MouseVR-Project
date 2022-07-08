@@ -12,7 +12,7 @@ namespace Actor.Scripts.EventMessage{
 
 		[SerializeField] [Required] public string dataName;
 
-		[SerializeField] [Range(0.05f, 0.2f)] public float writeDuring = 0.1f;
+		[SerializeField] [Range(0.001f, 0.1f)] public float writeDuring = 0.1f;
 
 
 		private MessageExporter _messageExporter;
