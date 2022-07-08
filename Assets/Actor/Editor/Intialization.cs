@@ -6,7 +6,9 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum TeleportPoint{
 	Left,
@@ -27,25 +29,36 @@ namespace Actor.Editor{
 		private ArduinoBasic arduinoBasic;
 		private ArduinoDataReader arduinoDataReader;
 		private ScreenEffect screenEffect;
-		
-				
-		public SceneObject scene;
 
-		[ReadOnly] [InfoBox("Hot Key 'C'")] [VerticalGroup("Connect")] public string arduinoConnect = "Disconnect";
-		[ReadOnly] [InfoBox("Hot Key 'B'")] [VerticalGroup("Connect")] public string screenConnect = "Disconnect";
+		[ReadOnly] public string sceneName;
+
+		[FilePath] [OnValueChanged("ChangeScene")]
+		public string sceneFilePath;
+
+		[ReadOnly] [InfoBox("Hot Key 'C'")] [VerticalGroup("Connect")]
+		public string arduinoConnect = "Disconnect";
+
+		[ReadOnly] [InfoBox("Hot Key 'B'")] [VerticalGroup("Connect")]
+		public string screenConnect = "Disconnect";
 
 		[VerticalGroup("Connect")] public Vector2 targetPoint;
 
-		[VerticalGroup("Connect")] [OnValueChanged("OnChangeColor")] public Color blankColor;
+		[VerticalGroup("Connect")] [OnValueChanged("OnChangeColor")]
+		public Color blankColor;
+
 		private BehavioralEnvironmentY behavioraYEditor;
 
 		private string screenState = "Disable";
 
-		private void OnChangeColor()
-		{
+		private void OnChangeColor(){
 			screenEffect.SetColor(blankColor);
 		}
 
+		private void ChangeScene(){
+			EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
+			EditorSceneManager.OpenScene(sceneFilePath);
+			sceneName = SceneManager.GetActiveScene().name;
+		}
 
 
 		protected override void OnEnable(){
@@ -54,13 +67,13 @@ namespace Actor.Editor{
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
 			screenEffect = FindObjectOfType<ScreenEffect>();
 			behavioraYEditor = FindObjectOfType<BehavioralEnvironmentY>();
-			
+
 			arduinoConnect = "Disconnect";
 			screenConnect = "Disable";
+			sceneName = SceneManager.GetActiveScene().name;
 		}
 
 		protected override void OnGUI(){
-			
 			actor = FindObjectOfType<Scripts.Actor>();
 			settingPanel = FindObjectOfType<SettingPanel>();
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
@@ -69,7 +82,6 @@ namespace Actor.Editor{
 
 			arduinoConnect = arduinoBasic.connectAction;
 			screenConnect = screenState;
-
 			/*
 			EditorGUILayout.BeginVertical();
 			EditorGUILayout.BeginHorizontal();
@@ -79,14 +91,11 @@ namespace Actor.Editor{
 				DrawMethodButton();
 			}
 			*/
-			
+
 			base.OnGUI();
 		}
 
-		private void TargetColorChanged()
-		{
-			
-		}
+		private void TargetColorChanged(){ }
 
 		private void DrawMethodButton(){
 			DashboardUpPos();
@@ -96,40 +105,34 @@ namespace Actor.Editor{
 		private void DashboardDownPos(){ }
 
 		public TeleportPoint teleportMazePoint;
-		
+
 		[Button]
-		public void Teleport()
-		{
-			if (teleportMazePoint == TeleportPoint.Left)
-			{
+		public void Teleport(){
+			if(teleportMazePoint == TeleportPoint.Left){
 				behavioraYEditor?.SetRightSide();
 				actor.ResetActor();
 			}
-			else
-			{
+			else{
 				behavioraYEditor?.SetRightSide();
 				actor.ResetActor();
 			}
 		}
-		
+
 		[Button]
-		public void ChangeBlankScreen()
-		{
+		public void ChangeBlankScreen(){
 			screenEffect.ChangeScreenBlank();
 
 			screenState = screenEffect.GetState();
 		}
 
 		[Button]
-		public void GetReward()
-		{
+		public void GetReward(){
 			settingPanel.GetReward();
 		}
 
 		[Button]
-		public void TeleportOnTargetPoint()
-		{
-			actor.Teleport(new Vector3(targetPoint.x , actor.transform.position.y , targetPoint.y));
+		public void TeleportOnTargetPoint(){
+			actor.Teleport(new Vector3(targetPoint.x, actor.transform.position.y, targetPoint.y));
 		}
 
 
@@ -150,15 +153,12 @@ namespace Actor.Editor{
 			EditorGUILayout.BeginHorizontal();
 			teleportMazePoint = (TeleportPoint)EditorGUILayout.EnumPopup("Teleport", teleportMazePoint);
 
-			if (GUILayout.Button("Teleport"))
-			{
-				if (teleportMazePoint == TeleportPoint.Left)
-				{
+			if(GUILayout.Button("Teleport")){
+				if(teleportMazePoint == TeleportPoint.Left){
 					behavioraYEditor.SetRightSide();
 					actor.ResetActor();
 				}
-				else
-				{
+				else{
 					behavioraYEditor.SetRightSide();
 					actor.ResetActor();
 				}
