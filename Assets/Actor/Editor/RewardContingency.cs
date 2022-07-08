@@ -38,8 +38,8 @@ namespace Actor.Editor
 
 
 		[TitleGroup("Other Setting")] [LabelText("Lick")] [OnValueChanged("OnLickChange")] public bool lick;
-		[TitleGroup("Other Setting")] [LabelText("Random reward at reward zone")] [OnValueChanged("OnRandomRewardAtRewardZoneChange")] public bool randomRewardAtRewardZone;
-		[TitleGroup("Other Setting")] [LabelText("Random reward at check zone")] [OnValueChanged("OnRandomRewardAtCheckZoneChange")] public bool randomRewardAtCheckZone;
+		[TitleGroup("Other Setting")] [LabelText("Random reward at reward zone")] [OnValueChanged("OnRandomRewardAtRewardZoneChange")] public bool randomRewardAtRewardZone = true;
+		[TitleGroup("Other Setting")] [LabelText("Random reward at check zone")] [OnValueChanged("OnRandomRewardAtCheckZoneChange")] public bool randomRewardAtCheckZone = true;
 		[TitleGroup("Other Setting")] [LabelText("Reward probability")] [Range(0 , 100)] [OnValueChanged("OnRewardProbabilityChanged")] public float rewardProbability;
 		
 		
