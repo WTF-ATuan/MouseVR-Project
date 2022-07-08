@@ -79,6 +79,10 @@ namespace Actor.Editor{
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
 			screenEffect = FindObjectOfType<ScreenEffect>();
 			behavioraYEditor = FindObjectOfType<BehavioralEnvironmentY>();
+			if(!arduinoBasic || !screenEffect){
+				base.OnGUI();
+				return;
+			}
 
 			arduinoConnect = arduinoBasic.connectAction;
 			screenConnect = screenState;
