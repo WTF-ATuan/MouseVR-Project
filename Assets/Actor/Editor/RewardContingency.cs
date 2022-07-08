@@ -74,13 +74,13 @@ namespace Actor.Editor
 			base.OnGUI();
 		}
 
-		[Button]
+		[Button][TitleGroup("Reward Setting")]
 		public void GetReward()
 		{
 			settingPanel.GetReward();
 		}
 
-		[Button]
+		[Button] [TitleGroup("Reward Area Setting")]
 		public void SwitchAreaSetting()
 		{
 			randomRewardAtCheckZone = !randomRewardAtCheckZone;
