@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Actor.Editor;
+using Environment.Scripts;
 using PhilippeFile.Script;
 using Project;
+using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
@@ -29,6 +31,15 @@ namespace Actor.Editor
 
 		private SerializedObject serializedObject;
 		
+		private LickTrigger[] lickTrigger;
+		
+		[TitleGroup("Only In Line Maze")] [LabelText("Current Lick Count Limit")] [OnValueChanged("OnCurrentLickCountLimit")] public int currentLickCountLimit;
+		[TitleGroup("Only In Line Maze")] [LabelText("Wrong Lick Count Limit")] [OnValueChanged("OnWrongLickCountLimit")] public int wrongLickCountLimit;
+		[TitleGroup("Only In Line Maze")] [LabelText("Lick Count Limit")] [OnValueChanged("OnWrongLickCountLimit")] public int lickCountLimit;
+		[TitleGroup("Only In Line Maze")] [LabelText("Definition of immobility")] [OnValueChanged("OnWrongLickCountLimit")] public int definitionOImmobility;
+		[TitleGroup("Only In Line Maze")] [LabelText("Terminate the trial when immobile")] [OnValueChanged("OnWrongLickCountLimit")] public int terminateTheTrialWhenImmobile;
+
+		
 
 		protected override void OnEnable()
 		{
@@ -39,14 +50,13 @@ namespace Actor.Editor
 
 		protected override void OnGUI()
 		{
-			EditorGUILayout.BeginVertical();
-			EditorGUILayout.BeginHorizontal();
 
-			EditorGUILayout.EndHorizontal();
 			if (actor || Application.isEditor && Application.isPlaying)
 			{
-				DrawMethodButton();
+				
 			}
+			
+			base.OnGUI();
 		}
 
 		private void DrawMethodButton()
@@ -91,6 +101,23 @@ namespace Actor.Editor
 			EditorGUILayout.LabelField("----------------------------------------");
 			EditorGUILayout.LabelField("----------");
 			EditorGUILayout.EndHorizontal();
+		}
+		
+		
+		private void OnCurrentLickCountLimit()
+		{
+			foreach (var lick in lickTrigger)
+			{
+				lick.SetCorrectLickCountLimit(currentLickCountLimit);
+			}
+		}
+		
+		private void OnWrongLickCountLimit()
+		{
+			foreach (var lick in lickTrigger)
+			{
+				lick.SetCorrectLickCountLimit(wrongLickCountLimit);
+			}
 		}
 		
 	}

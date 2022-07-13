@@ -80,9 +80,9 @@ public class SettingPanel : MonoBehaviour
     // Start is called before the first frame update
 
     [Button]
-    private void CloseOpenRewardGizmos()
+    public void CloseOpenRewardGizmos(bool isGizmos)
     {
-        EventBus.Post(new CloseAllRewardGizmosDetected());
+        EventBus.Post(new CloseAllRewardGizmosDetected(isGizmos));
     }
 
     [Button]

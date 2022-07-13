@@ -37,6 +37,11 @@ public class RewardArea : MonoBehaviour
             }
         }
     }
+
+    public void SetGizmos(bool _isOpen)
+    {
+        isOpen = _isOpen;
+    }
     
     private void OnDrawGizmos(){
         if(!isOpen) return;

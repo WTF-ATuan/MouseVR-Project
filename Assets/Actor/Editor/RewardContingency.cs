@@ -43,17 +43,15 @@ namespace Actor.Editor
 		
 		
 		[TitleGroup("Reward Setting")] [LabelText("Maze position range")] [ReadOnly] public string mazePositionRange;
-		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Position")] [ReadOnly] public string rewardZonePosition;
-		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Size")] [ReadOnly] public string rewardZoneSize;
+		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Position")] [ReadOnly] public float rewardZoneCenterPosition;
+		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Size")] [ReadOnly] public float rewardZoneSize;
 		[TitleGroup("Reward Setting")] [LabelText("Reward check zone periodiocity")] [ReadOnly] public string rewardCheckZonePeriodiocity;
 		[TitleGroup("Reward Setting")] [LabelText("Reward valve duration (ms)")] [OnValueChanged("OnRewardValveDurationChanged")] public float rewardValveDuration;
 		
-		[TitleGroup("Only In Line Maze")] [LabelText("Lick")] [OnValueChanged("OnLickChange")] public bool lick;
-		[TitleGroup("Only In Line Maze")] [LabelText("Show Gizmos")] [OnValueChanged("OnShowGizmosChange")] public bool showGizmos;
-		[TitleGroup("Only In Line Maze")] [LabelText("Current Lick Count Limit")] [OnValueChanged("OnCurrentLickCountLimit")] public int currentLickCountLimit;
-		[TitleGroup("Only In Line Maze")] [LabelText("Wrong Lick Count Limit")] [OnValueChanged("OnWrongLickCountLimit")] public int wrongLickCountLimit;
+		[TitleGroup("Reward Area Setting")] [LabelText("Lick")] [OnValueChanged("OnLickChange")] public bool lick;
 		[TitleGroup("Reward Setting")] [LabelText("Reward Count Limit")] [OnValueChanged("OnRewardCountLimit")] public int rewardLimit;
 
+		private bool isOpenGizmos;
 
 
 		protected override void OnEnable()
@@ -65,6 +63,13 @@ namespace Actor.Editor
 
 		protected override void OnGUI()
 		{
+			actor = FindObjectOfType<Scripts.Actor>();
+			settingPanel = FindObjectOfType<SettingPanel>();
+			arduinoBasic = FindObjectOfType<ArduinoBasic>();
+			
+			
+			Repaint();
+			
 			
 			if (actor || Application.isEditor && Application.isPlaying)
 			{
@@ -73,6 +78,9 @@ namespace Actor.Editor
 			
 			base.OnGUI();
 		}
+		
+		
+		
 
 		[Button][TitleGroup("Reward Setting")]
 		public void GetReward()
@@ -106,13 +114,11 @@ namespace Actor.Editor
 			settingPanel = FindObjectOfType<SettingPanel>();
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
 		}
-
-		private void OnCurrentLickCountLimit()
+		
+		[Button]
+		public void SwitchGizmos()
 		{
-			foreach (var lick in lickTrigger)
-			{
-				lick.SetCorrectLickCountLimit(currentLickCountLimit);
-			}
+			isOpenGizmos = !isOpenGizmos;
 		}
 
 		private void OnLickChange()
@@ -126,23 +132,6 @@ namespace Actor.Editor
 		private void OnRewardValveDurationChanged()
 		{
 			arduinoBasic.SetLimitTime(rewardValveDuration);
-		}
-		
-
-		private void OnWrongLickCountLimit()
-		{
-			foreach (var lick in lickTrigger)
-			{
-				lick.SetCorrectLickCountLimit(wrongLickCountLimit);
-			}
-		}
-
-		private void OnShowGizmosChange()
-		{
-			foreach (var lick in lickTrigger)
-			{
-				lick.SetGizmos(showGizmos);
-			}
 		}
 
 		private void OnRandomRewardAtRewardZoneChange()
@@ -178,7 +167,52 @@ namespace Actor.Editor
 
 		private void Update()
 		{
+			
+			if(!Application.isPlaying) return;
+
 			lickTrigger = FindObjectsOfType<LickTrigger>();
+			
+			var rewardArea = FindObjectsOfType<RewardArea>(); 
+			RewardArea minRewardArea = null;
+			var minDis = Vector3.Distance(actor.transform.position, rewardArea[0].transform.position);
+
+			foreach (var _rewardArea in rewardArea)
+			{
+				if (minDis > Vector3.Distance(actor.transform.position, _rewardArea.transform.position))
+				{
+					minDis = Vector3.Distance(actor.transform.position, _rewardArea.transform.position);
+					minRewardArea = _rewardArea;
+				}
+			}
+
+			rewardZoneCenterPosition = minRewardArea.transform.position.z;
+			rewardZoneSize = minRewardArea.GetComponent<BoxCollider>().size.z;
+
+
+			if (isOpenGizmos)
+			{
+				foreach (var area in rewardArea)
+				{
+					area.SetGizmos(randomRewardAtRewardZone);
+				}
+				
+				foreach (var lick in lickTrigger)
+				{
+					lick.SetGizmos(randomRewardAtCheckZone);
+				}
+			}
+			else
+			{
+				foreach (var area in rewardArea)
+				{
+					area.SetGizmos(false);
+				}
+				
+				foreach (var lick in lickTrigger)
+				{
+					lick.SetGizmos(false);
+				}
+			}
 		}
 
 		private void OnRewardProbabilityChanged()

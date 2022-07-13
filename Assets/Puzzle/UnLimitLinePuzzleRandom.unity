@@ -579,6 +579,8 @@ MonoBehaviour:
   fallCount: 0
   successCount: 0
   manualReward: 0
+  chooseLeft: 0
+  chooseRight: 0
 --- !u!4 &78930613
 Transform:
   m_ObjectHideFlags: 0
@@ -794,6 +796,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &97668485
 BoxCollider:
@@ -4223,6 +4226,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &871885119
 BoxCollider:
@@ -5904,6 +5908,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1272723835
 BoxCollider:
@@ -6469,6 +6474,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1380396212
 BoxCollider:
@@ -6740,6 +6746,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!1001 &1402265730
 PrefabInstance:
@@ -7633,6 +7640,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1563568897
 BoxCollider:
@@ -7993,6 +8001,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1605176131
 BoxCollider:
@@ -8634,6 +8643,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1829106402
 BoxCollider:
@@ -9347,6 +9357,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &2011135941
 BoxCollider:
@@ -9397,6 +9408,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &2014574857
 BoxCollider:
@@ -10022,6 +10034,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &2107166077
 BoxCollider:
