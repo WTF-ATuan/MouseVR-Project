@@ -38,7 +38,7 @@ namespace Environment.Scripts{
 					break;
 				case AreaType.Punish:
 					EventBus.Post(new ActorJudged(true));
-					behaviorDataInfo.Trial_Failed = 1;
+					behaviorDataInfo.Trail_Failed = 1;
 					onExperimentCompleted?.Invoke(type);
 					break;
 				default:
