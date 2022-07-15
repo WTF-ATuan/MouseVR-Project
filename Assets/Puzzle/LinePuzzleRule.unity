@@ -347,6 +347,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &97668485
 BoxCollider:
@@ -1980,6 +1981,13 @@ MonoBehaviour:
   - {fileID: 1582933780}
   - {fileID: 96490307}
   - {fileID: 96490307}
+  currentLine:
+  - {fileID: 253320273}
+  - {fileID: 894319230}
+  - {fileID: 806961004}
+  - {fileID: 2056931656}
+  - {fileID: 2066838868}
+  - {fileID: 1589715897}
   BlockCount: 1
   isRules: 1
   incentiveRate: 0
@@ -2098,6 +2106,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 0
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1272723835
 BoxCollider:
@@ -2215,6 +2224,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 0
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1380396212
 BoxCollider:
@@ -2422,6 +2432,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 0
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!1 &1536195969
 GameObject:
@@ -2538,6 +2549,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 0
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1563568897
 BoxCollider:
@@ -2828,6 +2840,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 0
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1605176131
 BoxCollider:
@@ -2938,6 +2951,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &1829106402
 BoxCollider:
@@ -3002,6 +3016,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &2011135941
 BoxCollider:
@@ -3052,6 +3067,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 0
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &2014574857
 BoxCollider:
@@ -3382,6 +3398,7 @@ MonoBehaviour:
   wrongLickCountLimit: 10
   isInfinite: 1
   showGizmos: 0
+  skipJudge: 0
   incentiveRate: 0
 --- !u!65 &2107166077
 BoxCollider:

@@ -65,11 +65,11 @@ namespace Actor.Scripts{
 
 		public void ReceiveJudged(bool isPunish){
 			if(isPunish){
-				EventBus.Post(new ScreenEffectDetected(1, 0));
+				EventBus.Post(new ScreenEffectDetected(1, 0 , Color.green));
 				_delayTime = punishDelayTime;
 			}
 			else{
-				EventBus.Post(new ScreenEffectDetected(1, 0));
+				EventBus.Post(new ScreenEffectDetected(1, 0 , Color.green));
 				_delayTime = rewardDelayTime;
 				GetReward();
 			}
@@ -86,7 +86,7 @@ namespace Actor.Scripts{
 
 		private void TickTime(){
 			if(_delayTime < 0 && !invokeFlag){
-				EventBus.Post(new ScreenEffectDetected(0, 0));
+				EventBus.Post(new ScreenEffectDetected(0, 0 , Color.green));
 				ResetActor();
 				invokeFlag = true;
 				return;
@@ -112,6 +112,16 @@ namespace Actor.Scripts{
 
 		public float GetSpeed(){
 			return speed;
+		}
+
+		public void SetPunishTime(float time)
+		{
+			punishDelayTime = (int) time;
+		}
+
+		public void SetGetRewardTime(float time)
+		{
+			rewardDelayTime = (int) time;
 		}
 	}
 }

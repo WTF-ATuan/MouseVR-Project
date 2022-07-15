@@ -48,7 +48,7 @@ namespace Actor.Editor
 		[TitleGroup("Reward Setting")] [LabelText("Reward check zone periodiocity")] [ReadOnly] public string rewardCheckZonePeriodiocity;
 		[TitleGroup("Reward Setting")] [LabelText("Reward valve duration (ms)")] [OnValueChanged("OnRewardValveDurationChanged")] public float rewardValveDuration;
 		
-		[TitleGroup("Reward Area Setting")] [LabelText("Lick")] [OnValueChanged("OnLickChange")] public bool lick;
+		[TitleGroup("Reward Area Setting")] [LabelText("Lick to")] [OnValueChanged("OnLickChange")] public bool lick;
 		[TitleGroup("Reward Setting")] [LabelText("Reward Count Limit")] [OnValueChanged("OnRewardCountLimit")] public int rewardLimit;
 
 		private bool isOpenGizmos;
@@ -82,13 +82,13 @@ namespace Actor.Editor
 		
 		
 
-		[Button][TitleGroup("Reward Setting")]
-		public void GetReward()
+		[Button][TitleGroup("Reward Setting")][LabelText("Deliver Reward")]
+		public void DeliverReward()
 		{
 			settingPanel.GetReward();
 		}
 
-		[Button] [TitleGroup("Reward Area Setting")]
+		[Button] [TitleGroup("Reward Area Setting")][LabelText("Switch Reward Policy")]
 		public void SwitchAreaSetting()
 		{
 			randomRewardAtCheckZone = !randomRewardAtCheckZone;

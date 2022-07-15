@@ -40,8 +40,8 @@ namespace Actor.Editor{
 
 		[ReadOnly] [InfoBox("Hot Key 'B'")] [VerticalGroup("Connect")]
 		public string screenConnect = "Disconnect";
-
-		[VerticalGroup("Connect")] public Vector2 targetPoint;
+		
+		[HorizontalGroup("Position")] public float x , z;
 
 		[VerticalGroup("Connect")] [OnValueChanged("OnChangeColor")]
 		public Color blankColor;
@@ -122,7 +122,7 @@ namespace Actor.Editor{
 			}
 		}
 
-		[Button]
+		[Button][LabelText("Blank Display")]
 		public void ChangeBlankScreen(){
 			screenEffect.ChangeScreenBlank();
 
@@ -136,7 +136,7 @@ namespace Actor.Editor{
 
 		[Button]
 		public void TeleportOnTargetPoint(){
-			actor.Teleport(new Vector3(targetPoint.x, actor.transform.position.y, targetPoint.y));
+			actor.Teleport(new Vector3(x, actor.transform.position.y, z));
 		}
 
 

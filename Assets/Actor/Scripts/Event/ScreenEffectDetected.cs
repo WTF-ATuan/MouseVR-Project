@@ -1,4 +1,6 @@
-﻿namespace Actor.Scripts.Event
+﻿using UnityEngine;
+
+namespace Actor.Scripts.Event
 {
     public class ScreenEffectDetected
     {
@@ -6,10 +8,13 @@
         
         public float time;
 
-        public ScreenEffectDetected(float _value , float _time)
+        public Color color;
+
+        public ScreenEffectDetected(float _value , float _time , Color _color)
         {
             value = _value;
             time = _time;
+            color = _color;
         }
     }
 }

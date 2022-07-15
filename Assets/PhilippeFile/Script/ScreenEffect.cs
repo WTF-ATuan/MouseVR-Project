@@ -16,6 +16,9 @@ public class ScreenEffect : MonoBehaviour
     [SerializeField] private bool isClosePanel;
 
     [SerializeField] [Range(0 , 0.05f)] private float closeTime;
+    
+    Color green = Color.green;
+    Color black = Color.black;
 
     public void Start()
     {
@@ -29,11 +32,11 @@ public class ScreenEffect : MonoBehaviour
         {
             if (isClosePanel)
             {
-                EventBus.Post(new ScreenEffectDetected(1 , closeTime));
+                EventBus.Post(new ScreenEffectDetected(1 , closeTime , Color.black));
             }
             else
             {
-                EventBus.Post(new ScreenEffectDetected(0 , closeTime));
+                EventBus.Post(new ScreenEffectDetected(0 , closeTime , Color.black));
             }
 
             isClosePanel = !isClosePanel;
@@ -44,11 +47,11 @@ public class ScreenEffect : MonoBehaviour
     {
         if (isClosePanel)
         {
-            EventBus.Post(new ScreenEffectDetected(1 , closeTime));
+            EventBus.Post(new ScreenEffectDetected(1 , closeTime , Color.black));
         }
         else
         {
-            EventBus.Post(new ScreenEffectDetected(0 , closeTime));
+            EventBus.Post(new ScreenEffectDetected(0 , closeTime , Color.black));
         }
 
         isClosePanel = !isClosePanel;
@@ -69,6 +72,7 @@ public class ScreenEffect : MonoBehaviour
     private void OnScreenEffectDetected(ScreenEffectDetected obj)
     {
         StopAllCoroutines();
+        ScreenPanel.color = obj.color;
         StartCoroutine(StartLerpEffect(obj.value , obj.time));
     }
     
@@ -107,6 +111,11 @@ public class ScreenEffect : MonoBehaviour
     public void SetColor(Color color)
     {
         ScreenPanel.color = color;
+    }
+
+    public void SetBlankActive(bool isActive)
+    {
+        ScreenPanel.gameObject.SetActive(isActive);
     }
     
     
