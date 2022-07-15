@@ -17,7 +17,7 @@ namespace Actor.Scripts.EventMessage{
 		//Trial
 		public int Licking = default;
 		public int LeverPress = default;
-		public int Trail_Failed = default;
+		public int Trail_Number = default;
 		public int Trail_Success = default;
 
 		//Event
@@ -59,8 +59,8 @@ namespace Actor.Scripts.EventMessage{
 				LeverPress = dataInfo.LeverPress;
 			}
 
-			if(Trail_Failed == default){
-				Trail_Failed = dataInfo.Trail_Failed;
+			if(Trail_Number == default){
+				Trail_Number = dataInfo.Trail_Number;
 			}
 
 			if(Trail_Success == default){

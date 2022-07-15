@@ -14,6 +14,9 @@ namespace Environment.Scripts{
 
 		private BoxCollider boxCollider;
 
+		private int _trailNumber;
+		private int _trailSuccess;
+
 		private void Start(){
 			boxCollider = GetComponent<BoxCollider>();
 			boxCollider.isTrigger = true;
@@ -23,8 +26,7 @@ namespace Environment.Scripts{
 			type = areaType;
 		}
 
-		public AreaType GetAreaType()
-		{
+		public AreaType GetAreaType(){
 			return type;
 		}
 
@@ -33,18 +35,20 @@ namespace Environment.Scripts{
 			switch(type){
 				case AreaType.Award:
 					EventBus.Post(new ActorJudged(false));
-					behaviorDataInfo.Trail_Success = 1;
+					_trailSuccess++;
+					behaviorDataInfo.Trail_Success = _trailSuccess;
 					onExperimentCompleted?.Invoke(type);
 					break;
 				case AreaType.Punish:
 					EventBus.Post(new ActorJudged(true));
-					behaviorDataInfo.Trail_Failed = 1;
 					onExperimentCompleted?.Invoke(type);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
 
+			_trailNumber++;
+			behaviorDataInfo.Trail_Number = _trailNumber;
 			EventBus.Post(new SavedDataMessage(behaviorDataInfo, behaviorDataInfo.GetType(), BehaviorEventType.Trial));
 		}
 
