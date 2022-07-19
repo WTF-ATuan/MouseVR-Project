@@ -30,6 +30,8 @@ namespace Actor.Editor
 		private ArduinoBasic arduinoBasic;
 		private ArduinoDataReader arduinoDataReader;
 
+		private DistanceCount distanceCount;
+
 		private SerializedObject serializedObject;
 
 		private LickTrigger[] lickTrigger;
@@ -42,14 +44,15 @@ namespace Actor.Editor
 		[TitleGroup("Reward Area Setting")] [LabelText("Reward probability")] [Range(0 , 100)] [OnValueChanged("OnRewardProbabilityChanged")] public float rewardProbability;
 		
 		
-		[TitleGroup("Reward Setting")] [LabelText("Maze position range")] [ReadOnly] public string mazePositionRange;
-		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Position")] [ReadOnly] public float rewardZoneCenterPosition;
-		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Size")] [ReadOnly] public float rewardZoneSize;
-		[TitleGroup("Reward Setting")] [LabelText("Reward check zone periodiocity")] [ReadOnly] public string rewardCheckZonePeriodiocity;
+		[TitleGroup("Reward Setting")] [LabelText("Maze position range")] [ReadOnly] public float mazePositionRange;
+		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Position")] [OnValueChanged("OnRewardZoneCenterPositionChanged")] [ReadOnly] public float rewardZoneCenterPosition;
+		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Size")] [OnValueChanged("OnRewardZoneSizeChanged")] public float rewardZoneSize;
 		[TitleGroup("Reward Setting")] [LabelText("Reward valve duration (ms)")] [OnValueChanged("OnRewardValveDurationChanged")] public float rewardValveDuration;
 		
 		[TitleGroup("Reward Area Setting")] [LabelText("Lick to")] [OnValueChanged("OnLickChange")] public bool lick;
 		[TitleGroup("Reward Setting")] [LabelText("Reward Count Limit")] [OnValueChanged("OnRewardCountLimit")] public int rewardLimit;
+		[TitleGroup("Reward Setting")] [LabelText("Current Lick Count Limit")] [OnValueChanged("OnCurrentLickCountLimit")] public int currentLickCountLimit;
+
 
 		private bool isOpenGizmos;
 
@@ -66,8 +69,20 @@ namespace Actor.Editor
 			actor = FindObjectOfType<Scripts.Actor>();
 			settingPanel = FindObjectOfType<SettingPanel>();
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
+
+			try
+			{
+				distanceCount = FindObjectOfType<DistanceCount>();
+				mazePositionRange = distanceCount.GetDistance();
+			}
+			catch (Exception e)
+			{
+				mazePositionRange = 0;
+			}
+
 			
-			
+
+
 			Repaint();
 			
 			
@@ -160,6 +175,24 @@ namespace Actor.Editor
 			*/
 		}
 
+		public void OnRewardZoneCenterPositionChanged()
+		{
+			
+		}
+
+		public void OnRewardZoneSizeChanged()
+		{
+			var allCollider = FindObjectsOfType<RewardArea>();
+
+			foreach (var g in allCollider)
+			{
+				var collider = g.GetComponent<BoxCollider>();
+				collider.size = new Vector3(1,1,rewardZoneSize);
+			}
+		}
+		
+		
+
 		private void OnRewardCountLimit()
 		{
 			settingPanel.SetReward(rewardLimit);
@@ -219,6 +252,14 @@ namespace Actor.Editor
 		{
 			settingPanel.SettingReward(rewardProbability);
 			Debug.Log("Change");
+		}
+		
+		private void OnCurrentLickCountLimit()
+		{
+			foreach (var lick in lickTrigger)
+			{
+				lick.SetCorrectLickCountLimit(currentLickCountLimit);
+			}
 		}
 
 		private void DrawMethodButton()

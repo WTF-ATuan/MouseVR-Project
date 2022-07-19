@@ -43,16 +43,13 @@ namespace Actor.Editor{
 		
 		[HorizontalGroup("Position")] public float x , z;
 
-		[VerticalGroup("Connect")] [OnValueChanged("OnChangeColor")]
-		public Color blankColor;
+
 
 		private BehavioralEnvironmentY behavioraYEditor;
 
 		private string screenState = "Disable";
 
-		private void OnChangeColor(){
-			screenEffect.SetColor(blankColor);
-		}
+
 
 		private void ChangeScene(){
 			EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
@@ -113,7 +110,7 @@ namespace Actor.Editor{
 		[Button]
 		public void Teleport(){
 			if(teleportMazePoint == TeleportPoint.Left){
-				behavioraYEditor?.SetRightSide();
+				behavioraYEditor?.SetLeftSide();
 				actor.ResetActor();
 			}
 			else{

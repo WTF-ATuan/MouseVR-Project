@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Actor.Editor;
+using Actor.Scripts;
 using Environment.Scripts;
 using PhilippeFile.Script;
 using Project;
@@ -33,11 +34,9 @@ namespace Actor.Editor
 		
 		private LickTrigger[] lickTrigger;
 		
-		[TitleGroup("Only In Line Maze")] [LabelText("Current Lick Count Limit")] [OnValueChanged("OnCurrentLickCountLimit")] public int currentLickCountLimit;
 		[TitleGroup("Only In Line Maze")] [LabelText("Wrong Lick Count Limit")] [OnValueChanged("OnWrongLickCountLimit")] public int wrongLickCountLimit;
-		[TitleGroup("Only In Line Maze")] [LabelText("Lick Count Limit")] [OnValueChanged("OnWrongLickCountLimit")] public int lickCountLimit;
-		[TitleGroup("Only In Line Maze")] [LabelText("Definition of immobility")] [OnValueChanged("OnWrongLickCountLimit")] public int definitionOImmobility;
-		[TitleGroup("Only In Line Maze")] [LabelText("Terminate the trial when immobile")] [OnValueChanged("OnWrongLickCountLimit")] public int terminateTheTrialWhenImmobile;
+		[TitleGroup("Only In Line Maze")] [LabelText("Definition of immobility")] [OnValueChanged("OnDefinitionOImmobility")] public float definitionOImmobility;
+		[TitleGroup("Only In Line Maze")] [LabelText("Terminate the trial when immobile")] [OnValueChanged("OnTerminateTheTrialWhenImmobile")] public float terminateTheTrialWhenImmobile;
 
 		
 
@@ -104,13 +103,7 @@ namespace Actor.Editor
 		}
 		
 		
-		private void OnCurrentLickCountLimit()
-		{
-			foreach (var lick in lickTrigger)
-			{
-				lick.SetCorrectLickCountLimit(currentLickCountLimit);
-			}
-		}
+
 		
 		private void OnWrongLickCountLimit()
 		{
@@ -118,6 +111,20 @@ namespace Actor.Editor
 			{
 				lick.SetCorrectLickCountLimit(wrongLickCountLimit);
 			}
+		}
+
+		public void OnDefinitionOImmobility()
+		{
+			var actorTimer = FindObjectOfType<ActorTimer>();
+			
+			actorTimer.SetLimitSpeed(definitionOImmobility);
+		}
+
+		public void OnTerminateTheTrialWhenImmobile()
+		{
+			var actorTimer = FindObjectOfType<ActorTimer>();
+			
+			actorTimer.SetLimitTime(terminateTheTrialWhenImmobile);
 		}
 		
 	}

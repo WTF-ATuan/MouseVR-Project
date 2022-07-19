@@ -45,11 +45,17 @@ namespace Actor.Editor
 		
 		[ReadOnly] [FoldoutGroup("Trial")]  [LabelText("ChooseL : ")] public int chooseL;
 		[ReadOnly] [FoldoutGroup("Trial")]  [LabelText("ChooseR : ")] public int chooseR;
-
+		
+		
+		[FoldoutGroup("Reference Object")] [SerializeField] [InfoBox("Reference not found please check scene ", InfoMessageType.Error, "CheckReference")]
 		private Scripts.Actor actor;
+		
+		[FoldoutGroup("Reference Object")] [SerializeField] 
 		private SettingPanel settingPanel;
+		
+		[FoldoutGroup("Reference Object")] [SerializeField] 
 		private ArduinoBasic arduinoBasic;
-		private ArduinoDataReader arduinoDataReader = new ArduinoDataReader();
+		
 
 		protected override void OnEnable()
 		{
@@ -245,6 +251,10 @@ namespace Actor.Editor
 		{
 			System.TimeSpan calc = System.TimeSpan.FromSeconds(time);
 			return string.Format("{0:00}:{1:00}:{2:00}" , calc.Hours , calc.Minutes, calc.Seconds);
+		}
+		
+		private bool CheckReference(){
+			return !arduinoBasic || !settingPanel || !actor;
 		}
 		
 		
