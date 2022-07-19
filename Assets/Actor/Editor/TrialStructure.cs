@@ -11,12 +11,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Actor.Editor{
-    public class BehaviorControl : OdinEditorWindow
+    public class TrialStructure : OdinEditorWindow
     {
-        [MenuItem("Tools/Project/BehaviorControl")]
+        [MenuItem("Tools/Project/Trial Structure")]
         private static void OpenWindow()
         {
-            var window = GetWindow<BehaviorControl>();
+            var window = GetWindow<TrialStructure>();
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(500, 500);
             window.Show();
         }
@@ -60,6 +60,9 @@ namespace Actor.Editor{
             settingPanel = FindObjectOfType<SettingPanel>();
             arduinoBasic = FindObjectOfType<ArduinoBasic>();
             screenEffect = FindObjectOfType<ScreenEffect>();
+
+            blankingDuration = actor.GetPunishTime();
+            penaltyBlankingDuration = actor.GetRewardTime();
         }
 
         protected override void OnGUI()

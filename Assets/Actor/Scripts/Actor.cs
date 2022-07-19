@@ -94,7 +94,7 @@ namespace Actor.Scripts{
 
 			if(_delayTime < 0) return;
 			invokeFlag = false;
-			_delayTime -= Time.fixedDeltaTime;
+			_delayTime -= Time.deltaTime;
 		}
 
 		public void SelectDirection(bool isRight){
@@ -122,6 +122,16 @@ namespace Actor.Scripts{
 		public void SetGetRewardTime(float time)
 		{
 			rewardDelayTime = (int) time;
+		}
+
+		public int GetRewardTime()
+		{
+			return rewardDelayTime;
+		}
+
+		public int GetPunishTime()
+		{
+			return punishDelayTime;
 		}
 	}
 }
