@@ -42,5 +42,15 @@ namespace Actor.Scripts{
 		{
 			limitTime = value;
 		}
+
+		public float GetLimitSpeed()
+		{
+			return limitSpeed;
+		}
+
+		public float GetLimitTime()
+		{
+			return limitTime;
+		}
 	}
 }

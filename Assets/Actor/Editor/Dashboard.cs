@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Actor.Editor;
+using Actor.Scripts;
+using Environment.Scripts;
 using PhilippeFile.Script;
 using Project;
 using Puzzle.GameLogic.Scripts;
@@ -55,6 +57,25 @@ namespace Actor.Editor
 		
 		[FoldoutGroup("Reference Object")] [SerializeField] 
 		private ArduinoBasic arduinoBasic;
+
+		[FoldoutGroup("Reference Object")] [SerializeField] 
+		private ScreenEffect screenEffect;
+
+		[FoldoutGroup("Reference Object")] [SerializeField]
+		private RewardArea[] rewardArea;
+
+		[FoldoutGroup("Line Maze")] [SerializeField]
+		private ActorTimer actorTimer;
+
+		[FoldoutGroup("Line Maze")] [SerializeField]
+		private LickTrigger[] lickTrigger;
+
+		[FoldoutGroup("Behavioral Y")] [SerializeField]
+		private BehavioralEnvironmentY behavioralEnvironmentY;
+		
+		
+		
+		
 		
 
 		protected override void OnEnable()
@@ -62,8 +83,13 @@ namespace Actor.Editor
 			actor = FindObjectOfType<Scripts.Actor>();
 			settingPanel = FindObjectOfType<SettingPanel>();
 			arduinoBasic = FindObjectOfType<ArduinoBasic>();
-			
-			
+
+			screenEffect = FindObjectOfType<ScreenEffect>();
+			actorTimer = FindObjectOfType<ActorTimer>();
+			behavioralEnvironmentY = FindObjectOfType<BehavioralEnvironmentY>();
+
+			lickTrigger = FindObjectsOfType<LickTrigger>();
+			rewardArea = FindObjectsOfType<RewardArea>();
 		}
 
 		protected override void OnGUI()

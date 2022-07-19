@@ -83,27 +83,8 @@ namespace Actor.Editor{
 
 			arduinoConnect = arduinoBasic.connectAction;
 			screenConnect = screenState;
-			/*
-			EditorGUILayout.BeginVertical();
-			EditorGUILayout.BeginHorizontal();
-
-			EditorGUILayout.EndHorizontal();
-			if(actor || Application.isEditor && Application.isPlaying){
-				DrawMethodButton();
-			}
-			*/
-
 			base.OnGUI();
 		}
-
-		private void TargetColorChanged(){ }
-
-		private void DrawMethodButton(){
-			DashboardUpPos();
-			DashboardDownPos();
-		}
-
-		private void DashboardDownPos(){ }
 
 		public TeleportPoint teleportMazePoint;
 
@@ -135,64 +116,6 @@ namespace Actor.Editor{
 		public void TeleportOnTargetPoint(){
 			actor.Teleport(new Vector3(x, actor.transform.position.y, z));
 		}
-
-
-		private void DashboardUpPos(){
-			EditorGUILayout.BeginVertical();
-			var serializedObject = new SerializedObject(this);
-			var serializedProperty = serializedObject.FindProperty("scene");
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.PropertyField(serializedProperty, GUILayout.Width(400));
-			serializedObject.ApplyModifiedProperties();
-			if(GUILayout.Button("Load")){
-				// EditorSceneManager.OpenScene(scene.ToString());
-			}
-
-			EditorGUILayout.EndVertical();
-			EditorGUILayout.EndHorizontal();
-
-			EditorGUILayout.BeginHorizontal();
-			teleportMazePoint = (TeleportPoint)EditorGUILayout.EnumPopup("Teleport", teleportMazePoint);
-
-			if(GUILayout.Button("Teleport")){
-				if(teleportMazePoint == TeleportPoint.Left){
-					behavioraYEditor.SetRightSide();
-					actor.ResetActor();
-				}
-				else{
-					behavioraYEditor.SetRightSide();
-					actor.ResetActor();
-				}
-			}
-
-			EditorGUILayout.EndHorizontal();
-
-
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Arduino Connect : " + arduinoBasic.connectAction + "(hot key C)");
-
-			if(GUILayout.Button("Change")){ }
-
-			EditorGUILayout.EndHorizontal();
-
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("Blank display : " + screenState + "(hot key B)"); //Blank display
-
-			if(GUILayout.Button("Change")){
-				screenEffect.ChangeScreenBlank();
-
-				screenState = screenEffect.GetState();
-			}
-
-			EditorGUILayout.EndHorizontal();
-		}
-
-		private void DashLine(){
-			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("----------------------------------------");
-			EditorGUILayout.LabelField("----------------------------------------");
-			EditorGUILayout.LabelField("----------");
-			EditorGUILayout.EndHorizontal();
-		}
-	}
+		
+	}                          
 }

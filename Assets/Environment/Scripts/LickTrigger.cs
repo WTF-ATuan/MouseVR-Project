@@ -112,5 +112,15 @@ namespace Environment.Scripts{
 		{
 			skipJudge = isJudge;
 		}
+
+		public int GetCurrentLickCountLimit()
+		{
+			return correctLickCountLimit;
+		}
+
+		public int GetWrongLickCountLimit()
+		{
+			return wrongLickCountLimit;
+		}
 	}
 }
