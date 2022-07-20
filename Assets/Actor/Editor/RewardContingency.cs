@@ -75,7 +75,7 @@ namespace Actor.Editor
 				distanceCount = FindObjectOfType<DistanceCount>();
 				mazePositionRange = distanceCount.GetDistance();
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				mazePositionRange = 0;
 			}

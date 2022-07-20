@@ -18,6 +18,8 @@ namespace Puzzle.GameLogic.Scripts{
 		[BoxGroup("Area")] [SerializeField] private AreaCollisionHandler areaR;
 
 		[ReadOnly] [SerializeField] private int randomNumber;
+		private int _previousNumber;
+		public TrialStructureType StructureType{ get; set; }
 
 		private void Start(){
 			areaL.onExperimentCompleted += OnExperimentCompleted;
@@ -25,8 +27,26 @@ namespace Puzzle.GameLogic.Scripts{
 		}
 
 		private void OnExperimentCompleted(AreaType obj){
-			randomNumber = Random.Range(0, 2);
-			SetLevel(randomNumber);
+			switch(StructureType){
+				case TrialStructureType.Random:
+					randomNumber = Random.Range(0, 2);
+					SetLevel(randomNumber);
+					break;
+				case TrialStructureType.Alternating:
+					SetLevel(_previousNumber == 0 ? 1 : 0);
+					break;
+				case TrialStructureType.FixedTrial:
+					SetLevel(_previousNumber == 0 ? 0 : 1);
+					break;
+				case TrialStructureType.TrialAOnly:
+					SetLevel(0);
+					break;
+				case TrialStructureType.TrialBOnly:
+					SetLevel(1);
+					break;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 
 		[Button]
@@ -45,28 +65,33 @@ namespace Puzzle.GameLogic.Scripts{
 					areaR.SetAreaType(AreaType.Award);
 					break;
 			}
+
+			_previousNumber = number;
 		}
 
-		public void SetRightSide()
-		{
+		public void SetRightSide(){
 			SetLevel(0);
 		}
 
-		public void SetLeftSide()
-		{
+		public void SetLeftSide(){
 			SetLevel(1);
 		}
 
-		public Vector3 GetAwardVector()
-		{
-			if (areaL.GetAreaType() == AreaType.Award)
-			{
+		public Vector3 GetAwardVector(){
+			if(areaL.GetAreaType() == AreaType.Award){
 				return areaL.transform.position;
 			}
-			else
-			{
+			else{
 				return areaR.transform.position;
 			}
 		}
+	}
+
+	public enum TrialStructureType{
+		Random,
+		Alternating,
+		FixedTrial,
+		TrialAOnly,
+		TrialBOnly,
 	}
 }

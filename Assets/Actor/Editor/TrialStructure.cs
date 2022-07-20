@@ -6,140 +6,85 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Actor.Editor{
-    public class TrialStructure : OdinEditorWindow
-    {
-        [MenuItem("Tools/Project/Trial Structure")]
-        private static void OpenWindow()
-        {
-            var window = GetWindow<TrialStructure>();
-            window.position = GUIHelper.GetEditorWindowRect().AlignCenter(500, 500);
-            window.Show();
-        }
+	public class TrialStructure : OdinEditorWindow{
+		[MenuItem("Tools/Project/Trial Structure")]
+		private static void OpenWindow(){
+			var window = GetWindow<TrialStructure>();
+			window.position = GUIHelper.GetEditorWindowRect().AlignCenter(500, 500);
+			window.Show();
+		}
 
-        private Scripts.Actor actor;
-        private SettingPanel settingPanel;
-        private ArduinoBasic arduinoBasic;
-        private ArduinoDataReader arduinoDataReader;
-        private ScreenEffect screenEffect;
+		private Scripts.Actor _actor;
+		private ArduinoDataReader _arduinoDataReader;
+		private ScreenEffect _screenEffect;
+		private BehavioralEnvironmentY _behavioralEnvironmentY;
 
-        [LabelText("Cue display")] [TitleGroup("Behavior Control")] [OnValueChanged("OnCueDisplayChanged")] 
-        public bool isCueDisplay = true;
+		[LabelText("Cue display")] [TitleGroup("Trail Structure")] [OnValueChanged("OnCueDisplayChanged")]
+		public bool isCueDisplay = true;
 
-        [LabelText("Blanking Duration")] [TitleGroup("Behavior Control")] [OnValueChanged("OnBlankingDurationChanged")]
-        public float blankingDuration;
+		[LabelText("Blanking Duration")] [TitleGroup("Trail Structure")] [OnValueChanged("OnBlankingDurationChanged")]
+		public float blankingDuration;
 
-        [LabelText("Penalty Blanking Duration")] [TitleGroup("Behavior Control")] [OnValueChanged("OnPenaltyBlankingDurationChanged")]
-        public float penaltyBlankingDuration;
-        
-        [LabelText("Trial bias offset factor")] [TitleGroup("Behavior Control")] [OnValueChanged("OnTrialBiasOffsetFactorChanged")][ReadOnly]
-        public float trialBiasOffsetFactor ;
-        
-        [LabelText("Trigger pulse duration")] [TitleGroup("Behavior Control")] [OnValueChanged("OnTriggerPulseDurationChanged")][ReadOnly]
-        public float triggerPulseDuration;
-        
-        [LabelText("Trigger position")] [TitleGroup("Behavior Control")] [OnValueChanged("OnTriggerPositionChanged")][ReadOnly]
-        public float triggerPosition ;
-        
-        [LabelText("Random trial-type structure")] [TitleGroup("Behavior Control")] [OnValueChanged("OnRandomTrialTypeStructureChanged")][ReadOnly]
-        public bool randomTrialTypeStructure;
-        
-        [LabelText("Non-random trial-type structure")] [TitleGroup("Behavior Control")] [OnValueChanged("OnNonRandomTrialTypeStructureChanged")][ReadOnly]
-        public bool nonRandomTrialTypeStructure;
-        
-        
+		[LabelText("Penalty Blanking Duration")]
+		[TitleGroup("Trail Structure")]
+		[OnValueChanged("OnPenaltyBlankingDurationChanged")]
+		public float penaltyBlankingDuration;
 
 
-        protected override void OnEnable()
-        {
-            actor = FindObjectOfType<Scripts.Actor>();
-            settingPanel = FindObjectOfType<SettingPanel>();
-            arduinoBasic = FindObjectOfType<ArduinoBasic>();
-            screenEffect = FindObjectOfType<ScreenEffect>();
+		[LabelText("Trial Structure")]
+		[EnumPaging]
+		[TitleGroup("Trail Structure")]
+		[OnValueChanged("OnStructureTypeChanged")]
+		public TrialStructureType structureType;
 
-            blankingDuration = actor.GetPunishTime();
-            penaltyBlankingDuration = actor.GetRewardTime();
-        }
+		[LabelText("Trigger position")]
+		[TitleGroup("Closed-Loop Manipulation")]
+		[OnValueChanged("OnTriggerPositionChanged")]
+		[ReadOnly]
+		public float triggerPosition;
 
-        protected override void OnGUI()
-        {
-            actor = FindObjectOfType<Scripts.Actor>();
-            settingPanel = FindObjectOfType<SettingPanel>();
-            arduinoBasic = FindObjectOfType<ArduinoBasic>();
-            screenEffect = FindObjectOfType<ScreenEffect>();
+		[LabelText("Trigger pulse duration")]
+		[TitleGroup("Closed-Loop Manipulation")]
+		[OnValueChanged("OnTriggerPulseDurationChanged")]
+		[ReadOnly]
+		public float triggerPulseDuration;
 
-            if (!arduinoBasic || !screenEffect)
-            {
-                base.OnGUI();
-                return;
-            }
+		protected override void OnEnable(){
+			Refresh();
+		}
 
-            /*
-            EditorGUILayout.BeginVertical();
-            EditorGUILayout.BeginHorizontal();
-    
-            EditorGUILayout.EndHorizontal();
-            if(actor || Application.isEditor && Application.isPlaying){
-                DrawMethodButton();
-            }
-            */
+		[Button]
+		public void Refresh(){
+			_actor = FindObjectOfType<Scripts.Actor>();
+			_screenEffect = FindObjectOfType<ScreenEffect>();
+			_behavioralEnvironmentY = FindObjectOfType<BehavioralEnvironmentY>();
 
-            base.OnGUI();
-        }
-        
-        [Button]
-        public void Refresh()
-        {
-            actor = FindObjectOfType<Scripts.Actor>();
-            settingPanel = FindObjectOfType<SettingPanel>();
-            arduinoBasic = FindObjectOfType<ArduinoBasic>();
-        }
+			blankingDuration = _actor.GetPunishTime();
+			penaltyBlankingDuration = _actor.GetRewardTime();
+			structureType = _behavioralEnvironmentY.StructureType;
+		}
 
-        public void OnCueDisplayChanged()
-        {
-            screenEffect.SetBlankActive(isCueDisplay);
-        }
+		public void OnCueDisplayChanged(){
+			_screenEffect.SetBlankActive(isCueDisplay);
+		}
 
-        public void OnBlankingDurationChanged()
-        {
-            actor.SetGetRewardTime(blankingDuration);
-        }
+		public void OnBlankingDurationChanged(){
+			_actor.SetGetRewardTime(blankingDuration);
+		}
 
-        public void OnPenaltyBlankingDurationChanged()
-        {
-            actor.SetPunishTime(penaltyBlankingDuration);
-        }
+		public void OnPenaltyBlankingDurationChanged(){
+			_actor.SetPunishTime(penaltyBlankingDuration);
+		}
 
-        public void OnRandomTrialTypeStructureChanged()
-        {
-            
-        }
+		public void OnStructureTypeChanged(){
+			_behavioralEnvironmentY.StructureType = structureType;
+		}
 
-        public void OnTrialBiasOffsetFactorChanged()
-        {
-            
-        }
+		public void OnTriggerPulseDurationChanged(){ }
 
-        public void OnTriggerPulseDurationChanged()
-        {
-            
-        }
-
-        public void OnTriggerPositionChanged()
-        {
-            
-        }
-
-        public void OnNonRandomTrialTypeStructureChanged()
-        {
-            
-        }
-        
-    }
-    
-
+		public void OnTriggerPositionChanged(){ }
+	}
 }
