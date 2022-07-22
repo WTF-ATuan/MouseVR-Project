@@ -76,10 +76,16 @@ namespace Actor.Scripts{
 		}
 
 		public void GetReward(){
-			EventBus.Post(new ArduinoTriggerRequested("Valve_Open"));
-			EventBus.Post(new ArduinoTriggerRequested("Valve_Close", 0.06f));
+			EventBus.Post(new ArduinoTriggerRequested("V"));
 			Debug.Log("Get Reward");
 		}
+
+		public void GetTrigger()
+		{
+			EventBus.Post(new ArduinoTriggerRequested("A"));
+			Debug.Log("Get Trigger");
+		}
+		
 
 		private void Update() => TickTime();
 		private bool invokeFlag = true;

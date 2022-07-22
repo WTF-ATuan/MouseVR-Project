@@ -69,7 +69,7 @@ public class SettingPanel : MonoBehaviour
 
         if (rewardCount >= rewardLimit)
         {
-            EventBus.Post(new ArduinoTriggerRequested("v" , 0));
+            EventBus.Post(new ArduinoTriggerRequested("V"));
             UnityEditor.EditorApplication.isPlaying = false; //哈哈我不是唯讀
         }
         

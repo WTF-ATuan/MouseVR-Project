@@ -21,6 +21,7 @@ namespace Actor.Editor{
 		private ArduinoDataReader _arduinoDataReader;
 		private ScreenEffect _screenEffect;
 		private BehavioralEnvironmentY _behavioralEnvironmentY;
+		private ArduinoBasic arduinoBasic;
 
 		[LabelText("Cue display")] [TitleGroup("Trail Structure")] [OnValueChanged("OnCueDisplayChanged")]
 		public bool isCueDisplay = true;
@@ -49,7 +50,6 @@ namespace Actor.Editor{
 		[LabelText("Trigger pulse duration")]
 		[TitleGroup("Closed-Loop Manipulation")]
 		[OnValueChanged("OnTriggerPulseDurationChanged")]
-		[ReadOnly]
 		public float triggerPulseDuration;
 
 		protected override void OnEnable(){
@@ -62,6 +62,8 @@ namespace Actor.Editor{
 			_screenEffect = FindObjectOfType<ScreenEffect>();
 			_behavioralEnvironmentY = FindObjectOfType<BehavioralEnvironmentY>();
 
+			arduinoBasic = FindObjectOfType<ArduinoBasic>();
+			
 			blankingDuration = _actor.GetPunishTime();
 			penaltyBlankingDuration = _actor.GetRewardTime();
 			structureType = _behavioralEnvironmentY.StructureType;
@@ -83,7 +85,10 @@ namespace Actor.Editor{
 			_behavioralEnvironmentY.StructureType = structureType;
 		}
 
-		public void OnTriggerPulseDurationChanged(){ }
+		public void OnTriggerPulseDurationChanged()
+		{
+			arduinoBasic.SetTriggerLimitTime(triggerPulseDuration);
+		}
 
 		public void OnTriggerPositionChanged(){ }
 	}

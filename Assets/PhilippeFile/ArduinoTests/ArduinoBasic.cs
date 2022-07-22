@@ -22,6 +22,7 @@ public class ArduinoBasic : MonoBehaviour
     public string connectAction = "Disconnect";
 
     public float limitTime;
+    public float triggerLimitTime;
 
 
     void Start()
@@ -52,12 +53,19 @@ public class ArduinoBasic : MonoBehaviour
     {
         var sendText = obj.sendText;
 
-        ArduinoWrite(sendText);
 
-        if (limitTime > 0)
+        if (sendText == "V")
         {
-            StartCoroutine(DelayTrigger(sendText, limitTime));
+            ArduinoWrite(sendText);
+            StartCoroutine(DelayTrigger("v", limitTime));
         }
+
+        if (sendText == "A")
+        {
+            ArduinoWrite(sendText);
+            StartCoroutine(DelayTrigger("a", limitTime));
+        }
+        
     }
 
 
@@ -176,5 +184,10 @@ public class ArduinoBasic : MonoBehaviour
     public void SetLimitTime(float time)
     {
         limitTime = time;
+    }
+
+    public void SetTriggerLimitTime(float time)
+    {
+        triggerLimitTime = time;
     }
 }
