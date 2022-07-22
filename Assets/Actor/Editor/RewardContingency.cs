@@ -47,6 +47,11 @@ namespace Actor.Editor
 		
 		[TitleGroup("Reward Setting")] [LabelText("Maze position range")] [ReadOnly] public float mazePositionRange;
 		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Position")] [OnValueChanged("OnRewardZoneCenterPositionChanged")] [ReadOnly] public float rewardZoneCenterPosition;
+
+		[TitleGroup("Reward Setting")]
+		[LabelText("Set Reward Zone Position")]
+		[OnValueChanged("OnRewardZoneCenterPositionChanged")]
+		public float setRewardZonePosition;
 		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Size")] [OnValueChanged("OnRewardZoneSizeChanged")] public float rewardZoneSize;
 		[TitleGroup("Reward Setting")] [LabelText("Reward valve duration (ms)")] [OnValueChanged("OnRewardValveDurationChanged")] public float rewardValveDuration;
 		
@@ -178,7 +183,12 @@ namespace Actor.Editor
 
 		public void OnRewardZoneCenterPositionChanged()
 		{
-			
+			lickTrigger = FindObjectsOfType<LickTrigger>();
+			if(lickTrigger.Length < 1) return; 
+			var trigger = lickTrigger.First();
+			var triggerPosition = trigger.transform.position;
+			triggerPosition.z = setRewardZonePosition;
+			trigger.transform.position = triggerPosition;
 		}
 
 		public void OnRewardZoneSizeChanged()
@@ -219,9 +229,12 @@ namespace Actor.Editor
 				}
 			}
 
-			rewardZoneCenterPosition = lickTrigger.First().transform.position.z;
-			rewardZoneSize = lickTrigger.First().GetComponent<BoxCollider>().size.z;
-
+			if (lickTrigger.Length > 0)
+			{
+				rewardZoneCenterPosition = lickTrigger.First().transform.position.z;
+				rewardZoneSize = lickTrigger.First().GetComponent<BoxCollider>().size.z;
+			}
+			
 
 			if (isOpenGizmos)
 			{
