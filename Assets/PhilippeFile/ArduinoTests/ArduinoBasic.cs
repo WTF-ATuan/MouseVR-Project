@@ -57,13 +57,13 @@ public class ArduinoBasic : MonoBehaviour
         if (sendText == "V")
         {
             ArduinoWrite(sendText);
-            StartCoroutine(DelayTrigger("v", limitTime));
+            StartCoroutine(DelayTrigger("v", limitTime * 0.001f));
         }
 
         if (sendText == "A")
         {
             ArduinoWrite(sendText);
-            StartCoroutine(DelayTrigger("a", limitTime));
+            StartCoroutine(DelayTrigger("a", limitTime * 0.001f));
         }
         
     }

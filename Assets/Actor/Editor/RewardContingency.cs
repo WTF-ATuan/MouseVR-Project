@@ -40,24 +40,24 @@ namespace Actor.Editor
 		private bool isLick;
 
 
-		[TitleGroup("Reward Area Setting")] [LabelText("Random reward at reward zone")] [ReadOnly] public bool randomRewardAtRewardZone = true;
+		[TitleGroup("Reward Area Setting")] [LabelText("Obligatory reward at reward zone")] [ReadOnly] public bool randomRewardAtRewardZone = true;
 		[TitleGroup("Reward Area Setting")] [LabelText("Random reward at check zone")] [ReadOnly] public bool randomRewardAtCheckZone = false;
 		[TitleGroup("Reward Area Setting")] [LabelText("Reward probability")] [Range(0 , 100)] [OnValueChanged("OnRewardProbabilityChanged")] public float rewardProbability;
 		
 		
 		[TitleGroup("Reward Setting")] [LabelText("Maze position range")] [ReadOnly] public float mazePositionRange;
-		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Position")] [OnValueChanged("OnRewardZoneCenterPositionChanged")] [ReadOnly] public float rewardZoneCenterPosition;
+		[TitleGroup("Reward Setting")] [LabelText("Reward Zone (RZ) Center Position")] [OnValueChanged("OnRewardZoneCenterPositionChanged")] [ReadOnly] public float rewardZoneCenterPosition;
 
 		[TitleGroup("Reward Setting")]
-		[LabelText("Set Reward Zone Position")]
+		[LabelText("Set Reward Zone (RZ) Center Position")]
 		[OnValueChanged("OnRewardZoneCenterPositionChanged")]
 		public float setRewardZonePosition;
 		[TitleGroup("Reward Setting")] [LabelText("Reward Zone Size")] [OnValueChanged("OnRewardZoneSizeChanged")] public float rewardZoneSize;
 		[TitleGroup("Reward Setting")] [LabelText("Reward valve duration (ms)")] [OnValueChanged("OnRewardValveDurationChanged")] public float rewardValveDuration;
 		
-		[TitleGroup("Reward Area Setting")] [LabelText("Lick to")] [OnValueChanged("OnLickChange")] public bool lick;
+		[TitleGroup("Reward Area Setting")] [LabelText("Lick? (operant conditioning)")] [OnValueChanged("OnLickChange")] public bool lick;
 		[TitleGroup("Reward Setting")] [LabelText("Reward Count Limit")] [OnValueChanged("OnRewardCountLimit")] public int rewardLimit;
-		[TitleGroup("Reward Setting")] [LabelText("Current Lick Count Limit")] [OnValueChanged("OnCurrentLickCountLimit")] public int currentLickCountLimit;
+		[TitleGroup("Reward Setting")] [LabelText("Lick number threshold")] [OnValueChanged("OnCurrentLickCountLimit")] public int currentLickCountLimit;
 
 
 		private bool isOpenGizmos;

@@ -51,13 +51,13 @@ namespace Actor.Editor{
 		[InfoBox("Path is already Exist", InfoMessageType.Error, "CheckDataPath")]
 		private string dataName;
 
-		[Title("Save BehaviorData")]
+		[Title("Behavioral data write-in interval (s)")]
 		[HorizontalGroup("Data")]
 		[SerializeField]
 		[PropertyOrder(2)]
 		[HideLabel]
-		[ProgressBar(0.05f, 0.3f)]
-		private float during;
+		//[ProgressBar(0.05f, 0.3f)]
+		private float during = 0.016666666666666f;
 
 		[Button(ButtonSizes.Medium)]
 		[PropertyOrder(1)]

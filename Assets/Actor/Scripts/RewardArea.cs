@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Actor.Editor;
 using Actor.Scripts.Event;
 using Project;
 using UnityEngine;
@@ -33,7 +34,7 @@ public class RewardArea : MonoBehaviour
             var rate = Random.Range(0, 100);
             if (rate <= incentiveRate)
             {
-                EventBus.Post(new ActorInfiniteRewardDetected());
+                EventBus.Post(new ArduinoTriggerRequested("V"));
             }
         }
     }

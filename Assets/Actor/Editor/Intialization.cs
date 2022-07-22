@@ -35,13 +35,14 @@ namespace Actor.Editor{
 		[FilePath] [OnValueChanged("ChangeScene")]
 		public string sceneFilePath;
 
-		[ReadOnly] [InfoBox("Hot Key 'C'")] [VerticalGroup("Connect")]
+		[ReadOnly] [InfoBox("Connect VR: Hot Key 'C'")] [VerticalGroup("Connect")]
 		public string arduinoConnect = "Disconnect";
 
-		[ReadOnly] [InfoBox("Hot Key 'B'")] [VerticalGroup("Connect")]
+		[ReadOnly] [InfoBox("Blank display: Hot Key 'B'")] [VerticalGroup("Connect")]
 		public string screenConnect = "Disconnect";
 		
-		[HorizontalGroup("Position")] public float x , z;
+		[HorizontalGroup("Position")] [LabelText("Teleport target X")] public float x;
+		[HorizontalGroup("Position")] [LabelText("Teleport target Z")] public float z;
 
 
 
@@ -99,6 +100,11 @@ namespace Actor.Editor{
 				actor.ResetActor();
 			}
 		}
+		
+		[Button]
+		public void TeleportOnTargetPoint(){
+			actor.Teleport(new Vector3(x, actor.transform.position.y, z));
+		}
 
 		[Button][LabelText("Blank Display")]
 		public void ChangeBlankScreen(){
@@ -112,10 +118,7 @@ namespace Actor.Editor{
 			settingPanel.GetReward();
 		}
 
-		[Button]
-		public void TeleportOnTargetPoint(){
-			actor.Teleport(new Vector3(x, actor.transform.position.y, z));
-		}
+
 		
 	}                          
 }
