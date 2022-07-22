@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Actor.Editor;
 using Environment.Scripts;
 using PhilippeFile.Script;
@@ -218,8 +219,8 @@ namespace Actor.Editor
 				}
 			}
 
-			rewardZoneCenterPosition = minRewardArea.transform.position.z;
-			rewardZoneSize = minRewardArea.GetComponent<BoxCollider>().size.z;
+			rewardZoneCenterPosition = lickTrigger.First().transform.position.z;
+			rewardZoneSize = lickTrigger.First().GetComponent<BoxCollider>().size.z;
 
 
 			if (isOpenGizmos)
