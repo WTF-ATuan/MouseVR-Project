@@ -51,8 +51,8 @@ namespace Actor.Scripts
 
         private void Update()
         {
-            DetectMoveValue();
-            DetectDirectionAngle();
+            // DetectMoveValue();
+            // DetectDirectionAngle();
 
             if (arduinoBasic.GetDistance() >= actor.triggerDistance * actor.distanceCount)
             {

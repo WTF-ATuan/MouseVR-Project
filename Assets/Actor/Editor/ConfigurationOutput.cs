@@ -113,7 +113,8 @@ namespace Actor.Editor{
 		}
 
 		private void OnArduinoPortValueChanged(){
-			arduinoBasic.port = arduinoPort;
+			if(arduinoPort.IsNullOrWhitespace()) return;
+			arduinoBasic.SetPortCOM(arduinoPort);
 		}
 
 		private IEnumerable GetAllPort(){
