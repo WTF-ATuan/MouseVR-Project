@@ -785,6 +785,8 @@ MonoBehaviour:
   canMoveForward: 1
   punishDelayTime: 1
   rewardDelayTime: 1
+  triggerDistance: 0
+  isTriggerLock: 0
 --- !u!4 &266748323
 Transform:
   m_ObjectHideFlags: 0

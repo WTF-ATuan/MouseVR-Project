@@ -27,6 +27,8 @@ namespace Actor.Scripts{
 
 		public float triggerDistance;
 		public bool isTriggerLock;
+
+		public int distanceCount = 1;
 		
 		private void Start(){
 			StartPosition = transform.position;

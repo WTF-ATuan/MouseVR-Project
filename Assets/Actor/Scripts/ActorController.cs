@@ -9,10 +9,12 @@ namespace Actor.Scripts
     public class ActorController : MonoBehaviour
     {
         private Actor actor;
+        private ArduinoBasic arduinoBasic;
 
         private void Start()
         {
             actor = GetComponent<Actor>();
+            arduinoBasic = FindObjectOfType<ArduinoBasic>();
             EventBus.Subscribe<ActorMoveDetected>(OnActorMoveDetected);
             EventBus.Subscribe<ActorTeleportDetected>(OnActorTeleportDetected);
             EventBus.Subscribe<ActorJudged>(OnActorJudged);
@@ -52,9 +54,10 @@ namespace Actor.Scripts
             DetectMoveValue();
             DetectDirectionAngle();
 
-            if (actor.GetDistance() >= actor.triggerDistance && !actor.isTriggerLock)
+            if (arduinoBasic.GetDistance() >= actor.triggerDistance * actor.distanceCount)
             {
                 actor.GetTrigger();
+                actor.distanceCount++;
             }
 
             if (Input.GetKeyDown(KeyCode.Z))
