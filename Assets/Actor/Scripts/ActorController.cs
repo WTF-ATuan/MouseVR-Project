@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Actor.Scripts.Event;
+using Actor.Scripts.EventMessage;
 using Environment.Scripts.Events;
 using Project;
 using UnityEngine;
@@ -11,6 +12,12 @@ namespace Actor.Scripts
         private Actor actor;
         private ArduinoBasic arduinoBasic;
 
+
+        private int _trailNumber;
+        private int _trailSuccess;
+
+        private BehaviorDataInfo behaviorDataInfo;
+
         private void Start()
         {
             actor = GetComponent<Actor>();
@@ -20,7 +27,7 @@ namespace Actor.Scripts
             EventBus.Subscribe<ActorJudged>(OnActorJudged);
             EventBus.Subscribe<ActorInfiniteRewardDetected>(OnActorInfiniteRewardDetected);
             EventBus.Subscribe<ActorLickRequested>(x => DetectActorLick());
-            EventBus.Subscribe<ActorRotateRequested>(x => actor.SelectDirection(x.IsRight));
+            EventBus.Subscribe<ActorRotateRequested>(x => SetDirection(x.IsRight));
         }
 
         private void OnActorInfiniteRewardDetected(ActorInfiniteRewardDetected obj)
@@ -32,8 +39,19 @@ namespace Actor.Scripts
         {
             var isPunish = obj.isPunish;
             var onlyReward = obj.onlyReward;
-            actor.ReceiveJudged(isPunish , onlyReward);
+            if (!isPunish)
+            {
+                _trailSuccess++;
+            }
 
+            _trailNumber++;
+            behaviorDataInfo.Trail_Number = _trailNumber;
+            behaviorDataInfo.Trail_Success = _trailSuccess;
+            behaviorDataInfo.Licking = 0;
+            behaviorDataInfo.LeverPress = 0;
+            EventBus.Post(new SavedDataMessage(behaviorDataInfo, behaviorDataInfo.GetType(), BehaviorEventType.Trial));
+
+            actor.ReceiveJudged(isPunish, onlyReward);
             actor.isTriggerLock = false;
         }
 
@@ -79,7 +97,16 @@ namespace Actor.Scripts
 
         private void DetectActorLick()
         {
+            behaviorDataInfo.Licking = 0;
+            EventBus.Post(new SavedDataMessage(behaviorDataInfo, behaviorDataInfo.GetType(), BehaviorEventType.Trial));
             actor.Lick();
+        }
+
+        private void SetDirection(bool isRight)
+        {
+            behaviorDataInfo.LeverPress = isRight ? 2 : 1;
+            EventBus.Post(new SavedDataMessage(behaviorDataInfo, behaviorDataInfo.GetType(), BehaviorEventType.Trial));
+            actor.SelectDirection(isRight);
         }
 
         private void DetectDirectionAngle()
