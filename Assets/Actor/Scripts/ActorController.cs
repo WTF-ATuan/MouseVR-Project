@@ -30,6 +30,8 @@ namespace Actor.Scripts
         {
             var isPunish = obj.isPunish;
             actor.ReceiveJudged(isPunish);
+
+            actor.isTriggerLock = false;
         }
 
         private void OnActorTeleportDetected(ActorTeleportDetected obj)
@@ -50,6 +52,10 @@ namespace Actor.Scripts
             DetectMoveValue();
             DetectDirectionAngle();
 
+            if (actor.GetDistance() >= actor.triggerDistance && !actor.isTriggerLock)
+            {
+                actor.GetTrigger();
+            }
 
             if (Input.GetKeyDown(KeyCode.Z))
             {

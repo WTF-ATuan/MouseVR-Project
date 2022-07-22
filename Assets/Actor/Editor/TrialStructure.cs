@@ -6,6 +6,7 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Actor.Editor{
@@ -44,17 +45,18 @@ namespace Actor.Editor{
 		[LabelText("Trigger position")]
 		[TitleGroup("Closed-Loop Manipulation")]
 		[OnValueChanged("OnTriggerPositionChanged")]
-		[ReadOnly]
 		public float triggerPosition;
 
 		[LabelText("Trigger pulse duration")]
 		[TitleGroup("Closed-Loop Manipulation")]
 		[OnValueChanged("OnTriggerPulseDurationChanged")]
 		public float triggerPulseDuration;
+		
 
 		protected override void OnEnable(){
 			Refresh();
 		}
+		
 
 		[Button]
 		public void Refresh(){
@@ -90,6 +92,9 @@ namespace Actor.Editor{
 			arduinoBasic.SetTriggerLimitTime(triggerPulseDuration);
 		}
 
-		public void OnTriggerPositionChanged(){ }
+		public void OnTriggerPositionChanged()
+		{
+			_actor.SetTriggerDistance(triggerPosition);
+		}
 	}
 }

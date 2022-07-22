@@ -25,7 +25,9 @@ namespace Actor.Scripts{
 		private IRotate _rotate;
 		private float _delayTime;
 
-
+		public float triggerDistance;
+		public bool isTriggerLock;
+		
 		private void Start(){
 			StartPosition = transform.position;
 			_rotate = GetComponent<IRotate>();
@@ -83,6 +85,8 @@ namespace Actor.Scripts{
 		public void GetTrigger()
 		{
 			EventBus.Post(new ArduinoTriggerRequested("A"));
+
+			isTriggerLock = true;
 			Debug.Log("Get Trigger");
 		}
 		
@@ -123,6 +127,11 @@ namespace Actor.Scripts{
 		public void SetPunishTime(float time)
 		{
 			punishDelayTime = (int) time;
+		}
+
+		public void SetTriggerDistance(float distance)
+		{
+			triggerDistance = distance;
 		}
 
 		public void SetGetRewardTime(float time)
