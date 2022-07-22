@@ -31,7 +31,8 @@ namespace Actor.Scripts
         private void OnActorJudged(ActorJudged obj)
         {
             var isPunish = obj.isPunish;
-            actor.ReceiveJudged(isPunish);
+            var onlyReward = obj.onlyReward;
+            actor.ReceiveJudged(isPunish , onlyReward);
 
             actor.isTriggerLock = false;
         }

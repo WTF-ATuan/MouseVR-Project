@@ -67,12 +67,17 @@ namespace Actor.Scripts{
 			transform.eulerAngles = Vector3.zero;
 		}
 
-		public void ReceiveJudged(bool isPunish){
+		public void ReceiveJudged(bool isPunish , bool onlyReward){
 			if(isPunish){
 				EventBus.Post(new ScreenEffectDetected(1, 0 , Color.green));
 				_delayTime = punishDelayTime;
 			}
 			else{
+				if (onlyReward)
+				{
+					GetReward();
+					return;
+				}
 				EventBus.Post(new ScreenEffectDetected(1, 0 , Color.green));
 				_delayTime = rewardDelayTime;
 				GetReward();

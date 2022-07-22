@@ -70,8 +70,9 @@ namespace Environment.Scripts{
 		}
 
 		private void CalculateLickCount(){
-			if(correctLickCount >= correctLickCountLimit){
-				EventBus.Post(new ActorJudged(false));
+			if(correctLickCount >= correctLickCountLimit)
+			{
+				EventBus.Post(new ActorJudged(false).onlyReward = true);
 				correctLickCount = 0;
 				wrongLickCount = 0;
 			}
