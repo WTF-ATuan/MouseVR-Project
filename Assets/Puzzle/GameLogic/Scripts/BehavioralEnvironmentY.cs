@@ -21,9 +21,11 @@ namespace Puzzle.GameLogic.Scripts{
 		private int _previousNumber;
 		public TrialStructureType StructureType{ get; set; }
 
+		public GameObject bigWall;
 		private void Start(){
 			areaL.onExperimentCompleted += OnExperimentCompleted;
 			areaR.onExperimentCompleted += OnExperimentCompleted;
+			bigWall.SetActive(false);
 		}
 
 		private void OnExperimentCompleted(AreaType obj){
@@ -55,12 +57,14 @@ namespace Puzzle.GameLogic.Scripts{
 				case 0:
 					square.SetSide(true);
 					circle.SetSide(true);
+					bigWall.SetActive(false);
 					areaL.SetAreaType(AreaType.Award);
 					areaR.SetAreaType(AreaType.Punish);
 					break;
 				case 1:
 					square.SetSide(false);
 					circle.SetSide(false);
+					bigWall.SetActive(true);
 					areaL.SetAreaType(AreaType.Punish);
 					areaR.SetAreaType(AreaType.Award);
 					break;
